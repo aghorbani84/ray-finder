@@ -15,7 +15,7 @@ Each country has its own Clash/Mihomo profile with country-specific DNS, local-t
 
 | File | Purpose |
 |---|---|
-| [`output/clash-iran.yaml`](https://raw.githubusercontent.com/aghorbani84/ray-finder/iran-v2ray-config-aggregator-a43af/output/clash-iran.yaml) | Iran DNS, .ir and IR direct routing, AUTO-IR client-side node test |
+| [`output/clash-iran.yaml`](https://raw.githubusercontent.com/aghorbani84/ray-finder/iran-v2ray-config-aggregator-a43af/output/clash-iran.yaml) | Iran DNS, .ir and IR direct routing, AUTO-IRAN client-side node test |
 | [`output/clash-china.yaml`](https://raw.githubusercontent.com/aghorbani84/ray-finder/iran-v2ray-config-aggregator-a43af/output/clash-china.yaml) | China DoH DNS, CN geosite/GeoIP direct routing, AUTO-CHINA client-side node test |
 | [`output/clash-russia.yaml`](https://raw.githubusercontent.com/aghorbani84/ray-finder/iran-v2ray-config-aggregator-a43af/output/clash-russia.yaml) | Russia DNS, .ru and RU direct routing, AUTO-RUSSIA client-side node test |
 | [`output/sub.txt`](https://raw.githubusercontent.com/aghorbani84/ray-finder/iran-v2ray-config-aggregator-a43af/output/sub.txt) | Universal v2rayN/v2rayNG node subscription (unchanged) |

@@ -35,15 +35,22 @@ class RegionalProfileTests(unittest.TestCase):
             counts = build_profiles(yaml.safe_dump(BASE, allow_unicode=True), Path(tmp))
             self.assertEqual(counts, {"iran": 3, "china": 3, "russia": 3})
 
-            expected_groups = {
-                "AUTO-IR", "AUTO-CHINA", "AUTO-RUSSIA",
+            shared_groups = {
                 "TOP20", "🌍 اروپا", "🌏 آسیا", "🌎 آمریکا",
                 "🌏 اقیانوسیه", "🌐 سایر",
             }
-            for region, code in (("iran", "IR"), ("china", "CN"), ("russia", "RU")):
+            for region, code, auto_name in (
+                ("iran", "IR", "AUTO-IRAN"),
+                ("china", "CN", "AUTO-CHINA"),
+                ("russia", "RU", "AUTO-RUSSIA"),
+            ):
                 doc = yaml.safe_load((Path(tmp) / f"clash-{region}.yaml").read_text())
                 group_names = {g["name"] for g in doc["proxy-groups"]}
-                self.assertTrue(expected_groups.issubset(group_names))
+                missing = (shared_groups | {auto_name}) - group_names
+                self.assertFalse(
+                    missing,
+                    f"{region} missing groups: {sorted(missing)}; actual: {sorted(group_names)}",
+                )
                 self.assertFalse({"DE", "NL", "OTHER", "AUTO"} & group_names)
 
                 selector = next(g for g in doc["proxy-groups"] if g["name"] == "PROXY")
