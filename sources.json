@@ -1,0 +1,44 @@
+{
+  "_comment": "Add or remove sources here; the pipeline reads this file on every run. Each source needs a unique 'name' and a list of 'urls'. Responses may be plain-text URI lists, full-page base64 blobs, or Clash YAML (all handled automatically). Every URL below was verified live on 2026-11-16.",
+  "sources": [
+    {
+      "name": "barry-far",
+      "urls": [
+        "https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Splitted-By-Protocol/vless.txt",
+        "https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Splitted-By-Protocol/vmess.txt",
+        "https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Splitted-By-Protocol/trojan.txt",
+        "https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Splitted-By-Protocol/ss.txt",
+        "https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Splitted-By-Protocol/hysteria2.txt"
+      ]
+    },
+    {
+      "name": "R3ZARAHIMI",
+      "urls": [
+        "https://raw.githubusercontent.com/R3ZARAHIMI/tg-v2ray-configs-every2h/main/conf-week.txt",
+        "https://raw.githubusercontent.com/R3ZARAHIMI/tg-v2ray-configs-every2h/main/Config_jo.txt"
+      ]
+    },
+    {
+      "name": "mahdibland",
+      "urls": [
+        "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/Eternity.txt",
+        "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/splitted/vmess.txt",
+        "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/splitted/trojan.txt",
+        "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/splitted/ss.txt"
+      ]
+    },
+    {
+      "name": "ALIILAPRO",
+      "urls": [
+        "https://raw.githubusercontent.com/ALIILAPRO/v2rayNG-Config/main/server.txt"
+      ]
+    },
+    {
+      "name": "PSG",
+      "urls": [
+        "https://raw.githubusercontent.com/itsyebekhe/PSG/main/subscriptions/xray/mix",
+        "https://raw.githubusercontent.com/itsyebekhe/PSG/main/subscriptions/xray/reality.b64"
+      ]
+    }
+  ]
+}
