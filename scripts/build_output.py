@@ -82,6 +82,7 @@ def _node_to_proxy(node: dict) -> dict | None:
 
         if proto == "vmess":
             p = dict(base, type="vmess", uuid=node.get("uuid", ""),
+                     alterId=int(node.get("alter_id", 0)),
                      cipher=node.get("cipher") or "auto",
                      network=network)
             if tls == "tls":
