@@ -1,6 +1,6 @@
 # iran-v2ray-finder run report
 
-**Run timestamp:** 2026-11-15 21:08:55 UTC
+**Run timestamp:** 2026-11-15 21:32:19 UTC
 
 ## Pipeline totals
 
@@ -9,7 +9,7 @@
 | Raw configs fetched | 6579 |
 | Parsed successfully | 6477 |
 | After cleaning/dedupe | 5222 |
-| TCP-reachable | 2187 |
+| TCP-reachable | 2191 |
 | Selected for output | 150 |
 
 ## Per-source results
@@ -33,25 +33,25 @@
 
 | # | Name | Protocol | Server | Port | Latency (ms) |
 |---|---|---|---|---|---|
-| 1 | 🏳️ 💥Config_jo-229 | vless | 167.82.76.31 | 443 | 5.0 |
-| 2 | 🏳️ 💥Config_jo-205 | vless | 199.232.78.159 | 443 | 5.1 |
-| 3 | 🏳️ 💥Config_jo-201 | vless | 146.75.59.186 | 443 | 5.1 |
-| 4 | 🏳️ 💥Config_jo-236#1 | vless | 199.232.78.159 | 443 | 5.1 |
-| 5 | 🏁RELAY-203.30.190.192-1593 | vmess | 203.30.190.192 | 443 | 5.2 |
-| 6 | 🏁RELAY-172.64.98.253-8422 | vmess | 172.64.98.253 | 2095 | 5.2 |
-| 7 | 🏁RELAY-104.31.16.196-8756 | vmess | 104.31.16.196 | 443 | 5.2 |
-| 8 | 🇽🇽 XX | VMESS | @proxy48 #1 [fast] | vmess | 172.66.213.38 | 443 | 5.2 |
-| 9 | 🏳️ 💥Config_jo-162 | vless | 199.232.78.159 | 443 | 5.2 |
-| 10 | 🏳️ 💥Config_jo-227#1 | vless | 199.232.78.159 | 443 | 5.2 |
-| 11 | 🏳️ 💥Config_jo-253 | vless | 199.232.78.160 | 443 | 5.2 |
-| 12 | 🏳️ 💥Config_jo-230#1 | vless | 146.75.57.238 | 443 | 5.2 |
-| 13 | 🇺🇸 US | VLESS | @buffalo_vpn #1 [fast] | vless | 199.232.0.177 | 443 | 5.2 |
-| 14 | 🇨🇦 CA | VLESS | @goldenshiinevpn #1 [fast] | vless | 104.31.16.36 | 443 | 5.2 |
-| 15 | 🏳️ 💥Config_jo-171 | trojan | 199.232.78.160 | 443 | 5.3 |
-| 16 | 🏁RELAY-104.18.152.225-1025 | trojan | 104.18.152.225 | 443 | 5.3 |
-| 17 | 🏁RELAY-198.41.203.3-0087 | vmess | 198.41.203.3 | 443 | 5.3 |
-| 18 | 🏁RELAY-141.101.114.20-0048 | vmess | 141.101.114.20 | 443 | 5.3 |
-| 19 | 🏁RELAY-104.19.38.62-1379 | vmess | 104.19.38.62 | 2086 | 5.3 |
-| 20 | 🇺🇸US-66.241.124.93-7965 | vmess | 66.241.124.93 | 443 | 5.3 |
+| 1 | 🇺🇸 US | VLESS | @outline_ir #2 [fast] | vless | 199.232.249.131 | 443 | 1.2 |
+| 2 | 🏳️ 💥Config_jo-196 | vless | 199.232.78.120 | 443 | 1.3 |
+| 3 | 🏳️ 💥Config_jo-166 | vless | 199.232.78.120 | 443 | 1.3 |
+| 4 | 🏳️ 💥Config_jo-218 | vless | 199.232.78.120 | 443 | 1.3 |
+| 5 | 🏳️ 💥Config_jo-190#1 | vless | 199.232.78.159 | 443 | 1.3 |
+| 6 | 🏳️ 💥Config_jo-227#1 | vless | 199.232.78.159 | 443 | 1.3 |
+| 7 | 🏳️ 💥Config_jo-241 | vless | 146.75.57.111 | 443 | 1.3 |
+| 8 | 🇺🇸 US | VLESS | @netmellianti #1 [fast] | vless | 23.235.33.98 | 80 | 1.3 |
+| 9 | 🏁RELAY-104.19.45.42-0822 | vmess | 104.19.45.42 | 2095 | 1.4 |
+| 10 | 🏁RELAY-104.17.121.43-0980 | trojan | 104.17.121.43 | 443 | 1.4 |
+| 11 | 🇺🇸US-66.241.124.93-7965 | vmess | 66.241.124.93 | 443 | 1.4 |
+| 12 | 🏁RELAY-162.159.91.211-0985 | trojan | 162.159.91.211 | 443 | 1.4 |
+| 13 | 🏁RELAY-198.41.193.110-8258 | vmess | 198.41.193.110 | 2082 | 1.4 |
+| 14 | 🏁RELAY-104.16.174.124-1007 | trojan | 104.16.174.124 | 443 | 1.4 |
+| 15 | 🏁RELAY-154.92.9.146-8547 | vmess | 154.92.9.146 | 443 | 1.4 |
+| 16 | 🏁RELAY-104.24.255.191-8775 | vmess | 104.24.255.191 | 443 | 1.4 |
+| 17 | 🏳️ 💥Config_jo-178#1 | vless | 199.232.239.239 | 443 | 1.4 |
+| 18 | 🏳️ 💥Config_jo-222#1 | vless | 146.75.59.186 | 443 | 1.4 |
+| 19 | 🏳️ 💥Config_jo-216 | vless | 146.75.57.7 | 443 | 1.4 |
+| 20 | 🏳️ 💥Config_jo-229 | vless | 167.82.76.31 | 443 | 1.4 |
 
 _Latency is coarse TCP-handshake time measured from GitHub runners; actual usable ranking happens client-side via the `AUTO`/`TOP20` url-test groups._
