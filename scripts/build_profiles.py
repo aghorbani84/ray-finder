@@ -110,11 +110,19 @@ def build_profiles(base_text: str, out_dir: Path) -> dict[str, int]:
         doc = copy.deepcopy(base)
         # Country labels are inferred only from explicit source-name tokens.
         label_counts = {}
+        renamed = {}
         for proxy in doc["proxies"]:
             if isinstance(proxy, dict):
-                label = display_name(str(proxy.get("name", "")))[0]
+                old_name = str(proxy.get("name", ""))
+                label = display_name(old_name)[0]
                 label_counts[label] = label_counts.get(label, 0) + 1
-                proxy["name"] = f"{label} {label_counts[label]:02d}"
+                new_name = f"{label} {label_counts[label]:02d}"
+                renamed[old_name] = new_name
+                proxy["name"] = new_name
+        # Keep explicit group references (notably TOP20) valid after renaming.
+        for group in doc["proxy-groups"]:
+            if isinstance(group, dict) and isinstance(group.get("proxies"), list):
+                group["proxies"] = [renamed.get(name, name) for name in group["proxies"]]
         doc["rules"] = [
             "GEOSITE,private,DIRECT",
             "GEOIP,private,DIRECT,no-resolve",
