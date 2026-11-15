@@ -80,8 +80,8 @@ use at your own risk.
 <!-- STATS:START -->
 ## 📊 Pipeline stats (last automated run)
 
-- **Last run:** 2026-11-15 21:02 UTC
+- **Last run:** 2026-11-15 21:08 UTC
 - **Raw configs fetched:** 6579
-- **Reachable after testing:** 2183
+- **Reachable after testing:** 2187
 - **Nodes shipped in this repo:** **150** (ss: 22, trojan: 25, vless: 78, vmess: 25)
 <!-- STATS:END -->
