@@ -13,9 +13,9 @@ but any v2rayN/v2rayNG/Clash-based app works.
 
 | File | Purpose |
 |---|---|
-| [`output/clash.yaml`](https://raw.githubusercontent.com/YOUR_USERNAME/iran-v2ray-finder/main/output/clash.yaml) | Full mihomo config: proxies + AUTO/TOP20/regional groups + Iran routing rules |
-| [`output/sub.txt`](https://raw.githubusercontent.com/YOUR_USERNAME/iran-v2ray-finder/main/output/sub.txt) | Node URIs, plain + base64 (universal v2rayN/v2rayNG subscription) |
-| [`output/report.md`](https://raw.githubusercontent.com/YOUR_USERNAME/iran-v2ray-finder/main/output/report.md) | Per-source stats, protocol mix, top-20 fastest nodes |
+| [`output/clash.yaml`](https://raw.githubusercontent.com/aghorbani84/ray-finder/iran-v2ray-config-aggregator-a43af/output/clash.yaml) | Full mihomo config: proxies + AUTO/TOP20/regional groups + Iran routing rules |
+| [`output/sub.txt`](https://raw.githubusercontent.com/aghorbani84/ray-finder/iran-v2ray-config-aggregator-a43af/output/sub.txt) | Node URIs, plain + base64 (universal v2rayN/v2rayNG subscription) |
+| [`output/report.md`](https://raw.githubusercontent.com/aghorbani84/ray-finder/iran-v2ray-config-aggregator-a43af/output/report.md) | Per-source stats, protocol mix, top-20 fastest nodes |
 
 The Clash config is Iran-optimized: Iranian domains/IPs go **DIRECT** (GEOSITE/GEOIP rules),
 split DNS with Iranian resolvers for `.ir`, fake-ip mode, and a `url-test` group that picks
@@ -45,14 +45,14 @@ sources.json ──► fetch.py   download lists / base64 blobs / clash-yaml (v2
 
 ## Subscription Links
 
-Replace `YOUR_USERNAME` with your GitHub username:
+The links below point to the default branch of this repository:
 
 - **Clash (mihomo/FlClash):**
-  `https://raw.githubusercontent.com/YOUR_USERNAME/iran-v2ray-finder/main/output/clash.yaml`
+  `https://raw.githubusercontent.com/aghorbani84/ray-finder/iran-v2ray-config-aggregator-a43af/output/clash.yaml`
 - **Base64 (v2rayN/v2rayNG):**
-  `https://raw.githubusercontent.com/YOUR_USERNAME/iran-v2ray-finder/main/output/sub.txt`
+  `https://raw.githubusercontent.com/aghorbani84/ray-finder/iran-v2ray-config-aggregator-a43af/output/sub.txt`
 - **jsDelivr mirror** (use when `raw.githubusercontent.com` is blocked/unreachable from Iran):
-  `https://cdn.jsdelivr.net/gh/YOUR_USERNAME/iran-v2ray-finder@main/output/clash.yaml`
+  `https://cdn.jsdelivr.net/gh/aghorbani84/ray-finder@iran-v2ray-config-aggregator-a43af/output/clash.yaml`
 
 ### FlClash import steps
 
