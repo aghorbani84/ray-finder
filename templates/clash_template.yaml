@@ -1,0 +1,145 @@
+# iran-v2ray-finder — Iran-optimized mihomo/Clash Meta template.
+# scripts/build_output.py injects the tested proxies into `proxies:` and the
+# 20 fastest node names into the TOP20 group on every CI run.
+# The localhost ports below intentionally match common UFW firewall rules.
+
+mixed-port: 7890
+socks-port: 7891
+external-controller: 127.0.0.1:9090
+allow-lan: false
+mode: rule
+log-level: info
+unified-delay: true
+tcp-concurrent: true
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+dns:
+  enable: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.lan"
+    - "*.local"
+    - "+.msftconnecttest.com"
+    - "+.msftncsi.com"
+  default-nameserver:
+    - 8.8.8.8
+    - 1.1.1.1
+  nameserver:
+    - https://dns.google/dns-query
+    - https://1.1.1.1/dns-query
+  nameserver-policy:
+    "geosite:ir,+.ir":
+      - 178.22.122.100
+      - 185.51.200.2
+
+proxies: []   # injected by build_output.py
+
+proxy-groups:
+  - name: "PROXY"
+    type: select
+    proxies:
+      - AUTO
+      - TOP20
+      - DE
+      - NL
+      - TR
+      - AE
+      - FI
+      - UK
+      - US
+      - OTHER
+
+  - name: "AUTO"
+    type: url-test
+    include-all: true
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+    lazy: true
+
+  - name: "TOP20"
+    type: url-test
+    proxies: []   # 20 lowest-latency nodes injected by build_output.py
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+    lazy: true
+
+  - name: "DE"
+    type: url-test
+    include-all: true
+    filter: "(?i)DE|Germany|Frankfurt|🇩🇪"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+    lazy: true
+
+  - name: "NL"
+    type: url-test
+    include-all: true
+    filter: "(?i)NL|Netherlands|Amsterdam|🇳🇱"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+    lazy: true
+
+  - name: "TR"
+    type: url-test
+    include-all: true
+    filter: "(?i)TR|Turkey|Istanbul|🇹🇷"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+    lazy: true
+
+  - name: "AE"
+    type: url-test
+    include-all: true
+    filter: "(?i)AE|UAE|Dubai|🇦🇪"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+    lazy: true
+
+  - name: "FI"
+    type: url-test
+    include-all: true
+    filter: "(?i)FI|Finland|Helsinki|🇫🇮"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+    lazy: true
+
+  - name: "UK"
+    type: url-test
+    include-all: true
+    filter: "(?i)UK|GB|Britain|London|🇬🇧"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+    lazy: true
+
+  - name: "US"
+    type: url-test
+    include-all: true
+    filter: "(?i)US|United States|America|NY|Los Angeles|🇺🇸"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+    lazy: true
+
+  - name: "OTHER"
+    type: select
+    include-all: true
+    exclude-filter: "(?i)DE|Germany|Frankfurt|🇩🇪|NL|Netherlands|Amsterdam|🇳🇱|TR|Turkey|Istanbul|🇹🇷|AE|UAE|Dubai|🇦🇪|FI|Finland|Helsinki|🇫🇮|UK|GB|Britain|London|🇬🇧|US|United States|America|NY|Los Angeles|🇺🇸"
+
+rules:
+  - GEOSITE,category-ir,DIRECT
+  - DOMAIN-SUFFIX,ir,DIRECT
+  - GEOIP,private,DIRECT,no-resolve
+  - GEOIP,IR,DIRECT
+  - MATCH,PROXY
