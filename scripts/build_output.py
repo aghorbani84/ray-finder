@@ -64,10 +64,14 @@ def _node_to_proxy(node: dict) -> dict | None:
             if node.get("flow"):
                 p["flow"] = node["flow"]
             if tls == "reality":
+                # Mihomo requires TLS to be explicitly enabled when Reality
+                # options are configured; otherwise it rejects the proxy with
+                # "REALITY requires TLS".
                 p.update({
+                    "tls": True,
                     "reality-opts": {"public-key": node.get("pbk", ""),
                                      "short-id": node.get("sid", "")},
-                    "client-fingerprint": node.get("fp", "chrome"),
+                    "client-fingerprint": node.get("fp") or "chrome",
                     "servername": sni or "",
                     "udp": True,
                 })
