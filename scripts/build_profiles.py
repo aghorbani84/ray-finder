@@ -8,9 +8,12 @@ that proxy servers physically reside in the selected country.
 from __future__ import annotations
 
 import copy
+import re
 from pathlib import Path
 
 import yaml
+
+from region_labels import display_name
 
 REGIONS = {
     "iran": {
@@ -50,6 +53,10 @@ def _country_group(profile: dict, region: str) -> None:
     # Keep existing alternatives but make the region-specific AUTO test first.
     choices = selector.setdefault("proxies", [])
     choices[:] = [x for x in choices if x not in ("AUTO", group_name)]
+    regional_names = ["🌍 اروپا", "🌏 آسیا", "🌎 آمریکا", "🌏 اقیانوسیه", "🌐 سایر"]
+    for regional_name in regional_names:
+        if regional_name not in choices:
+            choices.append(regional_name)
     choices.insert(0, group_name)
 
     auto_group = {
@@ -67,6 +74,24 @@ def _country_group(profile: dict, region: str) -> None:
         isinstance(g, dict) and g.get("name") == group_name
     )]
     groups.insert(insert_at, auto_group)
+    regional_groups = [
+        {"name": "🌍 اروپا", "type": "url-test", "include-all": True,
+         "filter": "(?i)· اروپا", "url": "https://cp.cloudflare.com/generate_204",
+         "interval": 300, "tolerance": 50, "lazy": True},
+        {"name": "🌏 آسیا", "type": "url-test", "include-all": True,
+         "filter": "(?i)· آسیا", "url": "https://cp.cloudflare.com/generate_204",
+         "interval": 300, "tolerance": 50, "lazy": True},
+        {"name": "🌎 آمریکا", "type": "url-test", "include-all": True,
+         "filter": "(?i)· آمریکا", "url": "https://cp.cloudflare.com/generate_204",
+         "interval": 300, "tolerance": 50, "lazy": True},
+        {"name": "🌏 اقیانوسیه", "type": "url-test", "include-all": True,
+         "filter": "(?i)· اقیانوسیه", "url": "https://cp.cloudflare.com/generate_204",
+         "interval": 300, "tolerance": 50, "lazy": True},
+        {"name": "🌐 سایر", "type": "url-test", "include-all": True,
+         "filter": "(?i)· سایر", "url": "https://cp.cloudflare.com/generate_204",
+         "interval": 300, "tolerance": 50, "lazy": True},
+    ]
+    groups.extend(regional_groups)
 
 
 def build_profiles(base_text: str, out_dir: Path) -> dict[str, int]:
@@ -83,6 +108,21 @@ def build_profiles(base_text: str, out_dir: Path) -> dict[str, int]:
     counts: dict[str, int] = {}
     for region, cfg in REGIONS.items():
         doc = copy.deepcopy(base)
+        # Country labels are inferred only from explicit source-name tokens.
+        label_counts = {}
+        renamed = {}
+        for proxy in doc["proxies"]:
+            if isinstance(proxy, dict):
+                old_name = str(proxy.get("name", ""))
+                label = display_name(old_name)[0]
+                label_counts[label] = label_counts.get(label, 0) + 1
+                new_name = f"{label} {label_counts[label]:02d}"
+                renamed[old_name] = new_name
+                proxy["name"] = new_name
+        # Keep explicit group references (notably TOP20) valid after renaming.
+        for group in doc["proxy-groups"]:
+            if isinstance(group, dict) and isinstance(group.get("proxies"), list):
+                group["proxies"] = [renamed.get(name, name) for name in group["proxies"]]
         doc["rules"] = [
             "GEOSITE,private,DIRECT",
             "GEOIP,private,DIRECT,no-resolve",
@@ -92,6 +132,9 @@ def build_profiles(base_text: str, out_dir: Path) -> dict[str, int]:
         ]
         if region == "china":
             doc["rules"].insert(1, "GEOSITE,cn,DIRECT")
+            doc["rules"].insert(2, "DOMAIN-SUFFIX,中国,DIRECT")
+        elif region == "russia":
+            doc["rules"].insert(1, "DOMAIN-SUFFIX,рф,DIRECT")
 
         dns = doc.setdefault("dns", {})
         dns["default-nameserver"] = cfg.get("bootstrap_dns", cfg["dns"])
