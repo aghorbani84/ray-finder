@@ -8,7 +8,6 @@ that proxy servers physically reside in the selected country.
 from __future__ import annotations
 
 import copy
-import re
 from pathlib import Path
 
 import yaml
@@ -42,7 +41,11 @@ REGIONS = {
 
 
 def _country_group(profile: dict, region: str) -> None:
-    """Make the primary selector use client-side latency tests for this profile."""
+    """Create valid selectors for the renamed node labels.
+
+    AUTO-<REGION> means automatic client-side selection for this profile;
+    it intentionally tests the shared node pool, not servers geolocated there.
+    """
     group_name = f"AUTO-{region.upper()}"
     groups = profile.get("proxy-groups", [])
     selector = next((g for g in groups
@@ -50,15 +53,24 @@ def _country_group(profile: dict, region: str) -> None:
     if selector is None:
         raise ValueError("base Clash configuration is missing PROXY selector")
 
-    # Keep existing alternatives but make the region-specific AUTO test first.
-    choices = selector.setdefault("proxies", [])
-    choices[:] = [x for x in choices if x not in ("AUTO", group_name)]
-    regional_names = ["🌍 اروپا", "🌏 آسیا", "🌎 آمریکا", "🌏 اقیانوسیه", "🌐 سایر"]
-    for regional_name in regional_names:
-        if regional_name not in choices:
-            choices.append(regional_name)
-    choices.insert(0, group_name)
-
+    regional_groups = [
+        {"name": "🌍 اروپا", "type": "url-test", "include-all": True,
+         "filter": r"(?i)· اروپا", "url": "https://cp.cloudflare.com/generate_204",
+         "interval": 300, "tolerance": 50, "lazy": True},
+        {"name": "🌏 آسیا", "type": "url-test", "include-all": True,
+         "filter": r"(?i)· آسیا", "url": "https://cp.cloudflare.com/generate_204",
+         "interval": 300, "tolerance": 50, "lazy": True},
+        {"name": "🌎 آمریکا", "type": "url-test", "include-all": True,
+         "filter": r"(?i)· آمریکا", "url": "https://cp.cloudflare.com/generate_204",
+         "interval": 300, "tolerance": 50, "lazy": True},
+        {"name": "🌏 اقیانوسیه", "type": "url-test", "include-all": True,
+         "filter": r"(?i)· اقیانوسیه", "url": "https://cp.cloudflare.com/generate_204",
+         "interval": 300, "tolerance": 50, "lazy": True},
+        {"name": "🌐 سایر", "type": "url-test", "include-all": True,
+         "filter": r"(?i)· سایر", "url": "https://cp.cloudflare.com/generate_204",
+         "interval": 300, "tolerance": 50, "lazy": True},
+    ]
+    regional_names = [g["name"] for g in regional_groups]
     auto_group = {
         "name": group_name,
         "type": "url-test",
@@ -68,30 +80,26 @@ def _country_group(profile: dict, region: str) -> None:
         "tolerance": 50,
         "lazy": True,
     }
-    # Insert immediately after the PROXY selector for easier inspection.
-    insert_at = groups.index(selector) + 1
+
+    # Remove legacy filters: they matched the old node names and became empty
+    # after proxies were renamed to flag + region labels.
+    obsolete = {"AUTO", "DE", "NL", "TR", "AE", "FI", "UK", "US", "OTHER"}
+    obsolete.update(regional_names)
+    obsolete.add(group_name)
     groups[:] = [g for g in groups if not (
-        isinstance(g, dict) and g.get("name") == group_name
+        isinstance(g, dict) and g.get("name") in obsolete
     )]
-    groups.insert(insert_at, auto_group)
-    regional_groups = [
-        {"name": "🌍 اروپا", "type": "url-test", "include-all": True,
-         "filter": "(?i)· اروپا", "url": "https://cp.cloudflare.com/generate_204",
-         "interval": 300, "tolerance": 50, "lazy": True},
-        {"name": "🌏 آسیا", "type": "url-test", "include-all": True,
-         "filter": "(?i)· آسیا", "url": "https://cp.cloudflare.com/generate_204",
-         "interval": 300, "tolerance": 50, "lazy": True},
-        {"name": "🌎 آمریکا", "type": "url-test", "include-all": True,
-         "filter": "(?i)· آمریکا", "url": "https://cp.cloudflare.com/generate_204",
-         "interval": 300, "tolerance": 50, "lazy": True},
-        {"name": "🌏 اقیانوسیه", "type": "url-test", "include-all": True,
-         "filter": "(?i)· اقیانوسیه", "url": "https://cp.cloudflare.com/generate_204",
-         "interval": 300, "tolerance": 50, "lazy": True},
-        {"name": "🌐 سایر", "type": "url-test", "include-all": True,
-         "filter": "(?i)· سایر", "url": "https://cp.cloudflare.com/generate_204",
-         "interval": 300, "tolerance": 50, "lazy": True},
-    ]
-    groups.extend(regional_groups)
+
+    selector["proxies"] = [group_name, "TOP20", *regional_names]
+    insert_at = groups.index(selector) + 1
+    groups[insert_at:insert_at] = [auto_group, *regional_groups]
+
+    available_groups = {
+        g.get("name") for g in groups if isinstance(g, dict)
+    }
+    missing = [name for name in selector["proxies"] if name not in available_groups]
+    if missing:
+        raise ValueError(f"PROXY selector references missing groups: {missing}")
 
 
 def build_profiles(base_text: str, out_dir: Path) -> dict[str, int]:
@@ -145,10 +153,8 @@ def build_profiles(base_text: str, out_dir: Path) -> dict[str, int]:
         dns["enhanced-mode"] = "fake-ip"
         dns.setdefault("fake-ip-filter", ["*.lan", "*.local"])
 
-        # Never ship a profile that disables TLS certificate verification.
-        for proxy in doc["proxies"]:
-            if isinstance(proxy, dict) and "skip-cert-verify" in proxy:
-                proxy["skip-cert-verify"] = False
+        # Preserve per-protocol certificate settings from the node converter.
+        # Forcing skip-cert-verify=False breaks nodes whose source lacks SNI.
 
         _country_group(doc, region)
         rendered = yaml.safe_dump(
