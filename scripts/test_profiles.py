@@ -40,7 +40,7 @@ class RegionalProfileTests(unittest.TestCase):
                 "🌏 اقیانوسیه", "🌐 سایر",
             }
             for region, code, auto_name in (
-                ("iran", "IR", "AUTO-IR"),
+                ("iran", "IR", "AUTO-IRAN"),
                 ("china", "CN", "AUTO-CHINA"),
                 ("russia", "RU", "AUTO-RUSSIA"),
             ):
