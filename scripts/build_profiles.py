@@ -8,9 +8,12 @@ that proxy servers physically reside in the selected country.
 from __future__ import annotations
 
 import copy
+import re
 from pathlib import Path
 
 import yaml
+
+from region_labels import display_name
 
 REGIONS = {
     "iran": {
@@ -83,6 +86,10 @@ def build_profiles(base_text: str, out_dir: Path) -> dict[str, int]:
     counts: dict[str, int] = {}
     for region, cfg in REGIONS.items():
         doc = copy.deepcopy(base)
+        # Country labels are inferred only from explicit source-name tokens.
+        for proxy in doc["proxies"]:
+            if isinstance(proxy, dict):
+                proxy["name"] = display_name(str(proxy.get("name", "")))[0]
         doc["rules"] = [
             "GEOSITE,private,DIRECT",
             "GEOIP,private,DIRECT,no-resolve",
@@ -92,6 +99,9 @@ def build_profiles(base_text: str, out_dir: Path) -> dict[str, int]:
         ]
         if region == "china":
             doc["rules"].insert(1, "GEOSITE,cn,DIRECT")
+            doc["rules"].insert(2, "DOMAIN-SUFFIX,中国,DIRECT")
+        elif region == "russia":
+            doc["rules"].insert(1, "DOMAIN-SUFFIX,рф,DIRECT")
 
         dns = doc.setdefault("dns", {})
         dns["default-nameserver"] = cfg.get("bootstrap_dns", cfg["dns"])
