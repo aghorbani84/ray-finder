@@ -1,0 +1,31 @@
+name: Validate profiles
+
+on:
+  pull_request:
+    branches:
+      - iran-v2ray-config-aggregator-a43af
+  push:
+    branches:
+      - iran-v2ray-config-aggregator-a43af
+    paths:
+      - 'scripts/**'
+      - 'requirements.txt'
+      - '.github/workflows/validate.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  profile-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run regression tests
+        run: python -m unittest discover -s scripts -p 'test_*.py' -v
