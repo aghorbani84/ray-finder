@@ -285,6 +285,14 @@ def _parse_vmess(uri: str, source: str) -> dict | None:
                  name=_clean_name(str(obj.get("ps") or "")) or _clean_name(frag),
                  source=source, raw=uri)
     if node:
+        # Mihomo requires alterId for every VMess proxy. Modern VMess uses 0.
+        raw_alter_id = obj.get("aid", obj.get("alterId", 0))
+        try:
+            node["alter_id"] = int(raw_alter_id if raw_alter_id not in (None, "") else 0)
+        except (TypeError, ValueError):
+            return None
+        if node["alter_id"] < 0:
+            return None
         node["path"] = str(obj.get("path") or "")
         node["host"] = str(obj.get("host") or "")
         node["host_header"] = node["host"]
