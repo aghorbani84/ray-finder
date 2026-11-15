@@ -11,15 +11,17 @@ but any v2rayN/v2rayNG/Clash-based app works.
 
 ## What you get (regenerated automatically)
 
+Each country has its own Clash/Mihomo profile with country-specific DNS, local-traffic DIRECT rules, and a client-side AUTO group. The AUTO group measures the nodes from the user's actual device/network; it is not ranked from GitHub's runner location. All three profiles currently use the same validated public node pool, because a single GitHub runner cannot truthfully benchmark latency from Iran, China, and Russia simultaneously.
+
 | File | Purpose |
 |---|---|
-| [`output/clash.yaml`](https://raw.githubusercontent.com/aghorbani84/ray-finder/iran-v2ray-config-aggregator-a43af/output/clash.yaml) | Full mihomo config: proxies + AUTO/TOP20/regional groups + Iran routing rules |
-| [`output/sub.txt`](https://raw.githubusercontent.com/aghorbani84/ray-finder/iran-v2ray-config-aggregator-a43af/output/sub.txt) | Node URIs, plain + base64 (universal v2rayN/v2rayNG subscription) |
-| [`output/report.md`](https://raw.githubusercontent.com/aghorbani84/ray-finder/iran-v2ray-config-aggregator-a43af/output/report.md) | Per-source stats, protocol mix, top-20 fastest nodes |
+| [`output/clash-iran.yaml`](https://raw.githubusercontent.com/aghorbani84/ray-finder/iran-v2ray-config-aggregator-a43af/output/clash-iran.yaml) | Iran DNS, .ir and IR direct routing, AUTO-IR client-side node test |
+| [`output/clash-china.yaml`](https://raw.githubusercontent.com/aghorbani84/ray-finder/iran-v2ray-config-aggregator-a43af/output/clash-china.yaml) | China DoH DNS, CN geosite/GeoIP direct routing, AUTO-CHINA client-side node test |
+| [`output/clash-russia.yaml`](https://raw.githubusercontent.com/aghorbani84/ray-finder/iran-v2ray-config-aggregator-a43af/output/clash-russia.yaml) | Russia DNS, .ru and RU direct routing, AUTO-RUSSIA client-side node test |
+| [`output/sub.txt`](https://raw.githubusercontent.com/aghorbani84/ray-finder/iran-v2ray-config-aggregator-a43af/output/sub.txt) | Universal v2rayN/v2rayNG node subscription (unchanged) |
+| [`output/report.md`](https://raw.githubusercontent.com/aghorbani84/ray-finder/iran-v2ray-config-aggregator-a43af/output/report.md) | Source stats, protocol mix, selected nodes and run time |
 
-The Clash config is Iran-optimized: Iranian domains/IPs go **DIRECT** (GEOSITE/GEOIP rules),
-split DNS with Iranian resolvers for `.ir`, fake-ip mode, and a `url-test` group that picks
-the fastest exit client-side. Ports `7890/7891/9090` on localhost match common UFW setups.
+The default `output/clash.yaml` URL remains an alias of the Iran profile for backwards compatibility. The three Clash files are separate configurations; they are not claims that proxy exits are physically located in those countries. True country-origin benchmarking requires runners/probes inside each country.
 
 ## How it works
 
