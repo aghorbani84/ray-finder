@@ -1,6 +1,15 @@
 name: Update configs
 
 on:
+  push:
+    branches:
+      - iran-v2ray-config-aggregator-a43af
+    paths:
+      - 'scripts/**'
+      - 'templates/**'
+      - 'sources.json'
+      - 'README.md'
+      - '.github/workflows/update.yml'
   schedule:
     # off-the-hour cron (GitHub throttles on-the-hour scheduled runs)
     - cron: "17 */6 * * *"
