@@ -46,7 +46,11 @@ class RegionalProfileTests(unittest.TestCase):
             ):
                 doc = yaml.safe_load((Path(tmp) / f"clash-{region}.yaml").read_text())
                 group_names = {g["name"] for g in doc["proxy-groups"]}
-                self.assertTrue((shared_groups | {auto_name}).issubset(group_names))
+                missing = (shared_groups | {auto_name}) - group_names
+                self.assertFalse(
+                    missing,
+                    f"{region} missing groups: {sorted(missing)}; actual: {sorted(group_names)}",
+                )
                 self.assertFalse({"DE", "NL", "OTHER", "AUTO"} & group_names)
 
                 selector = next(g for g in doc["proxy-groups"] if g["name"] == "PROXY")
