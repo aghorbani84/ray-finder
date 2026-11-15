@@ -21,6 +21,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import build_output  # noqa: E402
+import build_profiles  # noqa: E402
 import clean  # noqa: E402
 import fetch  # noqa: E402
 import parse  # noqa: E402
@@ -126,6 +127,12 @@ def main() -> int:
     sub_text = build_output.build_sub_txt(selected)
     report_text = build_output.build_report_md(source_stats, selected, totals)
     build_output.write_outputs(out_dir, clash_text, sub_text, report_text)
+    try:
+        profile_counts = build_profiles.build_profiles(clash_text, out_dir)
+        log(f"main: region profiles generated: {profile_counts}")
+    except Exception as exc:  # noqa: BLE001
+        log(f"main: region profile generation failed: {type(exc).__name__}: {exc}")
+        raise
     build_output.update_readme_stats(ROOT / "README.md", selected, totals)
 
     log(f"=== run finished: {len(selected)} nodes in output/ ===")
