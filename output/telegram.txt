@@ -1,0 +1,4 @@
+Ray Finder — subscription information
+Telegram channel: https://t.me/aghorbani_84
+The DEMO entry in Clash profiles is intentionally non-functional.
+Use real nodes from the generated subscription; never treat the DEMO entry as a server.
