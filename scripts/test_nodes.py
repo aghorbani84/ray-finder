@@ -15,6 +15,7 @@ Never raises; unreachable hosts simply drop out.
 
 from __future__ import annotations
 
+import ipaddress
 import socket
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -22,12 +23,42 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from common import TCP_ATTEMPTS, TCP_TIMEOUT, TCP_WORKERS, log
 
 
-def _tcp_probe(host: str, port: int) -> float | None:
-    """Return latency in ms for one connect attempt, or None on failure."""
+def _resolve_public_targets(host: str, port: int) -> list[tuple]:
+    """Resolve once and retain only globally routable addresses.
+
+    The returned sockaddr is used directly for connect(), avoiding a second
+    DNS lookup (and DNS-rebinding window) between validation and connection.
+    """
+    try:
+        records = socket.getaddrinfo(host, port, type=socket.SOCK_STREAM)
+    except (OSError, ValueError, UnicodeError):
+        return []
+
+    targets: list[tuple] = []
+    seen: set[tuple] = set()
+    for family, socktype, proto, _canonname, sockaddr in records:
+        try:
+            address = ipaddress.ip_address(str(sockaddr[0]).split("%", 1)[0])
+        except ValueError:
+            continue
+        if not address.is_global:
+            continue
+        key = (family, socktype, proto, sockaddr)
+        if key not in seen:
+            seen.add(key)
+            targets.append(key)
+    return targets
+
+
+def _tcp_probe(target: tuple) -> float | None:
+    """Connect to one pre-resolved public sockaddr; never resolve it again."""
+    family, socktype, proto, sockaddr = target
     try:
         start = time.perf_counter()
-        with socket.create_connection((host, port), timeout=TCP_TIMEOUT):
-            return (time.perf_counter() - start) * 1000.0
+        with socket.socket(family, socktype, proto) as conn:
+            conn.settimeout(TCP_TIMEOUT)
+            conn.connect(sockaddr)
+        return (time.perf_counter() - start) * 1000.0
     except (OSError, ValueError, UnicodeError):
         return None
 
@@ -38,12 +69,20 @@ def test_node(node: dict) -> dict | None:
     port = node.get("port")
     if not host or not isinstance(port, int):
         return None
-    # hysteresis: two attempts, keep the best successful latency
+    # Resolve and validate once; connect only to those exact public addresses.
+    targets = _resolve_public_targets(host, port)
+    if not targets:
+        return None
+
+    # hysteresis: retry the validated targets, keeping the first success
     best: float | None = None
     for _ in range(TCP_ATTEMPTS):
-        lat = _tcp_probe(host, port)
-        if lat is not None:
-            best = lat if best is None else min(best, lat)
+        for target in targets:
+            lat = _tcp_probe(target)
+            if lat is not None:
+                best = lat if best is None else min(best, lat)
+                break
+        if best is not None:
             break
         time.sleep(0.2)
     if best is None:
