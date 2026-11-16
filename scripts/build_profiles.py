@@ -98,9 +98,17 @@ def _country_group(profile: dict, region: str) -> None:
         isinstance(g, dict) and g.get("name") in obsolete
     )]
 
-    selector["proxies"] = [group_name, "TOP20", *protocol_group_names, *regional_names]
+    demo_name = "📢 کانال تلگرام | @aghorbani_84 (DEMO - غیرقابل اتصال)"
+    demo_group = {
+        "name": "📢 کانال تلگرام", "type": "select", "proxies": [demo_name],
+    }
+    selector["proxies"] = [
+        group_name, "TOP20", *protocol_group_names, *regional_names, "📢 کانال تلگرام"
+    ]
     insert_at = groups.index(selector) + 1
-    groups[insert_at:insert_at] = [auto_group, *protocol_groups, *regional_groups]
+    groups[insert_at:insert_at] = [
+        auto_group, *protocol_groups, *regional_groups, demo_group
+    ]
 
     available_groups = {
         g.get("name") for g in groups if isinstance(g, dict)
@@ -138,6 +146,15 @@ def build_profiles(base_text: str, out_dir: Path) -> dict[str, int]:
                 new_name = f"[{protocol}] {label} {label_counts[label]:02d}"
                 renamed[old_name] = new_name
                 proxy["name"] = new_name
+        # Explicitly non-routable demo entry for channel attribution. TEST-NET-1
+        # is reserved for documentation; credentials are intentionally invalid.
+        demo_name = "📢 کانال تلگرام | @aghorbani_84 (DEMO - غیرقابل اتصال)"
+        doc["proxies"].append({
+            "name": demo_name, "type": "ss", "server": "192.0.2.1",
+            "port": 443, "cipher": "chacha20-ietf-poly1305",
+            "password": "NOT-A-REAL-PASSWORD", "udp": False,
+        })
+
         # Keep explicit group references (notably TOP20) valid after renaming.
         for group in doc["proxy-groups"]:
             if isinstance(group, dict) and isinstance(group.get("proxies"), list):
@@ -171,9 +188,13 @@ def build_profiles(base_text: str, out_dir: Path) -> dict[str, int]:
         # Forcing skip-cert-verify=False breaks nodes whose source lacks SNI.
 
         _country_group(doc, region)
-        rendered = yaml.safe_dump(
-            doc, allow_unicode=True, sort_keys=False, default_flow_style=False,
-            width=1000,
+        rendered = (
+            "# Ray Finder | Telegram: @aghorbani_84\n"
+            "# Demo entry is intentionally non-functional; do not use it as a server.\n"
+            + yaml.safe_dump(
+                doc, allow_unicode=True, sort_keys=False, default_flow_style=False,
+                width=1000,
+            )
         )
         checked = yaml.safe_load(rendered)
         expected_group = f"AUTO-{region.upper()}"
