@@ -1,2 +1,12 @@
 __pycache__/
 .venv/
+
+# Python tooling and local secrets
+*.py[cod]
+__pycache__/
+.pytest_cache/
+.coverage
+*.log
+.env
+.env.*
+!.env.example
