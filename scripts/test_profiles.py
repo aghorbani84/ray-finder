@@ -86,7 +86,7 @@ class RegionalProfileTests(unittest.TestCase):
     def test_all_profiles_have_valid_group_references_and_rules(self):
         with tempfile.TemporaryDirectory() as tmp:
             counts = build_profiles(yaml.safe_dump(BASE, allow_unicode=True), Path(tmp))
-            self.assertEqual(counts, {"iran": 3, "china": 3, "russia": 3})
+            self.assertEqual(counts, {"iran": 4, "china": 4, "russia": 4})
 
             protocol_groups = {
                 "TEST-VLESS", "TEST-VMESS", "TEST-TROJAN",
