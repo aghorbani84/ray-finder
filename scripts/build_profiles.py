@@ -8,6 +8,7 @@ that proxy servers physically reside in the selected country.
 from __future__ import annotations
 
 import copy
+import re
 from pathlib import Path
 
 import yaml
@@ -70,16 +71,23 @@ def _country_group(profile: dict, region: str) -> None:
          "filter": r"(?i)· سایر", "url": "https://cp.cloudflare.com/generate_204",
          "interval": 300, "tolerance": 50, "lazy": True},
     ]
-    regional_names = [g["name"] for g in regional_groups]
-    auto_group = {
-        "name": group_name,
-        "type": "url-test",
-        "include-all": True,
-        "url": "https://cp.cloudflare.com/generate_204",
-        "interval": 300,
-        "tolerance": 50,
-        "lazy": True,
+    health_defaults = {
+        "type": "url-test", "include-all": True,
+        "url": "https://www.gstatic.com/generate_204",
+        "expected-status": 204, "interval": 180, "timeout": 5000,
+        "max-failed-times": 3, "tolerance": 40, "lazy": True,
     }
+    for group in regional_groups:
+        group.update(health_defaults)
+    regional_names = [g["name"] for g in regional_groups]
+    protocol_groups = []
+    for protocol in ("VLESS", "VMESS", "TROJAN", "SS", "HYSTERIA2", "TUIC"):
+        protocol_groups.append({
+            **health_defaults, "name": f"TEST-{protocol}",
+            "filter": "(?i)^" + re.escape(f"[{protocol}]"),
+        })
+    protocol_group_names = [g["name"] for g in protocol_groups]
+    auto_group = {**health_defaults, "name": group_name}
 
     # Remove legacy filters: they matched the old node names and became empty
     # after proxies were renamed to flag + region labels.
@@ -90,9 +98,9 @@ def _country_group(profile: dict, region: str) -> None:
         isinstance(g, dict) and g.get("name") in obsolete
     )]
 
-    selector["proxies"] = [group_name, "TOP20", *regional_names]
+    selector["proxies"] = [group_name, "TOP20", *protocol_group_names, *regional_names]
     insert_at = groups.index(selector) + 1
-    groups[insert_at:insert_at] = [auto_group, *regional_groups]
+    groups[insert_at:insert_at] = [auto_group, *protocol_groups, *regional_groups]
 
     available_groups = {
         g.get("name") for g in groups if isinstance(g, dict)
@@ -124,7 +132,10 @@ def build_profiles(base_text: str, out_dir: Path) -> dict[str, int]:
                 old_name = str(proxy.get("name", ""))
                 label = display_name(old_name)[0]
                 label_counts[label] = label_counts.get(label, 0) + 1
-                new_name = f"{label} {label_counts[label]:02d}"
+                protocol = str(proxy.get("type", "")).upper()
+                if protocol not in {"VLESS", "VMESS", "TROJAN", "SS", "HYSTERIA2", "TUIC"}:
+                    raise ValueError(f"unsupported proxy type for health grouping: {protocol!r}")
+                new_name = f"[{protocol}] {label} {label_counts[label]:02d}"
                 renamed[old_name] = new_name
                 proxy["name"] = new_name
         # Keep explicit group references (notably TOP20) valid after renaming.
