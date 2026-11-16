@@ -3,7 +3,7 @@
 Fully automated, Iran-optimized aggregator of **free V2Ray / Clash Meta (mihomo)** configs.
 A GitHub Actions workflow runs every 6 hours, pulls node URIs from public free-proxy
 sources, parses `vmess` / `vless` / `trojan` / `ss` / `hysteria2` / `tuic` links,
-deduplicates them, TCP-tests reachability, and commits ready-to-use subscription files
+deduplicates them, performs a coarse TCP pre-filter, and commits ready-to-use subscription files
 back into this repo. **No manual steps after the initial push.**
 
 Target client: [FlClash](https://github.com/chen08209/FlClash) (Clash Meta / mihomo kernel),
@@ -11,7 +11,7 @@ but any v2rayN/v2rayNG/Clash-based app works.
 
 ## What you get (regenerated automatically)
 
-Each country has its own Clash/Mihomo profile with country-specific DNS, local-traffic DIRECT rules, and a client-side AUTO group. The AUTO group measures the nodes from the user's actual device/network; it is not ranked from GitHub's runner location. All three profiles currently use the same validated public node pool, because a single GitHub runner cannot truthfully benchmark latency from Iran, China, and Russia simultaneously.
+Each country has its own Clash/Mihomo profile with country-specific DNS, local-traffic DIRECT rules, explicit proxy routing for AI/work websites (including Muse AI), and a client-side AUTO group. Every Clash profile also contains a clearly labelled, intentionally non-functional DEMO entry and a Telegram channel selector for [@aghorbani_84](https://t.me/aghorbani_84). The demo endpoint uses the documentation-only TEST-NET-1 address and dummy credentials; it is not a usable proxy. The AUTO group measures the nodes from the user's actual device/network; it is not ranked from GitHub's runner location. All three profiles currently use the same validated public node pool, because a single GitHub runner cannot truthfully benchmark latency from Iran, China, and Russia simultaneously. Each profile also includes protocol-specific live health groups (`TEST-VLESS`, `TEST-VMESS`, `TEST-TROJAN`, `TEST-SS`, `TEST-HYSTERIA2`, `TEST-TUIC`) that test the actual Mihomo adapter from the importing device using HTTPS `generate_204`, requiring HTTP 204. Health checks repeat every 180 seconds, use a 5-second timeout, and mark a node unhealthy after three failures. This is an on-device latency/availability score, not a throughput or packet-loss benchmark.
 
 | File | Purpose |
 |---|---|
@@ -20,6 +20,8 @@ Each country has its own Clash/Mihomo profile with country-specific DNS, local-t
 | [`output/clash-russia.yaml`](https://raw.githubusercontent.com/aghorbani84/ray-finder/iran-v2ray-config-aggregator-a43af/output/clash-russia.yaml) | Russia DNS, .ru and RU direct routing, AUTO-RUSSIA client-side node test |
 | [`output/sub.txt`](https://raw.githubusercontent.com/aghorbani84/ray-finder/iran-v2ray-config-aggregator-a43af/output/sub.txt) | Universal v2rayN/v2rayNG node subscription (unchanged) |
 | [`output/report.md`](https://raw.githubusercontent.com/aghorbani84/ray-finder/iran-v2ray-config-aggregator-a43af/output/report.md) | Source stats, protocol mix, selected nodes and run time |
+| [`output/telegram.txt`](https://raw.githubusercontent.com/aghorbani84/ray-finder/iran-v2ray-config-aggregator-a43af/output/telegram.txt) | Publisher information and Telegram channel |
+
 
 The default `output/clash.yaml` URL remains an alias of the Iran profile for backwards compatibility. The three Clash files are separate configurations; they are not claims that proxy exits are physically located in those countries. True country-origin benchmarking requires runners/probes inside each country.
 
@@ -29,7 +31,7 @@ The default `output/clash.yaml` URL remains an alias of the Iran profile for bac
 sources.json ──► fetch.py   download lists / base64 blobs / clash-yaml (v2rayNG UA)
              ──► parse.py   vmess, vless, trojan, ss (SIP002+legacy), hy2, tuic
              ──► clean.py   drop private IPs / localhost / .ir hosts, dedupe, rename
-             ──► test_nodes.py  TCP connect, 3 s timeout, 150 workers, 2 attempts
+             ──► test_nodes.py  coarse TCP connect pre-filter (not a protocol health verdict)
              ──► build_output.py  cap ~150 nodes (Reality-first, balanced mix)
              ──► output/* + README stats  committed by github-actions[bot]
 ```
@@ -47,7 +49,7 @@ sources.json ──► fetch.py   download lists / base64 blobs / clash-yaml (v2
 
 ## Subscription Links
 
-The links below point to the default branch of this repository:
+The links below point to the default branch of this repository. Publisher: [@aghorbani_84](https://t.me/aghorbani_84). The Clash YAML files include the channel attribution in YAML comments and a selectable DEMO entry. The plain Base64 subscription is intentionally kept free of comments or fake nodes so v2rayN/v2rayNG imports remain valid.
 
 - **Clash (mihomo/FlClash):**
   `https://raw.githubusercontent.com/aghorbani84/ray-finder/iran-v2ray-config-aggregator-a43af/output/clash.yaml`
@@ -70,6 +72,18 @@ pip install -r requirements.txt
 python scripts/main.py          # full live run (needs internet)
 python scripts/main.py --demo   # offline simulated run, generates output/ anyway
 ```
+
+## AI/work website routing
+
+The generated Clash/Mihomo profiles explicitly route these domains through the selected `PROXY` group before country-specific DIRECT rules: `muse.ai`, `manus.im`, `chatgpt.com`, `openai.com`, `claude.ai`, `anthropic.com`, `perplexity.ai`, `gemini.google.com`, `aistudio.google.com`, and `ai.google.dev`. `DOMAIN-SUFFIX` covers subdomains too. This controls routing only; it cannot guarantee that a service is available, that the selected proxy can reach it, or that the service permits access from that proxy's exit region. Add more domains to `PROXY_DOMAIN_SUFFIXES` in `scripts/build_profiles.py` after verifying their official hostnames.
+
+## Client-side protocol health and ranking
+
+- `AUTO-IRAN`, `AUTO-CHINA`, and `AUTO-RUSSIA` run from the user's own network and compare all imported proxy adapters.
+- `TEST-VLESS`, `TEST-VMESS`, `TEST-TROJAN`, `TEST-SS`, `TEST-HYSTERIA2`, and `TEST-TUIC` isolate each protocol for troubleshooting and protocol-specific automatic selection.
+- These groups request `https://www.gstatic.com/generate_204` through each proxy and require HTTP 204; a raw open TCP port is not enough.
+- Health checks run every 180 seconds, use a 5-second timeout, and require three failures before marking a node unavailable.
+- Mihomo `url-test` measures reachability and latency, not sustained throughput, jitter, or packet loss. Those metrics need a separate controlled speed-test workflow.
 
 ## Security and reliability
 

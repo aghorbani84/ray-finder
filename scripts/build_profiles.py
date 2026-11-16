@@ -8,11 +8,27 @@ that proxy servers physically reside in the selected country.
 from __future__ import annotations
 
 import copy
+import re
 from pathlib import Path
 
 import yaml
 
 from region_labels import display_name
+
+# Domains for AI/work platforms that should use the selected proxy group.
+# DOMAIN-SUFFIX also covers their subdomains. Keep this list explicit and auditable.
+PROXY_DOMAIN_SUFFIXES = (
+    "muse.ai",
+    "manus.im",
+    "chatgpt.com",
+    "openai.com",
+    "claude.ai",
+    "anthropic.com",
+    "perplexity.ai",
+    "gemini.google.com",
+    "aistudio.google.com",
+    "ai.google.dev",
+)
 
 REGIONS = {
     "iran": {
@@ -70,16 +86,23 @@ def _country_group(profile: dict, region: str) -> None:
          "filter": r"(?i)· سایر", "url": "https://cp.cloudflare.com/generate_204",
          "interval": 300, "tolerance": 50, "lazy": True},
     ]
-    regional_names = [g["name"] for g in regional_groups]
-    auto_group = {
-        "name": group_name,
-        "type": "url-test",
-        "include-all": True,
-        "url": "https://cp.cloudflare.com/generate_204",
-        "interval": 300,
-        "tolerance": 50,
-        "lazy": True,
+    health_defaults = {
+        "type": "url-test", "include-all": True,
+        "url": "https://www.gstatic.com/generate_204",
+        "expected-status": 204, "interval": 180, "timeout": 5000,
+        "max-failed-times": 3, "tolerance": 40, "lazy": True,
     }
+    for group in regional_groups:
+        group.update(health_defaults)
+    regional_names = [g["name"] for g in regional_groups]
+    protocol_groups = []
+    for protocol in ("VLESS", "VMESS", "TROJAN", "SS", "HYSTERIA2", "TUIC"):
+        protocol_groups.append({
+            **health_defaults, "name": f"TEST-{protocol}",
+            "filter": "(?i)^" + re.escape(f"[{protocol}]"),
+        })
+    protocol_group_names = [g["name"] for g in protocol_groups]
+    auto_group = {**health_defaults, "name": group_name}
 
     # Remove legacy filters: they matched the old node names and became empty
     # after proxies were renamed to flag + region labels.
@@ -90,9 +113,17 @@ def _country_group(profile: dict, region: str) -> None:
         isinstance(g, dict) and g.get("name") in obsolete
     )]
 
-    selector["proxies"] = [group_name, "TOP20", *regional_names]
+    demo_name = "📢 کانال تلگرام | @aghorbani_84 (DEMO - غیرقابل اتصال)"
+    demo_group = {
+        "name": "📢 کانال تلگرام", "type": "select", "proxies": [demo_name],
+    }
+    selector["proxies"] = [
+        group_name, "TOP20", *protocol_group_names, *regional_names, "📢 کانال تلگرام"
+    ]
     insert_at = groups.index(selector) + 1
-    groups[insert_at:insert_at] = [auto_group, *regional_groups]
+    groups[insert_at:insert_at] = [
+        auto_group, *protocol_groups, *regional_groups, demo_group
+    ]
 
     available_groups = {
         g.get("name") for g in groups if isinstance(g, dict)
@@ -124,9 +155,21 @@ def build_profiles(base_text: str, out_dir: Path) -> dict[str, int]:
                 old_name = str(proxy.get("name", ""))
                 label = display_name(old_name)[0]
                 label_counts[label] = label_counts.get(label, 0) + 1
-                new_name = f"{label} {label_counts[label]:02d}"
+                protocol = str(proxy.get("type", "")).upper()
+                if protocol not in {"VLESS", "VMESS", "TROJAN", "SS", "HYSTERIA2", "TUIC"}:
+                    raise ValueError(f"unsupported proxy type for health grouping: {protocol!r}")
+                new_name = f"[{protocol}] {label} {label_counts[label]:02d}"
                 renamed[old_name] = new_name
                 proxy["name"] = new_name
+        # Explicitly non-routable demo entry for channel attribution. TEST-NET-1
+        # is reserved for documentation; credentials are intentionally invalid.
+        demo_name = "📢 کانال تلگرام | @aghorbani_84 (DEMO - غیرقابل اتصال)"
+        doc["proxies"].append({
+            "name": demo_name, "type": "ss", "server": "192.0.2.1",
+            "port": 443, "cipher": "chacha20-ietf-poly1305",
+            "password": "NOT-A-REAL-PASSWORD", "udp": False,
+        })
+
         # Keep explicit group references (notably TOP20) valid after renaming.
         for group in doc["proxy-groups"]:
             if isinstance(group, dict) and isinstance(group.get("proxies"), list):
@@ -134,15 +177,18 @@ def build_profiles(base_text: str, out_dir: Path) -> dict[str, int]:
         doc["rules"] = [
             "GEOSITE,private,DIRECT",
             "GEOIP,private,DIRECT,no-resolve",
+            # Explicit AI/work platform routing must precede regional DIRECT rules.
+            *[f"DOMAIN-SUFFIX,{domain},PROXY" for domain in PROXY_DOMAIN_SUFFIXES],
             f"DOMAIN-SUFFIX,{cfg['suffix']},DIRECT",
             f"GEOIP,{cfg['code']},DIRECT",
             "MATCH,PROXY",
         ]
+        regional_direct_index = 2 + len(PROXY_DOMAIN_SUFFIXES)
         if region == "china":
-            doc["rules"].insert(1, "GEOSITE,cn,DIRECT")
-            doc["rules"].insert(2, "DOMAIN-SUFFIX,中国,DIRECT")
+            doc["rules"].insert(regional_direct_index, "GEOSITE,cn,DIRECT")
+            doc["rules"].insert(regional_direct_index + 1, "DOMAIN-SUFFIX,中国,DIRECT")
         elif region == "russia":
-            doc["rules"].insert(1, "DOMAIN-SUFFIX,рф,DIRECT")
+            doc["rules"].insert(regional_direct_index, "DOMAIN-SUFFIX,рф,DIRECT")
 
         dns = doc.setdefault("dns", {})
         dns["default-nameserver"] = cfg.get("bootstrap_dns", cfg["dns"])
@@ -160,9 +206,13 @@ def build_profiles(base_text: str, out_dir: Path) -> dict[str, int]:
         # Forcing skip-cert-verify=False breaks nodes whose source lacks SNI.
 
         _country_group(doc, region)
-        rendered = yaml.safe_dump(
-            doc, allow_unicode=True, sort_keys=False, default_flow_style=False,
-            width=1000,
+        rendered = (
+            "# Ray Finder | Telegram: @aghorbani_84\n"
+            "# Demo entry is intentionally non-functional; do not use it as a server.\n"
+            + yaml.safe_dump(
+                doc, allow_unicode=True, sort_keys=False, default_flow_style=False,
+                width=1000,
+            )
         )
         checked = yaml.safe_load(rendered)
         expected_group = f"AUTO-{region.upper()}"

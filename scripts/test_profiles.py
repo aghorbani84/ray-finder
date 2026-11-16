@@ -86,11 +86,15 @@ class RegionalProfileTests(unittest.TestCase):
     def test_all_profiles_have_valid_group_references_and_rules(self):
         with tempfile.TemporaryDirectory() as tmp:
             counts = build_profiles(yaml.safe_dump(BASE, allow_unicode=True), Path(tmp))
-            self.assertEqual(counts, {"iran": 3, "china": 3, "russia": 3})
+            self.assertEqual(counts, {"iran": 4, "china": 4, "russia": 4})
 
+            protocol_groups = {
+                "TEST-VLESS", "TEST-VMESS", "TEST-TROJAN",
+                "TEST-SS", "TEST-HYSTERIA2", "TEST-TUIC",
+            }
             shared_groups = {
                 "TOP20", "🌍 اروپا", "🌏 آسیا", "🌎 آمریکا",
-                "🌏 اقیانوسیه", "🌐 سایر",
+                "🌏 اقیانوسیه", "🌐 سایر", *protocol_groups,
             }
             for region, code, auto_name in (
                 ("iran", "IR", "AUTO-IRAN"),
@@ -109,21 +113,44 @@ class RegionalProfileTests(unittest.TestCase):
                 selector = next(g for g in doc["proxy-groups"] if g["name"] == "PROXY")
                 self.assertTrue(set(selector["proxies"]).issubset(group_names))
                 self.assertEqual(doc["rules"][-1], "MATCH,PROXY")
+                # AI/work sites must use PROXY before regional DIRECT policies.
+                for domain in ("muse.ai", "manus.im", "chatgpt.com", "openai.com",
+                               "claude.ai", "anthropic.com", "perplexity.ai",
+                               "gemini.google.com", "aistudio.google.com", "ai.google.dev"):
+                    route = f"DOMAIN-SUFFIX,{domain},PROXY"
+                    self.assertIn(route, doc["rules"])
+                    self.assertLess(
+                        doc["rules"].index(route),
+                        doc["rules"].index(f"GEOIP,{code},DIRECT"),
+                        f"{domain} must route through PROXY before regional DIRECT rules",
+                    )
                 self.assertIs(doc["dns"]["respect-rules"], True)
                 self.assertEqual(len(doc["proxies"]), len({p["name"] for p in doc["proxies"]}))
                 self.assertFalse(any(p.get("skip-cert-verify") is True for p in doc["proxies"]))
+                demo = next(p for p in doc["proxies"] if "(DEMO - غیرقابل اتصال)" in p["name"])
+                self.assertEqual(demo["server"], "192.0.2.1")
+                self.assertEqual(demo["password"], "NOT-A-REAL-PASSWORD")
+                demo_group = next(g for g in doc["proxy-groups"] if g["name"] == "📢 کانال تلگرام")
+                self.assertEqual(demo_group["proxies"], [demo["name"]])
                 self.assertIn(f"GEOIP,{code},DIRECT", doc["rules"])
 
                 top20 = next(g for g in doc["proxy-groups"] if g["name"] == "TOP20")
-                self.assertIn("🇩🇪 · اروپا 01", top20["proxies"])
-                german = next(p for p in doc["proxies"] if p["name"] == "🇩🇪 · اروپا 01")
+                self.assertIn("[VLESS] 🇩🇪 · اروپا 01", top20["proxies"])
+                german = next(p for p in doc["proxies"] if p["name"] == "[VLESS] 🇩🇪 · اروپا 01")
                 self.assertIs(german["skip-cert-verify"], False)
 
                 for group in doc["proxy-groups"]:
                     if group["name"] in {"🌍 اروپا", "🌏 آسیا", "🌎 آمریکا",
-                                         "🌏 اقیانوسیه", "🌐 سایر"}:
+                                         "🌏 اقیانوسیه", "🌐 سایر", *protocol_groups}:
                         self.assertTrue(group.get("filter"))
                         self.assertTrue(group.get("include-all"))
+                        self.assertEqual(group.get("expected-status"), 204)
+                        self.assertEqual(group.get("timeout"), 5000)
+                        self.assertEqual(group.get("max-failed-times"), 3)
+
+                vless_group = next(g for g in doc["proxy-groups"] if g["name"] == "TEST-VLESS")
+                self.assertRegex("[VLESS] 🇩🇪 · اروپا 01", vless_group["filter"])
+                self.assertNotRegex("[TROJAN] 🇺🇸 · آمریکا 01", vless_group["filter"])
 
             china = yaml.safe_load((Path(tmp) / "clash-china.yaml").read_text())
             self.assertIn("GEOSITE,cn,DIRECT", china["rules"])
