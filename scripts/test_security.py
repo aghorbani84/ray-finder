@@ -63,12 +63,11 @@ class SourceSecurityTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "redirects are not allowed"):
             fetch_url(FakeSession(), "https://raw.githubusercontent.com/org/repo/main/sub.txt")
 
+    @patch("fetch.MAX_RESPONSE_BYTES", 4)
     def test_oversized_responses_are_rejected(self):
-        from common import MAX_RESPONSE_BYTES
-
         class FakeSession:
             def get(self, *_args, **_kwargs):
-                return _FakeResponse(chunks=[b"x" * (MAX_RESPONSE_BYTES + 1)])
+                return _FakeResponse(chunks=[b"12345"])
 
         with self.assertRaisesRegex(ValueError, "exceeds"):
             fetch_url(FakeSession(), "https://raw.githubusercontent.com/org/repo/main/sub.txt")
