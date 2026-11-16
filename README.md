@@ -11,7 +11,7 @@ but any v2rayN/v2rayNG/Clash-based app works.
 
 ## What you get (regenerated automatically)
 
-Each country has its own Clash/Mihomo profile with country-specific DNS, local-traffic DIRECT rules, and a client-side AUTO group. Every Clash profile also contains a clearly labelled, intentionally non-functional DEMO entry and a Telegram channel selector for [@aghorbani_84](https://t.me/aghorbani_84). The demo endpoint uses the documentation-only TEST-NET-1 address and dummy credentials; it is not a usable proxy. The AUTO group measures the nodes from the user's actual device/network; it is not ranked from GitHub's runner location. All three profiles currently use the same validated public node pool, because a single GitHub runner cannot truthfully benchmark latency from Iran, China, and Russia simultaneously. Each profile also includes protocol-specific live health groups (`TEST-VLESS`, `TEST-VMESS`, `TEST-TROJAN`, `TEST-SS`, `TEST-HYSTERIA2`, `TEST-TUIC`) that test the actual Mihomo adapter from the importing device using HTTPS `generate_204`, requiring HTTP 204. Health checks repeat every 180 seconds, use a 5-second timeout, and mark a node unhealthy after three failures. This is an on-device latency/availability score, not a throughput or packet-loss benchmark.
+Each country has its own Clash/Mihomo profile with country-specific DNS, local-traffic DIRECT rules, explicit proxy routing for AI/work websites (including Muse AI), and a client-side AUTO group. Every Clash profile also contains a clearly labelled, intentionally non-functional DEMO entry and a Telegram channel selector for [@aghorbani_84](https://t.me/aghorbani_84). The demo endpoint uses the documentation-only TEST-NET-1 address and dummy credentials; it is not a usable proxy. The AUTO group measures the nodes from the user's actual device/network; it is not ranked from GitHub's runner location. All three profiles currently use the same validated public node pool, because a single GitHub runner cannot truthfully benchmark latency from Iran, China, and Russia simultaneously. Each profile also includes protocol-specific live health groups (`TEST-VLESS`, `TEST-VMESS`, `TEST-TROJAN`, `TEST-SS`, `TEST-HYSTERIA2`, `TEST-TUIC`) that test the actual Mihomo adapter from the importing device using HTTPS `generate_204`, requiring HTTP 204. Health checks repeat every 180 seconds, use a 5-second timeout, and mark a node unhealthy after three failures. This is an on-device latency/availability score, not a throughput or packet-loss benchmark.
 
 | File | Purpose |
 |---|---|
@@ -72,6 +72,10 @@ pip install -r requirements.txt
 python scripts/main.py          # full live run (needs internet)
 python scripts/main.py --demo   # offline simulated run, generates output/ anyway
 ```
+
+## AI/work website routing
+
+The generated Clash/Mihomo profiles explicitly route these domains through the selected `PROXY` group before country-specific DIRECT rules: `muse.ai`, `manus.im`, `chatgpt.com`, `openai.com`, `claude.ai`, `anthropic.com`, `perplexity.ai`, `gemini.google.com`, `aistudio.google.com`, and `ai.google.dev`. `DOMAIN-SUFFIX` covers subdomains too. This controls routing only; it cannot guarantee that a service is available, that the selected proxy can reach it, or that the service permits access from that proxy's exit region. Add more domains to `PROXY_DOMAIN_SUFFIXES` in `scripts/build_profiles.py` after verifying their official hostnames.
 
 ## Client-side protocol health and ranking
 
