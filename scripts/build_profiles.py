@@ -148,6 +148,9 @@ def build_profiles(base_text: str, out_dir: Path) -> dict[str, int]:
         dns["default-nameserver"] = cfg.get("bootstrap_dns", cfg["dns"])
         dns["nameserver"] = list(cfg["dns"])
         dns["proxy-server-nameserver"] = list(cfg.get("bootstrap_dns", cfg["dns"]))
+        # Ensure DNS requests obey the profile routing policy; bootstrap DNS above
+        # prevents a proxy-DNS bootstrap loop while resolving proxy endpoints.
+        dns["respect-rules"] = True
         dns["nameserver-policy"] = {cfg["policy_key"]: list(cfg["dns"])}
         dns["enable"] = True
         dns["enhanced-mode"] = "fake-ip"
@@ -167,6 +170,15 @@ def build_profiles(base_text: str, out_dir: Path) -> dict[str, int]:
             raise ValueError(f"{region} profile is not a YAML mapping")
         if checked.get("rules", [])[-1:] != ["MATCH,PROXY"]:
             raise ValueError(f"{region} profile has no final proxy fallback")
+        proxy_names = [p.get("name") for p in checked.get("proxies", [])
+                       if isinstance(p, dict)]
+        if len(proxy_names) != len(set(proxy_names)):
+            raise ValueError(f"{region} profile contains duplicate proxy names")
+        if any(p.get("skip-cert-verify") is True
+               for p in checked.get("proxies", []) if isinstance(p, dict)):
+            raise ValueError(f"{region} profile contains a proxy with TLS verification disabled")
+        if checked["dns"].get("respect-rules") is not True:
+            raise ValueError(f"{region} profile DNS does not respect routing rules")
         if checked["dns"].get("nameserver") != cfg["dns"]:
             raise ValueError(f"{region} profile DNS validation failed")
         if not any(g.get("name") == expected_group and g.get("type") == "url-test"
