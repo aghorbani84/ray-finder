@@ -71,11 +71,16 @@ python scripts/main.py          # full live run (needs internet)
 python scripts/main.py --demo   # offline simulated run, generates output/ anyway
 ```
 
+## Security and reliability
+
+- The generator rejects subscription entries that explicitly disable TLS certificate verification; generated Hysteria2/TUIC entries keep certificate verification enabled.
+- DNS requests are configured to respect profile routing rules. This reduces accidental DNS routing outside the selected policy, but is not a guarantee against every client, OS, IPv6, or app-level leak; enable the client's system-proxy/TUN protections and test your own device.
+- The scheduled pipeline fails closed when fewer than 20 nodes survive validation, preserving the last known-good published files instead of replacing them with an empty feed.
+- CI audits Python dependencies and runs regression tests. Public subscription sources remain untrusted input and are not cryptographically attested.
+
 ## Disclaimer
 
-Free proxy nodes are public, unvetted and short-lived. They provide **no privacy guarantee** —
-never transmit secrets over them. For real security use your own server. MIT licensed;
-use at your own risk.
+Free proxy nodes are public, unvetted and short-lived. Their operators can observe traffic metadata and may be malicious; certificate validation does not make an unknown proxy operator trustworthy. Never transmit passwords, banking data, or other secrets over these nodes. For meaningful privacy, use infrastructure you control. MIT licensed; use at your own risk.
 
 <!-- STATS:START -->
 ## 📊 Pipeline stats (last automated run)

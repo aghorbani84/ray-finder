@@ -18,6 +18,7 @@ import json
 import re
 import time
 from pathlib import Path
+from urllib.parse import urlsplit
 
 import requests
 import yaml
@@ -47,8 +48,28 @@ def load_sources(path: Path) -> list[dict]:
         return []
     sources = []
     for src in data.get("sources", []):
+        if not isinstance(src, dict):
+            continue
         name = str(src.get("name") or "unnamed").strip()
-        urls = [str(u).strip() for u in src.get("urls", []) if str(u).strip()]
+        urls = []
+        for raw_url in src.get("urls", []):
+            url = str(raw_url).strip()
+            try:
+                parsed = urlsplit(url)
+                allowed = (
+                    parsed.scheme == "https"
+                    and parsed.hostname == "raw.githubusercontent.com"
+                    and parsed.username is None
+                    and parsed.password is None
+                    and parsed.port in (None, 443)
+                    and not parsed.fragment
+                )
+            except ValueError:
+                allowed = False
+            if allowed:
+                urls.append(url)
+            else:
+                log(f"fetch: rejected source URL outside HTTPS raw.githubusercontent.com allowlist")
         if urls:
             sources.append({"name": name, "urls": urls})
     return sources
@@ -131,21 +152,24 @@ def _uris_from_text(text: str, depth: int = 0) -> list[str]:
 
 
 def fetch_url(session: requests.Session, url: str) -> str:
-    resp = session.get(
+    with session.get(
         url,
         timeout=HTTP_TIMEOUT,
         headers={"User-Agent": USER_AGENT, "Accept": "*/*"},
         stream=True,
-    )
-    resp.raise_for_status()
-    chunks: list[bytes] = []
-    total = 0
-    for chunk in resp.iter_content(chunk_size=65536):
-        total += len(chunk)
-        chunks.append(chunk)
-        if total > MAX_RESPONSE_BYTES:
-            break
-    return b"".join(chunks).decode("utf-8", errors="replace")
+        allow_redirects=False,
+    ) as resp:
+        if 300 <= resp.status_code < 400:
+            raise ValueError("source redirects are not allowed")
+        resp.raise_for_status()
+        chunks: list[bytes] = []
+        total = 0
+        for chunk in resp.iter_content(chunk_size=65536):
+            total += len(chunk)
+            if total > MAX_RESPONSE_BYTES:
+                raise ValueError(f"source response exceeds {MAX_RESPONSE_BYTES} bytes")
+            chunks.append(chunk)
+        return b"".join(chunks).decode("utf-8", errors="replace")
 
 
 def fetch_all(sources_path: Path) -> tuple[list[tuple[str, str]], dict]:

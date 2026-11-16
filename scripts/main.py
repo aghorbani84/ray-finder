@@ -26,7 +26,7 @@ import clean  # noqa: E402
 import fetch  # noqa: E402
 import parse  # noqa: E402
 import test_nodes  # noqa: E402
-from common import log  # noqa: E402
+from common import MIN_PUBLISH_NODES, log  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -102,11 +102,19 @@ def main() -> int:
     totals["cleaned"] = len(cleaned)
 
     # ---- 4. TCP reachability test -----------------------------------------
-    try:
-        alive = test_nodes.test_all(cleaned)
-    except Exception as exc:  # noqa: BLE001
-        log(f"main: test stage crashed: {exc}")
-        alive = []
+    if args.demo:
+        # Demo mode is genuinely offline and deterministic; do not resolve or
+        # connect to the sample hostnames during CI validation.
+        alive = list(cleaned)
+        for index, node in enumerate(alive, 1):
+            node["latency"] = float(index)
+        log("main: DEMO mode — skipping network reachability tests")
+    else:
+        try:
+            alive = test_nodes.test_all(cleaned)
+        except Exception as exc:  # noqa: BLE001
+            log(f"main: test stage crashed: {exc}")
+            alive = []
     totals["alive"] = len(alive)
 
     # ---- 5. selection -------------------------------------------------------
@@ -116,6 +124,14 @@ def main() -> int:
         log(f"main: select stage crashed: {exc}")
         selected = alive[:150]
     totals["selected"] = len(selected)
+
+    # Fail closed: a source outage or mass node rejection must not overwrite
+    # the last known-good subscriptions with empty/near-empty placeholder data.
+    if not args.demo and len(selected) < MIN_PUBLISH_NODES:
+        raise SystemExit(
+            f"main: refusing to publish only {len(selected)} nodes; "
+            f"minimum is {MIN_PUBLISH_NODES}. Existing outputs are preserved."
+        )
 
     # ---- 6. outputs ----------------------------------------------------------
     out_dir = ROOT / "output"
