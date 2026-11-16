@@ -183,11 +183,12 @@ def build_profiles(base_text: str, out_dir: Path) -> dict[str, int]:
             f"GEOIP,{cfg['code']},DIRECT",
             "MATCH,PROXY",
         ]
+        regional_direct_index = 2 + len(PROXY_DOMAIN_SUFFIXES)
         if region == "china":
-            doc["rules"].insert(1, "GEOSITE,cn,DIRECT")
-            doc["rules"].insert(2, "DOMAIN-SUFFIX,中国,DIRECT")
+            doc["rules"].insert(regional_direct_index, "GEOSITE,cn,DIRECT")
+            doc["rules"].insert(regional_direct_index + 1, "DOMAIN-SUFFIX,中国,DIRECT")
         elif region == "russia":
-            doc["rules"].insert(1, "DOMAIN-SUFFIX,рф,DIRECT")
+            doc["rules"].insert(regional_direct_index, "DOMAIN-SUFFIX,рф,DIRECT")
 
         dns = doc.setdefault("dns", {})
         dns["default-nameserver"] = cfg.get("bootstrap_dns", cfg["dns"])
