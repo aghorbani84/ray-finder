@@ -385,10 +385,10 @@ def write_outputs(out_dir: Path, clash_text: str, sub_text: str,
                   report_text: str) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     telegram_text = (
-        "Ray Finder — subscription information\\n"
-        "Telegram channel: https://t.me/aghorbani_84\\n"
-        "The DEMO entry in Clash profiles is intentionally non-functional.\\n"
-        "Use real nodes from the generated subscription; never treat the DEMO entry as a server.\\n"
+        "Ray Finder — subscription information\n"
+        "Telegram channel: https://t.me/aghorbani_84\n"
+        "The DEMO entry in Clash profiles is intentionally non-functional.\n"
+        "Use real nodes from the generated subscription; never treat the DEMO entry as a server.\n"
     )
     for name, content in (("clash.yaml", clash_text), ("sub.txt", sub_text),
                           ("report.md", report_text), ("telegram.txt", telegram_text)):
