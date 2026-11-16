@@ -86,6 +86,30 @@ def _params_from_query(query: str) -> dict:
         d[key.lower()] = vals[0] if vals else ""
     return d
 
+def _requests_insecure_tls(uri: str, scheme: str) -> bool:
+    """Reject source entries that explicitly disable TLS certificate checks."""
+    values: dict = {}
+    if scheme in ("vless", "trojan", "hysteria2", "hy2", "tuic"):
+        query = uri.split("?", 1)[1].split("#", 1)[0] if "?" in uri else ""
+        values.update(_params_from_query(query))
+    elif scheme in ("vmess", "clash"):
+        body = uri.split("://", 1)[1].split("#", 1)[0]
+        decoded = _b64pad(body)
+        if decoded:
+            try:
+                obj = json.loads(decoded.decode("utf-8", errors="replace"))
+                if isinstance(obj, dict):
+                    values.update(obj)
+            except (json.JSONDecodeError, UnicodeDecodeError):
+                pass
+    for key, value in values.items():
+        normalized = str(key).lower().replace("_", "-")
+        if normalized in {"allowinsecure", "allow-insecure", "skip-cert-verify",
+                          "skipcertverify", "insecure"}:
+            if str(value).strip().lower() in {"1", "true", "yes", "on"}:
+                return True
+    return False
+
 
 def _node(proto: str, server: str, port, **kw) -> dict | None:
     if not server or port is None:
@@ -366,6 +390,8 @@ def parse_line(uri: str, source: str) -> dict | None:
         scheme = m.group(1).lower()
         parser = _PARSERS.get(PREFIX_MAP.get(scheme, scheme))
         if parser is None:
+            return None
+        if _requests_insecure_tls(uri, scheme):
             return None
         node = parser(uri, source)
         if node is not None:
