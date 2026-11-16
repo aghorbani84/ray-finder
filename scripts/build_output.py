@@ -298,6 +298,12 @@ def build_report_md(source_stats: dict, nodes: list[dict], totals: dict) -> str:
         "",
         f"**Run timestamp:** {now}",
         "",
+        "## Subscription publisher",
+        "",
+        "- Telegram channel: [@aghorbani_84](https://t.me/aghorbani_84)",
+        "- Each regional Mihomo profile includes a clearly labelled, non-functional DEMO entry for channel attribution.",
+        "- The Base64 subscription remains protocol-clean; no promotional text is injected into its payload.",
+        "",
         "## Pipeline totals",
         "",
         "| Stage | Count |",
@@ -378,8 +384,14 @@ def update_readme_stats(readme_path: Path, nodes: list[dict], totals: dict) -> N
 def write_outputs(out_dir: Path, clash_text: str, sub_text: str,
                   report_text: str) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
+    telegram_text = (
+        "Ray Finder — subscription information\\n"
+        "Telegram channel: https://t.me/aghorbani_84\\n"
+        "The DEMO entry in Clash profiles is intentionally non-functional.\\n"
+        "Use real nodes from the generated subscription; never treat the DEMO entry as a server.\\n"
+    )
     for name, content in (("clash.yaml", clash_text), ("sub.txt", sub_text),
-                          ("report.md", report_text)):
+                          ("report.md", report_text), ("telegram.txt", telegram_text)):
         path = out_dir / name
         path.write_text(content.replace("\r\n", "\n").replace("\r", "\n"),
                         encoding="utf-8", newline="\n")
