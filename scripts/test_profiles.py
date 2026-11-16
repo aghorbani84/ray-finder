@@ -116,6 +116,11 @@ class RegionalProfileTests(unittest.TestCase):
                 self.assertIs(doc["dns"]["respect-rules"], True)
                 self.assertEqual(len(doc["proxies"]), len({p["name"] for p in doc["proxies"]}))
                 self.assertFalse(any(p.get("skip-cert-verify") is True for p in doc["proxies"]))
+                demo = next(p for p in doc["proxies"] if "(DEMO - غیرقابل اتصال)" in p["name"])
+                self.assertEqual(demo["server"], "192.0.2.1")
+                self.assertEqual(demo["password"], "NOT-A-REAL-PASSWORD")
+                demo_group = next(g for g in doc["proxy-groups"] if g["name"] == "📢 کانال تلگرام")
+                self.assertEqual(demo_group["proxies"], [demo["name"]])
                 self.assertIn(f"GEOIP,{code},DIRECT", doc["rules"])
 
                 top20 = next(g for g in doc["proxy-groups"] if g["name"] == "TOP20")
