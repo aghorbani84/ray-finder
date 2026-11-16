@@ -26,7 +26,7 @@ import clean  # noqa: E402
 import fetch  # noqa: E402
 import parse  # noqa: E402
 import test_nodes  # noqa: E402
-from common import log  # noqa: E402
+from common import MIN_PUBLISH_NODES, log  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -116,6 +116,14 @@ def main() -> int:
         log(f"main: select stage crashed: {exc}")
         selected = alive[:150]
     totals["selected"] = len(selected)
+
+    # Fail closed: a source outage or mass node rejection must not overwrite
+    # the last known-good subscriptions with empty/near-empty placeholder data.
+    if not args.demo and len(selected) < MIN_PUBLISH_NODES:
+        raise SystemExit(
+            f"main: refusing to publish only {len(selected)} nodes; "
+            f"minimum is {MIN_PUBLISH_NODES}. Existing outputs are preserved."
+        )
 
     # ---- 6. outputs ----------------------------------------------------------
     out_dir = ROOT / "output"
