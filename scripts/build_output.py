@@ -64,15 +64,16 @@ def _node_to_proxy(node: dict) -> dict | None:
             if node.get("flow"):
                 p["flow"] = node["flow"]
             if tls == "reality":
-                # Mihomo requires TLS to be explicitly enabled when Reality
-                # options are configured; otherwise it rejects the proxy with
-                # "REALITY requires TLS".
+                # Reality needs complete key/SNI material; incomplete entries
+                # are rejected rather than emitted as broken proxy definitions.
+                if not node.get("pbk") or not sni:
+                    return None
                 p.update({
                     "tls": True,
-                    "reality-opts": {"public-key": node.get("pbk", ""),
+                    "reality-opts": {"public-key": node["pbk"],
                                      "short-id": node.get("sid", "")},
                     "client-fingerprint": node.get("fp") or "chrome",
-                    "servername": sni or "",
+                    "servername": sni,
                     "udp": True,
                 })
             elif tls == "tls":
@@ -122,12 +123,11 @@ def _node_to_proxy(node: dict) -> dict | None:
         if proto == "hysteria2":
             p = dict(base, type="hysteria2",
                      password=node.get("password", ""),
-                     sni=sni or "", udp=True)
+                     sni=sni or node["server"], udp=True)
             if node.get("obfs"):
                 p["obfs"] = node["obfs"]
                 p["obfs-password"] = node.get("obfs_password", "")
-            insecure = not sni and not node.get("obfs")
-            p["skip-cert-verify"] = True if insecure else False
+            # Certificate verification stays enabled; server is the fallback SNI.
             return p
 
         if proto == "tuic":
@@ -135,11 +135,11 @@ def _node_to_proxy(node: dict) -> dict | None:
                      uuid=node.get("uuid", ""),
                      password=node.get("password", ""),
                      congestion_control=node.get("congestion_control", "cubic"),
-                     udp=True, skip_cert_verify=True)
+                     udp=True)
+            # Never disable certificate verification for TUIC nodes.
+            p["sni"] = sni or node["server"]
             if alpn:
                 p["alpn"] = alpn
-            if sni:
-                p["sni"] = sni
             return p
 
         return None
