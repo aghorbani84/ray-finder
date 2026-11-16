@@ -15,6 +15,21 @@ import yaml
 
 from region_labels import display_name
 
+# Domains for AI/work platforms that should use the selected proxy group.
+# DOMAIN-SUFFIX also covers their subdomains. Keep this list explicit and auditable.
+PROXY_DOMAIN_SUFFIXES = (
+    "muse.ai",
+    "manus.im",
+    "chatgpt.com",
+    "openai.com",
+    "claude.ai",
+    "anthropic.com",
+    "perplexity.ai",
+    "gemini.google.com",
+    "aistudio.google.com",
+    "ai.google.dev",
+)
+
 REGIONS = {
     "iran": {
         "label": "Iran",
@@ -162,6 +177,8 @@ def build_profiles(base_text: str, out_dir: Path) -> dict[str, int]:
         doc["rules"] = [
             "GEOSITE,private,DIRECT",
             "GEOIP,private,DIRECT,no-resolve",
+            # Explicit AI/work platform routing must precede regional DIRECT rules.
+            *[f"DOMAIN-SUFFIX,{domain},PROXY" for domain in PROXY_DOMAIN_SUFFIXES],
             f"DOMAIN-SUFFIX,{cfg['suffix']},DIRECT",
             f"GEOIP,{cfg['code']},DIRECT",
             "MATCH,PROXY",
