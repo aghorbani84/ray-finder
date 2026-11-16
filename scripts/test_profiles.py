@@ -88,9 +88,13 @@ class RegionalProfileTests(unittest.TestCase):
             counts = build_profiles(yaml.safe_dump(BASE, allow_unicode=True), Path(tmp))
             self.assertEqual(counts, {"iran": 3, "china": 3, "russia": 3})
 
+            protocol_groups = {
+                "TEST-VLESS", "TEST-VMESS", "TEST-TROJAN",
+                "TEST-SS", "TEST-HYSTERIA2", "TEST-TUIC",
+            }
             shared_groups = {
                 "TOP20", "🌍 اروپا", "🌏 آسیا", "🌎 آمریکا",
-                "🌏 اقیانوسیه", "🌐 سایر",
+                "🌏 اقیانوسیه", "🌐 سایر", *protocol_groups,
             }
             for region, code, auto_name in (
                 ("iran", "IR", "AUTO-IRAN"),
@@ -115,15 +119,22 @@ class RegionalProfileTests(unittest.TestCase):
                 self.assertIn(f"GEOIP,{code},DIRECT", doc["rules"])
 
                 top20 = next(g for g in doc["proxy-groups"] if g["name"] == "TOP20")
-                self.assertIn("🇩🇪 · اروپا 01", top20["proxies"])
-                german = next(p for p in doc["proxies"] if p["name"] == "🇩🇪 · اروپا 01")
+                self.assertIn("[VLESS] 🇩🇪 · اروپا 01", top20["proxies"])
+                german = next(p for p in doc["proxies"] if p["name"] == "[VLESS] 🇩🇪 · اروپا 01")
                 self.assertIs(german["skip-cert-verify"], False)
 
                 for group in doc["proxy-groups"]:
                     if group["name"] in {"🌍 اروپا", "🌏 آسیا", "🌎 آمریکا",
-                                         "🌏 اقیانوسیه", "🌐 سایر"}:
+                                         "🌏 اقیانوسیه", "🌐 سایر", *protocol_groups}:
                         self.assertTrue(group.get("filter"))
                         self.assertTrue(group.get("include-all"))
+                        self.assertEqual(group.get("expected-status"), 204)
+                        self.assertEqual(group.get("timeout"), 5000)
+                        self.assertEqual(group.get("max-failed-times"), 3)
+
+                vless_group = next(g for g in doc["proxy-groups"] if g["name"] == "TEST-VLESS")
+                self.assertRegex("[VLESS] 🇩🇪 · اروپا 01", vless_group["filter"])
+                self.assertNotRegex("[TROJAN] 🇺🇸 · آمریکا 01", vless_group["filter"])
 
             china = yaml.safe_load((Path(tmp) / "clash-china.yaml").read_text())
             self.assertIn("GEOSITE,cn,DIRECT", china["rules"])
