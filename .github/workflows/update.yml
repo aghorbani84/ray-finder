@@ -53,6 +53,9 @@ jobs:
       - name: Run aggregator pipeline
         run: python scripts/main.py
 
+      - name: Validate generated profiles with Mihomo
+        run: bash scripts/validate_mihomo.sh
+
       - name: Commit and push generated outputs safely
         shell: bash
         run: |
