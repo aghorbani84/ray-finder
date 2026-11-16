@@ -113,6 +113,15 @@ class RegionalProfileTests(unittest.TestCase):
                 selector = next(g for g in doc["proxy-groups"] if g["name"] == "PROXY")
                 self.assertTrue(set(selector["proxies"]).issubset(group_names))
                 self.assertEqual(doc["rules"][-1], "MATCH,PROXY")
+                # AI/work sites must use PROXY before regional DIRECT policies.
+                for domain in ("muse.ai", "manus.im", "chatgpt.com", "openai.com",
+                               "claude.ai", "anthropic.com", "perplexity.ai",
+                               "gemini.google.com", "aistudio.google.com", "ai.google.dev"):
+                    route = f"DOMAIN-SUFFIX,{domain},PROXY"
+                    self.assertIn(route, doc["rules"])
+                    self.assertLess(doc["rules"].index(route),
+                                    doc["rules"].index(f"DOMAIN-SUFFIX,{region[:2]},DIRECT")
+                                    if region in {"iran", "russia"} else doc["rules"].index("GEOSITE,cn,DIRECT"))
                 self.assertIs(doc["dns"]["respect-rules"], True)
                 self.assertEqual(len(doc["proxies"]), len({p["name"] for p in doc["proxies"]}))
                 self.assertFalse(any(p.get("skip-cert-verify") is True for p in doc["proxies"]))
