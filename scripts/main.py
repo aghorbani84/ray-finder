@@ -102,11 +102,19 @@ def main() -> int:
     totals["cleaned"] = len(cleaned)
 
     # ---- 4. TCP reachability test -----------------------------------------
-    try:
-        alive = test_nodes.test_all(cleaned)
-    except Exception as exc:  # noqa: BLE001
-        log(f"main: test stage crashed: {exc}")
-        alive = []
+    if args.demo:
+        # Demo mode is genuinely offline and deterministic; do not resolve or
+        # connect to the sample hostnames during CI validation.
+        alive = list(cleaned)
+        for index, node in enumerate(alive, 1):
+            node["latency"] = float(index)
+        log("main: DEMO mode — skipping network reachability tests")
+    else:
+        try:
+            alive = test_nodes.test_all(cleaned)
+        except Exception as exc:  # noqa: BLE001
+            log(f"main: test stage crashed: {exc}")
+            alive = []
     totals["alive"] = len(alive)
 
     # ---- 5. selection -------------------------------------------------------
