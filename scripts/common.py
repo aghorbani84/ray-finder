@@ -18,6 +18,7 @@ TCP_ATTEMPTS = 2           # attempts per node before declaring it dead
 TCP_WORKERS = 150          # concurrent connectivity testers
 
 MAX_NODES = 150            # final cap on selected nodes
+MIN_PUBLISH_NODES = 20     # fail closed; never replace a good feed with near-empty output
 TOP_N = 20                 # fastest nodes injected into the TOP20 group
 
 PROTOCOLS = ("vless", "vmess", "trojan", "ss", "hysteria2", "tuic")
