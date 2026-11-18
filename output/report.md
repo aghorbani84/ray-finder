@@ -1,6 +1,6 @@
 # iran-v2ray-finder run report
 
-**Run timestamp:** 2026-11-17 21:01:01 UTC
+**Run timestamp:** 2026-11-18 07:37:22 UTC
 
 ## Subscription publisher
 
@@ -12,19 +12,19 @@
 
 | Stage | Count |
 |---|---|
-| Raw configs fetched | 6547 |
-| Parsed successfully | 4703 |
-| After cleaning/dedupe | 3711 |
-| TCP-reachable | 1318 |
+| Raw configs fetched | 6458 |
+| Parsed successfully | 4751 |
+| After cleaning/dedupe | 3764 |
+| TCP-reachable | 1327 |
 | Selected for output | 150 |
 
 ## Per-source results
 
 | Source | Configs | URLs ok | URLs failed |
 |---|---|---|---|
-| PSG | 335 | 2 | 0 |
-| R3ZARAHIMI | 1553 | 2 | 0 |
-| mahdibland | 4659 | 4 | 0 |
+| PSG | 339 | 2 | 0 |
+| R3ZARAHIMI | 1546 | 2 | 0 |
+| mahdibland | 4573 | 4 | 0 |
 
 ## Protocols in final selection
 
@@ -39,25 +39,25 @@
 
 | # | Name | Protocol | Server | Port | Latency (ms) |
 |---|---|---|---|---|---|
-| 1 | 🇺🇸 US | VLESS | @buffalo_vpn #1 [fast] | vless | 199.232.0.177 | 443 | 1.1 |
-| 2 | 🏳️ 💥Config_jo-189 | vless | 167.82.76.31 | 443 | 1.2 |
-| 3 | 🏳️ 💥Config_jo-216 | vless | 146.75.59.186 | 443 | 1.3 |
-| 4 | 🏳️ 💥Config_jo-236#1 | vless | 199.232.78.159 | 443 | 1.3 |
-| 5 | 🏳️ 💥Config_jo-263#2 | vless | 167.82.76.31 | 443 | 1.3 |
-| 6 | 🏳️ 💥Config_jo-267 | vless | tulip.amydoodles.com | 443 | 1.3 |
-| 7 | 🏳️ 💥Config_jo-168 | trojan | 199.232.78.159 | 443 | 1.4 |
-| 8 | 🏳️ 💥Config_jo-196 | vless | 199.232.78.120 | 443 | 1.4 |
-| 9 | 🏳️ 💥Config_jo-224 | vless | 199.232.78.159 | 443 | 1.4 |
-| 10 | 🏳️ 💥Config_jo-190 | vless | 199.232.78.120 | 443 | 1.4 |
-| 11 | 🏳️ 💥Config_jo-193 | vless | 199.232.78.159 | 443 | 1.4 |
-| 12 | 🏳️ 💥Config_jo-242#1 | vless | nice.iranapplecenter.com | 443 | 1.4 |
-| 13 | 🏳️ 💥Config_jo-171 | trojan | 199.232.78.160 | 443 | 1.5 |
-| 14 | 🏳️ 💥Config_jo-162 | vless | 199.232.78.159 | 443 | 1.5 |
-| 15 | 🏳️ 💥Config_jo-178 | vless | 199.232.239.239 | 443 | 1.5 |
-| 16 | 🏳️ 💥Config_jo-214 | vless | 199.232.129.192 | 443 | 1.5 |
-| 17 | 🏳️ 💥Config_jo-236 | vless | 199.232.78.160 | 443 | 1.5 |
-| 18 | 🏳️ 💥Config_jo-218 | vless | 199.232.78.120 | 443 | 1.5 |
-| 19 | 🏳️ 💥Config_jo-229 | vless | 167.82.76.31 | 443 | 1.5 |
-| 20 | 🏳️ 💥Config_jo-234#2 | vless | 146.75.57.238 | 443 | 1.5 |
+| 1 | 🏳️ 💥Config_jo-147 | trojan | 104.16.240.177 | 443 | 5.7 |
+| 2 | 🇸🇪 SE | VLESS | @minovpnch #1 [fast] | vless | 185.146.173.200 | 8880 | 5.8 |
+| 3 | 🇸🇪 SE | VLESS | @free_vip3 #6 [fast] | vless | 185.146.173.58 | 8080 | 5.8 |
+| 4 | 🏁RELAY-172.67.178.55-4688 | vmess | 172.67.178.55 | 443 | 5.9 |
+| 5 | 🇺🇸 US | VMESS | @manstervpn #1 [fast] | vmess | 172.67.71.160 | 443 | 5.9 |
+| 6 | 🏁RELAY-141.193.213.21-0791 | trojan | blog.webex.com | 443 | 5.9 |
+| 7 | 🇽🇽 XX | VLESS | @tanhanet #1 [fast] | vless | 104.27.66.214 | 8443 | 5.9 |
+| 8 | 🏁RELAY-162.159.91.211-0853 | trojan | 162.159.91.211 | 443 | 5.9 |
+| 9 | 🇽🇽 XX | VLESS | @kesslervpn #3 [fast] | vless | 104.17.72.206 | 443 | 5.9 |
+| 10 | 🏁RELAY-104.18.152.225-0893 | trojan | 104.18.152.225 | 443 | 5.9 |
+| 11 | 🇻🇬 VG | VLESS | @dailyv2ray #1 [fast] | vless | mtn.ircf.space | 2096 | 5.9 |
+| 12 | 🏁RELAY-172.67.222.46-0388 | vmess | 172.67.222.46 | 80 | 6.0 |
+| 13 | 🏁RELAY-104.21.91.112-0345 | vmess | hk80.sanfen001.pics | 80 | 6.0 |
+| 14 | 🏁RELAY-172.67.178.55-7057 | vmess | 172.67.178.55 | 2083 | 6.0 |
+| 15 | 🏳️ 💥Config_jo-148 | trojan | 104.18.35.31 | 443 | 6.0 |
+| 16 | 🏳️ 💥Config_jo-236#2 | vless | 172.64.88.98 | 443 | 6.0 |
+| 17 | 🇽🇽 XX | VLESS | @tanhanet #2 [fast] | vless | 173.245.59.191 | 8443 | 6.0 |
+| 18 | 🇽🇽 XX | VLESS | @eliteproxyv2 #1 [fast] | vless | 104.16.53.11 | 8443 | 6.0 |
+| 19 | 🇸🇪 SE | VLESS | @free_vip3 #2 [fast] | vless | 185.146.173.58 | 8080 | 6.0 |
+| 20 | 🇸🇪 SE | VLESS | @free_vip3 #3 [fast] | vless | 185.146.173.58 | 8080 | 6.0 |
 
 _Latency is coarse TCP-handshake time measured from GitHub runners; actual usable ranking happens client-side via the `AUTO`/`TOP20` url-test groups._
