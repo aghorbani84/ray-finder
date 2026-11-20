@@ -99,8 +99,8 @@ Free proxy nodes are public, unvetted and short-lived. Their operators can obser
 <!-- STATS:START -->
 ## 📊 Pipeline stats (last automated run)
 
-- **Last run:** 2026-11-20 07:24 UTC
-- **Raw configs fetched:** 6438
-- **Reachable after testing:** 1302
+- **Last run:** 2026-11-20 20:28 UTC
+- **Raw configs fetched:** 6492
+- **Reachable after testing:** 1303
 - **Nodes shipped in this repo:** **150** (ss: 22, trojan: 25, vless: 78, vmess: 25)
 <!-- STATS:END -->

@@ -1,6 +1,6 @@
 # iran-v2ray-finder run report
 
-**Run timestamp:** 2026-11-20 07:24:36 UTC
+**Run timestamp:** 2026-11-20 20:28:39 UTC
 
 ## Subscription publisher
 
@@ -12,19 +12,19 @@
 
 | Stage | Count |
 |---|---|
-| Raw configs fetched | 6438 |
-| Parsed successfully | 4647 |
-| After cleaning/dedupe | 3671 |
-| TCP-reachable | 1302 |
+| Raw configs fetched | 6492 |
+| Parsed successfully | 4669 |
+| After cleaning/dedupe | 3681 |
+| TCP-reachable | 1303 |
 | Selected for output | 150 |
 
 ## Per-source results
 
 | Source | Configs | URLs ok | URLs failed |
 |---|---|---|---|
-| PSG | 336 | 2 | 0 |
-| R3ZARAHIMI | 1492 | 2 | 0 |
-| mahdibland | 4610 | 4 | 0 |
+| PSG | 337 | 2 | 0 |
+| R3ZARAHIMI | 1528 | 2 | 0 |
+| mahdibland | 4627 | 4 | 0 |
 
 ## Protocols in final selection
 
@@ -39,25 +39,25 @@
 
 | # | Name | Protocol | Server | Port | Latency (ms) |
 |---|---|---|---|---|---|
-| 1 | 🏳️ 💥Config_jo-197 | vless | 199.232.78.159 | 443 | 1.0 |
-| 2 | 🏳️ 💥Config_jo-242 | vless | 146.75.59.186 | 443 | 1.0 |
-| 3 | 🏳️ 💥Config_jo-189 | vless | 167.82.76.31 | 443 | 1.1 |
-| 4 | 🏳️ 💥Config_jo-164 | trojan | ipfast.kingmna.com | 443 | 1.2 |
-| 5 | 🏳️ 💥Config_jo-191#1 | vless | tulip.amydoodles.com | 443 | 1.2 |
-| 6 | 🏳️ 💥Config_jo-226 | vless | 167.82.76.31 | 443 | 1.2 |
-| 7 | 🏳️ 💥Config_jo-211 | vless | 167.82.64.46 | 443 | 1.2 |
-| 8 | 🏳️ 💥Config_jo-229#1 | vless | 167.82.76.31 | 443 | 1.2 |
-| 9 | 🏳️ 💥Config_jo-166 | vless | 199.232.78.120 | 443 | 1.3 |
-| 10 | 🏳️ 💥Config_jo-162 | vless | 199.232.78.159 | 443 | 1.3 |
-| 11 | 🏳️ 💥Config_jo-190 | vless | 199.232.78.120 | 443 | 1.3 |
-| 12 | 🏳️ 💥Config_jo-193 | vless | 199.232.78.159 | 443 | 1.3 |
-| 13 | 🏳️ 💥Config_jo-256 | vless | 199.232.78.159 | 443 | 1.3 |
-| 14 | 🏳️ 💥Config_jo-155 | trojan | 199.232.78.160 | 443 | 1.4 |
-| 15 | 🏳️ 💥Config_jo-171 | trojan | 167.82.64.7 | 443 | 1.4 |
-| 16 | 🏳️ 💥Config_jo-182#1 | vless | 151.101.36.120 | 443 | 1.4 |
-| 17 | 🏳️ 💥Config_jo-216#1 | vless | 146.75.59.186 | 443 | 1.4 |
-| 18 | 🏳️ 💥Config_jo-280 | vless | ipfast.kingmna.com | 443 | 1.4 |
-| 19 | 🇺🇸 US | VLESS | @outline_ir #2 [fast] | vless | 199.232.249.131 | 443 | 1.4 |
-| 20 | 🏳️ 💥Config_jo-156 | trojan | 199.232.249.131 | 443 | 1.5 |
+| 1 | 🏳️ 💥Config_jo-182#1 | vless | 151.101.36.120 | 443 | 4.6 |
+| 2 | 🏳️ 💥Config_jo-232 | vless | 104.18.38.33 | 443 | 4.6 |
+| 3 | 🏁RELAY-203.24.108.9-0327 | vmess | 203.24.108.9 | 443 | 4.7 |
+| 4 | 🏁RELAY-104.17.177.143-0905 | trojan | 104.17.177.143 | 443 | 4.7 |
+| 5 | 🇽🇽 XX | VLESS | @nepo_v2ray #5 [fast] | vless | 198.41.202.5 | 2083 | 4.7 |
+| 6 | 🏁RELAY-172.64.53.74-0819 | trojan | 172.64.53.74 | 443 | 4.8 |
+| 7 | 🏁RELAY-104.18.152.159-0886 | trojan | 104.18.152.159 | 443 | 4.8 |
+| 8 | 🏳️ 💥Config_jo-191 | vless | ipfast.kingmna.com | 443 | 4.8 |
+| 9 | 🏳️ 💥Config_jo-197 | vless | 199.232.78.159 | 443 | 4.8 |
+| 10 | 🏳️ 💥Config_jo-216 | vless | 146.75.59.186 | 443 | 4.8 |
+| 11 | 🏳️ 💥Config_jo-215#1 | vless | ipfast.kingmna.com | 443 | 4.8 |
+| 12 | 🏳️ 💥Config_jo-242#1 | vless | nice.iranapplecenter.com | 443 | 4.8 |
+| 13 | 🇺🇸 US | VLESS | @outline_ir #2 [fast] | vless | 199.232.249.131 | 443 | 4.8 |
+| 14 | 🇽🇽 XX | VLESS | @novinology #1 [fast] | vless | 104.16.60.79 | 2052 | 4.8 |
+| 15 | 🇽🇽 XX | VLESS | @novinology #5 [fast] | vless | mediafire.com | 2095 | 4.8 |
+| 16 | Channel : @Daily_Configs#4 | vmess | 84.17.41.2 | 18000 | 4.9 |
+| 17 | 🏁RELAY-203.30.190.191-0310 | vmess | 203.30.190.191 | 443 | 4.9 |
+| 18 | 🏳️ 💥Config_jo-169 | trojan | 8.6.112.0 | 443 | 4.9 |
+| 19 | 🏳️ 💥Config_jo-171 | trojan | 167.82.64.7 | 443 | 4.9 |
+| 20 | 🏳️ 💥Config_jo-173 | trojan | ipfast.kingmna.com | 443 | 4.9 |
 
 _Latency is coarse TCP-handshake time measured from GitHub runners; actual usable ranking happens client-side via the `AUTO`/`TOP20` url-test groups._
