@@ -36,328 +36,169 @@ dns:
   respect-rules: true
 proxies:
 - name: '[VLESS] 🇺🇸 · آمریکا 01'
-  server: 199.232.78.160
-  port: 443
-  type: vless
-  uuid: bad0b0df-f838-48a7-a86b-7d5f8b075952
-  network: tcp
-- name: '[VLESS] 🌐 · سایر 01'
-  server: 151.101.36.120
-  port: 443
-  type: vless
-  uuid: 15e0bd1c-48f2-4ce7-8fb3-828928ac3bf5
-  network: xhttp
-  tls: true
-  servername: cdn.akamai.steamstatic.com
-  alpn:
-  - h2
-- name: '[VLESS] 🌐 · سایر 02'
-  server: 199.232.78.159
-  port: 443
-  type: vless
-  uuid: 8fdeb819-df0c-456d-9a1d-e3a9950ece4d
-  network: ws
-  tls: true
-  servername: cdn.akamai.steamstatic.com
-  ws-opts:
-    path: /
-    headers:
-      Host: copy_az_channel_NUFiLTER_sssss.global.ssl.fastly.net.
-- name: '[TROJAN] 🌐 · سایر 03'
-  server: 199.232.78.160
-  port: 443
-  type: trojan
-  password: M%69TiVPN
-  network: ws
-  tls: true
-  servername: steamstatic.com
-  alpn:
-  - http/1.1
-  ws-opts:
-    path: /
-    headers:
-      Host: mitivpn.si
-- name: '[TROJAN] 🌐 · سایر 04'
-  server: ipfast.kingmna.com
-  port: 443
-  type: trojan
-  password: auRVImItMy7CqRAY7FC8Wg
-  network: ws
-  tls: true
-  servername: cdn.akamai.steamstatic.com
-  ws-opts:
-    path: /TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER
-    headers:
-      Host: copy_az_channel_NUFiLTER_10i.global.ssl.fastly.net.
-- name: '[VLESS] 🌐 · سایر 05'
-  server: ipfast.kingmna.com
-  port: 443
-  type: vless
-  uuid: 517c786d-84cd-4401-b638-d3c63c739a2b
-  network: ws
-  tls: true
-  servername: cdn.akamai.steamstatic.com
-  ws-opts:
-    path: /
-    headers:
-      Host: ukoijji.global.ssl.fastly.net
-- name: '[VLESS] 🌐 · سایر 06'
-  server: ipfast.kingmna.com
-  port: 443
-  type: vless
-  uuid: 99d05f08-3192-4fdb-9796-59c689e0ff54
-  network: ws
-  tls: true
-  servername: cdn.akamai.steamstatic.com
-  alpn:
-  - h2
-  ws-opts:
-    path: /
-    headers:
-      Host: cheezburger.global.ssl.fastly.net.
-- name: '[VLESS] 🌐 · سایر 07'
-  server: ipfast.kingmna.com
-  port: 443
+  server: 216.24.57.1
+  port: 2095
   type: vless
   uuid: eb8995e9-9a40-4dd6-ae6c-354db2d8fbb7
+  network: httpupgrade
+- name: '[VMESS] 🌐 · سایر 01'
+  server: support.zoom.us
+  port: 8080
+  type: vmess
+  uuid: 44e57485-eccc-46ef-808f-cd17ac810018
+  alterId: 0
+  cipher: auto
   network: ws
-  tls: true
-  servername: cdn.akamai.steamstatic.com
   ws-opts:
     path: /
     headers:
-      Host: fraboijji.global.ssl.fastly.net.
-- name: '[TROJAN] 🌐 · سایر 08'
-  server: ipfast.kingmna.com
+      Host: node4.rtxconfigz.com
+- name: '[VLESS] 🇨🇦 · آمریکا 01'
+  server: 104.31.16.65
+  port: 2095
+  type: vless
+  uuid: 38ace213-5184-477b-ac3e-d800d0cf3cd9
+  network: ws
+  ws-opts:
+    path: /?ed=2048
+    headers:
+      Host: de1.vlessx.xyz
+- name: '[VLESS] 🌐 · سایر 02'
+  server: 172.64.33.212
+  port: 80
+  type: vless
+  uuid: 155da7c1-4d5f-4479-a214-d2d1414d07f6
+  network: httpupgrade
+- name: '[TROJAN] 🌐 · سایر 03'
+  server: 104.18.152.133
   port: 443
   type: trojan
-  password: SiFvGI5bX01GGtGOJ2_nxA
+  password: humanity
   network: ws
   tls: true
-  servername: cdn.akamai.steamstatic.com
+  servername: www.ignitelimit.com
   ws-opts:
-    path: /TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER
+    path: /assignment
     headers:
-      Host: copy_az_channel_NUFiLTER_7i.global.ssl.fastly.net.
-- name: '[VLESS] 🌐 · سایر 09'
-  server: 167.82.76.31
+      Host: www.ignitelimit.com
+- name: '[TROJAN] 🌐 · سایر 04'
+  server: 104.18.152.219
   port: 443
-  type: vless
-  uuid: 4e932df2-a06a-4043-861c-87fe8d217aae
-  network: xhttp
-  tls: true
-  servername: cdn.akamai.steamstatic.com
-- name: '[VLESS] 🌐 · سایر 10'
-  server: 146.75.57.120
-  port: 443
-  type: vless
-  uuid: 79105268-2a3f-4b02-a299-839c8919b365
-  network: xhttp
-  tls: true
-  servername: cdn.akamai.steamstatic.com
-- name: '[VLESS] 🌐 · سایر 11'
-  server: 199.232.78.159
-  port: 443
-  type: vless
-  uuid: 8d2cbffd-43d0-458d-906b-7c54b7b51f38
+  type: trojan
+  password: humanity
   network: ws
   tls: true
-  servername: cdn.akamai.steamstatic.com
+  servername: www.ignitelimit.com
   ws-opts:
-    path: /?TELEGRAM—MARAMBASHI—MARAMBASHI—MARAMBASHI—MARAMBASHI?ed=2560
+    path: /assignment
     headers:
-      Host: finalnsdger.global.ssl.fastly.net.
+      Host: www.ignitelimit.com
+- name: '[TROJAN] 🌐 · سایر 05'
+  server: jp2.sanfen001.pics
+  port: 443
+  type: trojan
+  password: 8800c518-e68a-4441-a45c-cd67855784c8
+  network: tcp
+  tls: true
+  servername: jp1.sanfen001.pics
+- name: '[VLESS] 🌐 · سایر 06'
+  server: 14f7f5f0.mrbl69black.pages.dev
+  port: 443
+  type: vless
+  uuid: 0d5a2112-789f-4755-88e6-61a1a8f8067b
+  network: ws
+  tls: true
+  ws-opts:
+    path: /
+    headers:
+      Host: 14f7f5f0.mrbl69black.pages.dev
+- name: '[VLESS] 🌐 · سایر 07'
+  server: 172.67.183.26
+  port: 443
+  type: vless
+  uuid: b9ad895b-12ac-40fc-a5ac-a5b2a1285001
+  network: ws
+  tls: true
+  servername: 3k.pureboy.eu.org
+  ws-opts:
+    path: /?ed=2048
+    headers:
+      Host: 3k.pureboy.eu.org
 - name: '[VLESS] 🇺🇸 · آمریکا 02'
-  server: 151.101.3.8
-  port: 80
-  type: vless
-  uuid: c009b9eb-1cd9-4df8-92d2-4aafe17ac136
-  network: ws
-  ws-opts:
-    path: /Telegram-ipV2Ray-Telegram-ipV2Ray-Telegram-ipV2Ray-Telegram-ipV2Ray-Telegram-ipV2Ray?ed=2048
-    headers:
-      Host: barkatc2.ir
-- name: '[TROJAN] 🌐 · سایر 12'
-  server: 167.82.76.7
+  server: discord.gg
   port: 443
-  type: trojan
-  password: MiTiVPN
+  type: vless
+  uuid: a75cb418-c1d6-476a-9464-ad1bd5181e3c
   network: ws
   tls: true
-  servername: ssl.fastly.com
-  alpn:
-  - http/1.1
-  ws-opts:
-    path: /---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/NLSs---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN
-    headers:
-      Host: mitivpn---ss--s---mitivpn-33.global.ssl.fastly.net
-- name: '[VLESS] 🌐 · سایر 13'
-  server: ipfast.kingmna.com
-  port: 443
-  type: vless
-  uuid: 04f4af27-af47-4f97-9eb0-17a46df671e6
-  network: ws
-  tls: true
-  servername: cdn.akamai.steamstatic.com
-  alpn:
-  - h2
-  ws-opts:
-    path: /
-    headers:
-      Host: pumkin.global.ssl.fastly.net.
-- name: '[VLESS] 🌐 · سایر 14'
-  server: 167.82.76.31
-  port: 443
-  type: vless
-  uuid: 12a53b9b-5e33-4da5-a4fa-d4389e8b295f
-  network: xhttp
-  tls: true
-  servername: cdn.akamai.steamstatic.com
-- name: '[VLESS] 🌐 · سایر 15'
-  server: 199.232.78.120
-  port: 443
-  type: vless
-  uuid: 8d2cbffd-43d0-458d-906b-7c54b7b51f38
-  network: ws
-  tls: true
-  servername: cdn.akamai.steamstatic.com
-  ws-opts:
-    path: /?TELEGRAM--B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub-B2Hub--TELEGRAM?ed=2560
-    headers:
-      Host: usaslioijji.global.ssl.fastly.net.
-- name: '[TROJAN] 🌐 · سایر 16'
-  server: 199.232.249.131
-  port: 443
-  type: trojan
-  password: SiFvGI5bX01GGtGOJ2_nxA
-  network: ws
-  tls: true
-  servername: cdn.akamai.steamstatic.com
-  ws-opts:
-    path: /TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER
-    headers:
-      Host: copy_az_channel_NUFiLTER_17i.global.ssl.fastly.net.
-- name: '[VLESS] 🌐 · سایر 17'
-  server: ipfast.kingmna.com
-  port: 443
-  type: vless
-  uuid: 414b00e3-cc5e-4378-a895-04242f27a757
-  network: ws
-  tls: true
-  servername: community.fastly.steamstatic.com
-  ws-opts:
-    path: /
-    headers:
-      Host: italyboijji.global.ssl.fastly.net.
-- name: '[VLESS] 🌐 · سایر 18'
-  server: 167.82.76.31
-  port: 443
-  type: vless
-  uuid: 9e670bc1-6082-4bbe-9f67-18ea5bfda44c
-  network: xhttp
-  tls: true
-  servername: cdn.akamai.steamstatic.com
-- name: '[VLESS] 🌐 · سایر 19'
-  server: nice.iranapplecenter.com
-  port: 443
-  type: vless
-  uuid: b6111519-d248-4b81-b1d5-ad0ab76113d1
-  network: xhttp
-  tls: true
-  servername: بلانصبت، بلانصب، بو عن میاد.
-  alpn:
-  - h2
-- name: '[VLESS] 🇺🇸 · آمریکا 03'
-  server: 151.101.25.242
-  port: 80
-  type: vless
-  uuid: 02d87d00-c769-48d8-91cb-bd05e2f62790
-  network: xhttp
-- name: '[TROJAN] 🌐 · سایر 20'
-  server: 199.232.78.101
-  port: 443
-  type: trojan
-  password: MiTiVPN
-  network: ws
-  tls: true
-  servername: ssl.fastly.com
-  alpn:
-  - http/1.1
-  ws-opts:
-    path: /--TELEGRAM--TOOTFFARANGI
-    headers:
-      Host: mitivpn---ss--s---mitivpn-11.global.ssl.fastly.net
-- name: '[VLESS] 🌐 · سایر 21'
-  server: tulip.amydoodles.com
-  port: 443
-  type: vless
-  uuid: 12a53b9b-5e33-4da5-a4fa-d4389e8b295f
-  network: xhttp
-  tls: true
-  servername: cdn.akamai.steamstatic.com
-- name: '[VLESS] 🌐 · سایر 22'
-  server: ipfast.kingmna.com
-  port: 443
-  type: vless
-  uuid: 5d594aff-c434-4f20-a70f-99d34eb396e8
-  network: ws
-  tls: true
-  servername: cdn.akamai.steamstatic.com
-  ws-opts:
-    path: /
-    headers:
-      Host: fraboijji.global.ssl.fastly.net.
-- name: '[VLESS] 🇺🇸 · آمریکا 04'
-  server: 151.101.66.219
-  port: 443
-  type: vless
-  uuid: 04747bf6-6f98-4334-8d64-09f9c6ca6d09
-  network: ws
-  tls: true
-  servername: speedtest.net
+  servername: de.vpncustomize.Website
   alpn:
   - h2
   - http/1.1
   ws-opts:
-    path: /?ed=1024
-    headers:
-      Host: youupdated.com
-- name: '[VLESS] 🌐 · سایر 23'
-  server: 167.82.64.46
-  port: 443
-  type: vless
-  uuid: 7e8c5916-2070-4013-864d-be767d4e2fd7
-  network: xhttp
-  tls: true
-  servername: cdn.akamai.steamstatic.com
-  alpn:
-  - h2
-- name: '[VLESS] 🌐 · سایر 24'
-  server: 146.75.59.186
-  port: 443
-  type: vless
-  uuid: 8d2cbffd-43d0-458d-906b-7c54b7b51f38
-  network: ws
-  tls: true
-  servername: cdn.akamai.steamstatic.com
-  ws-opts:
-    path: /?Telegram---@pirozi_ArGaP---@pirozi_ArGaP---@pirozi_ArGaP---@pirozi_ArGaP
-    headers:
-      Host: ukoijji.global.ssl.fastly.net
-- name: '[VLESS] 🌐 · سایر 25'
-  server: 199.232.78.159
-  port: 443
-  type: vless
-  uuid: 97e0ea78-67ae-4984-8a14-a7d1a51e58de
-  network: ws
-  tls: true
-  servername: cdn.akamai.steamstatic.com
-  ws-opts:
     path: /
     headers:
-      Host: copy_az_channel_NUFiLTER_8i.global.ssl.fastly.net.
-- name: '[VLESS] 🌐 · سایر 26'
-  server: chatgpt.com
+      Host: e.vpncustomize.Website
+- name: '[VLESS] 🌐 · سایر 08'
+  server: 190.93.247.155
+  port: 8880
+  type: vless
+  uuid: 8bc175f4-798e-49a7-ad13-ba258f0c6ffe
+  network: ws
+  ws-opts:
+    path: /@LIGHTNING6, @LIGHTNING6
+    headers:
+      Host: liV2rayd.善良的闪电.monster
+- name: '[VMESS] 🇨🇦 · آمریکا 02'
+  server: 172.67.153.127
+  port: 443
+  type: vmess
+  uuid: 80be2deb-3b27-4775-9bd1-7f2a2b9c261b
+  alterId: 0
+  cipher: auto
+  network: ws
+  ws-opts:
+    path: /truth
+    headers:
+      Host: www.windowsmsidownloads.com
+- name: '[VMESS] 🇮🇷 · آسیا 01'
+  server: mute-math-d64e.0e503992ad7026.WOrKERs.deV
+  port: 443
+  type: vmess
+  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+  alterId: 0
+  cipher: auto
+  network: ws
+  ws-opts:
+    path: /aveiror.com:443/linkvws
+    headers:
+      Host: mute-math-d64e.0e503992ad7026.woRKERS.DeV
+- name: '[VMESS] 🇺🇸 · آمریکا 03'
+  server: 172.67.71.160
+  port: 443
+  type: vmess
+  uuid: 05641cf5-58d2-4ba4-a9f1-b3cda0b1fb1d
+  alterId: 0
+  cipher: auto
+  network: ws
+  ws-opts:
+    path: /linkws
+    headers:
+      Host: obdii.cfd
+- name: '[TROJAN] 🌐 · سایر 09'
+  server: 104.17.121.43
+  port: 443
+  type: trojan
+  password: humanity
+  network: ws
+  tls: true
+  servername: www.calmlunch.com
+  ws-opts:
+    path: /assignment
+    headers:
+      Host: www.calmlunch.com
+- name: '[VLESS] 🌐 · سایر 10'
+  server: 172.64.155.209
   port: 8443
   type: vless
   uuid: a20ea704-ec9d-4c5d-9b12-fa760cdf2290
@@ -368,59 +209,153 @@ proxies:
   - http/1.1
   - h2
   - h3
-- name: '[VLESS] 🇺🇸 · آمریکا 05'
-  server: 199.232.249.131
-  port: 443
+- name: '[VLESS] 🌐 · سایر 11'
+  server: chatgpt.com
+  port: 8443
   type: vless
-  uuid: 33751cb1-43ea-458c-8dc5-0b8993746bce
+  uuid: c2425034-91ef-44bf-9fd4-f2be9c1e989a
+  network: xhttp
+  tls: true
+  servername: sinavm3.soft10.ir
+  alpn:
+  - http/1.1
+  - h2
+  - h3
+- name: '[VLESS] 🌐 · سایر 12'
+  server: www.speedtest.net
+  port: 8880
+  type: vless
+  uuid: d7bd8e1a-8e57-46a8-c1f9-2c6751de3afc
+  network: httpupgrade
+- name: '[VLESS] 🌐 · سایر 13'
+  server: 173.245.59.191
+  port: 8443
+  type: vless
+  uuid: 5acc4610-f2d7-44c9-bbe6-c0ee6a058aac
   network: ws
   tls: true
-  servername: cdn.akamai.steamstatic.com
+  servername: maple.adaspoloandco.com
+  alpn:
+  - h2
+  - http/1.1
   ws-opts:
-    path: /?Telegram---PLANB_NET---PLANB_NET---PLANB_NET---PLANB_NET
+    path: /uploader.php
     headers:
-      Host: copy_az_channel_NUFiLTER_17i.global.ssl.fastly.net.
-- name: '[VLESS] 🇺🇸 · آمریکا 06'
-  server: 23.235.33.98
-  port: 80
+      Host: maple.adaspoloandco.com
+- name: '[VLESS] 🌐 · سایر 14'
+  server: www.visa.com.sg
+  port: 8443
   type: vless
-  uuid: b742d8e7-ed7d-4f7d-bb16-bf49bdb4cb44
-  network: xhttp
-- name: '[VMESS] 🌐 · سایر 27'
-  server: 203.24.108.9
-  port: 443
-  type: vmess
-  uuid: 56a2188b-2ab7-402c-b9b8-34847fdf0958
-  alterId: 0
-  cipher: auto
+  uuid: 37d0b151-023e-4729-9994-45a7d9df5fd1
   network: ws
+  tls: true
+  servername: pardazeshvpn-tg23.pages.dev
   ws-opts:
-    path: /5QNROSRV
-- name: '[VMESS] 🌐 · سایر 28'
-  server: news.microsoft.com
-  port: 443
-  type: vmess
-  uuid: 615a1285-5848-42a1-9859-d4cb37b1fbd8
-  alterId: 0
-  cipher: auto
-  network: ws
-  ws-opts:
-    path: /share
+    path: /TELEGRAM-MARAMBASHI/?ed=2048
     headers:
-      Host: news.microsoft.com
-- name: '[VMESS] 🇦🇺 · اقیانوسیه 01'
-  server: 162.159.135.79
+      Host: pardazeshvpn-tg23.pages.dev
+- name: '[VLESS] 🌐 · سایر 15'
+  server: 172.67.183.230
+  port: 443
+  type: vless
+  uuid: b9ad895b-12ac-40fc-a5ac-a5b2a1285001
+  network: ws
+  tls: true
+  servername: 3k.pureboy.eu.org
+  ws-opts:
+    path: path/TELEGRAM-PROXY_MTM?ed=2048
+    headers:
+      Host: 3k.pureboy.eu.org
+- name: '[VLESS] 🇸🇪 · اروپا 01'
+  server: 185.146.173.58
+  port: 8080
+  type: vless
+  uuid: 13fdda6f-f5c9-499a-826c-d99bfacdcc23
+  network: ws
+  ws-opts:
+    path: /telegram-@Sobi_Vpn,telegram-@Sobi_Vpn,telegram-@Sobi_Vpn,telegram-@Sobi_Vpn,telegram-@Sobi_Vpn,telegram-@Sobi_Vpn,telegram-@Sobi_Vpn,telegram-@Sobi_Vpn,telegram-@Sobi_Vpn,telegram-@Sobi_Vpn,telegram-@Sobi_Vpn,telegram-@Sobi_Vpn,telegram-@Sobi_Vpn,telegram-@Sobi_Vpn,telegram-@Sobi_Vpn,telegram-@Sobi_Vpn,telegram-@Sobi_Vpn,telegram-@Sobi_Vpn?ed=2048
+    headers:
+      Host: Kanal-polproxy.Vipnufilter.Online.
+- name: '[VLESS] 🇸🇪 · اروپا 02'
+  server: 185.146.173.185
+  port: 2095
+  type: vless
+  uuid: f69052a7-2ed3-4196-87f0-4cf90a35ab79
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      Host: V2ray-_-_-_-_-_-ShhProxy.TelegramChannelJoinBede.com.
+- name: '[SS] 🌐 · سایر 16'
+  server: passconf.xyz
+  port: 8080
+  type: ss
+  cipher: chacha20-ietf-poly1305
+  password: qGjmI8WQlF0tfhDbkLqGdN
+  udp: true
+- name: '[VMESS] 🌐 · سایر 17'
+  server: 190.93.245.4
   port: 443
   type: vmess
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+  uuid: 17b2a313-37a0-4945-a8e4-e63375506b4a
   alterId: 0
   cipher: auto
   network: ws
   ws-opts:
-    path: /linkvws
+    path: /A2DJOPFT
+- name: '[TROJAN] 🌐 · سایر 18'
+  server: 172.64.157.230
+  port: 443
+  type: trojan
+  password: eeb6823c-b926-4ea2-866a-5542edd26e59
+  network: ws
+  tls: true
+  servername: hhcm.hhxaf.cc.cd
+  ws-opts:
+    path: /
     headers:
-      Host: janett.click
-- name: '[VMESS] 🇮🇷 · آسیا 01'
+      Host: hhcm.hhxaf.cc.cd
+- name: '[VMESS] 🌐 · سایر 19'
+  server: 172.64.145.93
+  port: 443
+  type: vmess
+  uuid: 6a89a215-22bf-4bd7-9642-b95b2e09583a
+  alterId: 0
+  cipher: auto
+  network: ws
+  ws-opts:
+    path: /hls/cctv5phd.m3u8
+- name: '[TROJAN] 🌐 · سایر 20'
+  server: 104.16.174.148
+  port: 443
+  type: trojan
+  password: humanity
+  network: ws
+  tls: true
+  servername: www.ignitelimit.com
+  ws-opts:
+    path: /assignment
+    headers:
+      Host: www.ignitelimit.com
+- name: '[VMESS] 🌐 · سایر 21'
+  server: 172.64.229.21
+  port: 443
+  type: vmess
+  uuid: 0cf6d970-3f1d-4aae-a989-92a8f76ae3db
+  alterId: 0
+  cipher: auto
+  network: ws
+  ws-opts:
+    path: /ws
+- name: '[TROJAN] 🌐 · سایر 22'
+  server: kr2.sanfen001.pics
+  port: 443
+  type: trojan
+  password: 8800c518-e68a-4441-a45c-cd67855784c8
+  network: tcp
+  tls: true
+  servername: kr1.sanfen001.pics
+- name: '[VMESS] 🇮🇷 · آسیا 02'
   server: 172.67.207.114
   port: 443
   type: vmess
@@ -432,7 +367,155 @@ proxies:
     path: linkvws
     headers:
       Host: ophelia.mom
-- name: '[TROJAN] 🌐 · سایر 29'
+- name: '[TROJAN] 🌐 · سایر 23'
+  server: 45.130.125.112
+  port: 443
+  type: trojan
+  password: humanity
+  network: tcp
+  tls: true
+- name: '[VLESS] 🌐 · سایر 24'
+  server: chess.com
+  port: 443
+  type: vless
+  uuid: 0280c276-641b-49af-b699-4931c30ac137
+  network: xhttp
+  tls: true
+  servername: norway.xn--nlqaa425dbaab446bbabd698meae.online.
+  alpn:
+  - h2
+- name: '[VLESS] 🌐 · سایر 25'
+  server: 45.130.125.76
+  port: 443
+  type: vless
+  uuid: 1f9d104e-ca0e-4202-ba4b-a0afb969c747
+  network: xhttp
+  tls: true
+  servername: www.multiplydose.cc.cd
+  alpn:
+  - h2
+  - http/1.1
+- name: '[VLESS] 🌐 · سایر 26'
+  server: kclx.eu.org
+  port: 443
+  type: vless
+  uuid: 0575005f-0ba9-4d6d-85e0-4a6a8cbafc1b
+  network: ws
+  tls: true
+  servername: kclx.eu.org
+  ws-opts:
+    path: /154.16.10.34-8080
+    headers:
+      Host: kclx.eu.org
+- name: '[VLESS] 🌐 · سایر 27'
+  server: 172.64.144.240
+  port: 443
+  type: vless
+  uuid: 87c467e9-f0af-4b03-8fbd-65fd375d3a26
+  network: ws
+  tls: true
+  servername: pmpmppm.pages.dev
+  ws-opts:
+    path: /?ed=2048fp=randomizedfp=chrome
+    headers:
+      Host: pmpmppm.pages.dev
+- name: '[VLESS] 🇧🇷 · آمریکا 01'
+  server: 185.133.35.86
+  port: 443
+  type: vless
+  uuid: d795a9ec-5ed0-4309-ba6c-edc09b818669
+  network: xhttp
+  tls: true
+  servername: mamafrance.baklajann.ru
+  alpn:
+  - h3
+  - h2
+  - http/1.1
+- name: '[VLESS] 🇨🇦 · آمریکا 03'
+  server: 104.31.16.133
+  port: 2096
+  type: vless
+  uuid: dd777f39-2996-4269-b88f-0b64436d0274
+  network: ws
+  tls: true
+  servername: joinchannel.sameasyou.sbs
+  alpn:
+  - h2
+  - http/1.1
+  ws-opts:
+    path: /
+    headers:
+      Host: capitalnet.sameasyou.sbs
+- name: '[VLESS] 🌐 · سایر 28'
+  server: 172.64.149.54
+  port: 443
+  type: vless
+  uuid: 7d12caa2-43e0-45d2-8636-08b342615c7b
+  network: ws
+  tls: true
+  servername: clod.pedramhost.shop
+  alpn:
+  - h2
+  - http/1.1
+  ws-opts:
+    path: /
+- name: '[VMESS] 🌐 · سایر 29'
+  server: 203.30.189.191
+  port: 443
+  type: vmess
+  uuid: 17b2a313-37a0-4945-a8e4-e63375506b4a
+  alterId: 0
+  cipher: auto
+  network: ws
+  ws-opts:
+    path: /A2DJOPFT
+- name: '[TROJAN] 🌐 · سایر 30'
+  server: 172.64.38.50
+  port: 443
+  type: trojan
+  password: eeb6823c-b926-4ea2-866a-5542edd26e59
+  network: ws
+  tls: true
+  servername: hhcm.hhxaf.cc.cd
+  ws-opts:
+    path: /
+    headers:
+      Host: hhcm.hhxaf.cc.cd
+- name: '[VMESS] 🌐 · سایر 31'
+  server: 172.67.199.34
+  port: 443
+  type: vmess
+  uuid: c6747da4-fb2e-4a2a-bdb7-8614bdd6b0b3
+  alterId: 0
+  cipher: auto
+  network: ws
+  ws-opts:
+    path: /sshkit/1350195536/63a625eb069d5/
+- name: '[TROJAN] 🌐 · سایر 32'
+  server: 162.159.12.212
+  port: 443
+  type: trojan
+  password: eeb6823c-b926-4ea2-866a-5542edd26e59
+  network: ws
+  tls: true
+  servername: tjsp.hhxaf.cc.cd
+  ws-opts:
+    path: /
+    headers:
+      Host: tjsp.hhxaf.cc.cd
+- name: '[TROJAN] 🌐 · سایر 33'
+  server: 104.16.174.12
+  port: 443
+  type: trojan
+  password: humanity
+  network: ws
+  tls: true
+  servername: www.ignitelimit.com
+  ws-opts:
+    path: /assignment
+    headers:
+      Host: www.ignitelimit.com
+- name: '[TROJAN] 🌐 · سایر 34'
   server: 104.16.71.213
   port: 443
   type: trojan
@@ -444,8 +527,8 @@ proxies:
     path: /assignment
     headers:
       Host: www.calmlunch.com
-- name: '[TROJAN] 🌐 · سایر 30'
-  server: 104.16.174.124
+- name: '[TROJAN] 🌐 · سایر 35'
+  server: 104.18.152.210
   port: 443
   type: trojan
   password: humanity
@@ -456,55 +539,227 @@ proxies:
     path: /assignment
     headers:
       Host: www.ignitelimit.com
-- name: '[TROJAN] 🌐 · سایر 31'
-  server: hk2.sanfen001.pics
+- name: '[TROJAN] 🌐 · سایر 36'
+  server: 104.18.152.144
   port: 443
   type: trojan
-  password: 8800c518-e68a-4441-a45c-cd67855784c8
+  password: humanity
+  network: ws
+  tls: true
+  servername: www.ignitelimit.com
+  ws-opts:
+    path: /assignment
+    headers:
+      Host: www.ignitelimit.com
+- name: '[TROJAN] 🌐 · سایر 37'
+  server: 104.18.152.225
+  port: 443
+  type: trojan
+  password: humanity
+  network: ws
+  tls: true
+  servername: www.ignitelimit.com
+  ws-opts:
+    path: /assignment
+    headers:
+      Host: www.ignitelimit.com
+- name: '[TROJAN] 🌐 · سایر 38'
+  server: series-v1.samanehha.co
+  port: 443
+  type: trojan
+  password: 0b65bb06-6b28-487a-8e3c-820dda51e977
+  network: ws
+  tls: true
+  servername: series-v1.samanehha.co
+  ws-opts:
+    path: /43xf5zgeApzDAfhOHq
+    headers:
+      Host: series-v1.samanehha.co
+- name: '[VLESS] 🌐 · سایر 39'
+  server: 104.16.0.1
+  port: 2052
+  type: vless
+  uuid: 5744e593-1cc8-48fa-b8ca-57cd494fe35b
+  network: ws
+  ws-opts:
+    path: /rain1226
+    headers:
+      Host: eu02.123450908.xyz
+- name: '[VLESS] 🌐 · سایر 40'
+  server: 185.18.250.2
+  port: 443
+  type: vless
+  uuid: 5c9e3f77-5bde-4732-af3c-6a5d3ecee37a
+  network: ws
+  tls: true
+  ws-opts:
+    path: /
+    headers:
+      Host: worker3.wewotes286.workers.dev
+- name: '[VLESS] 🌐 · سایر 41'
+  server: 185.18.250.2
+  port: 443
+  type: vless
+  uuid: c07a5829-7555-48ac-a08a-0799332b32e1
+  network: ws
+  tls: true
+  ws-opts:
+    path: /
+    headers:
+      Host: worker3.kexaxik407.workers.dev
+- name: '[VLESS] 🌐 · سایر 42'
+  server: www.speedtest.net
+  port: 8880
+  type: vless
+  uuid: 8a20ecfe-6a72-4e88-aa2c-65a9e43a8512
+  network: httpupgrade
+- name: '[VMESS] 🌐 · سایر 43'
+  server: 188.114.97.111
+  port: 443
+  type: vmess
+  uuid: 9e6ceeff-2546-3690-ac00-6fcdf31dec94
+  alterId: 0
+  cipher: auto
+  network: ws
+  ws-opts:
+    path: /chcara
+- name: '[VMESS] 🇺🇸 · آمریکا 04'
+  server: 104.21.15.212
+  port: 443
+  type: vmess
+  uuid: 76221bfb-e92f-4e80-81c5-6fe48f50ac0b
+  alterId: 0
+  cipher: auto
+  network: ws
+  ws-opts:
+    path: /linkws
+    headers:
+      Host: glweidf.sbs
+- name: '[VMESS] 🇺🇸 · آمریکا 05'
+  server: 104.21.4.6
+  port: 443
+  type: vmess
+  uuid: 1052f24e-7b09-45eb-b0c5-d858eb124192
+  alterId: 0
+  cipher: auto
+  network: ws
+  ws-opts:
+    path: /linkws
+    headers:
+      Host: glweidf.cfd
+- name: '[TROJAN] 🌐 · سایر 44'
+  server: 162.159.60.167
+  port: 443
+  type: trojan
+  password: eeb6823c-b926-4ea2-866a-5542edd26e59
+  network: ws
+  tls: true
+  servername: hhcm.hhxaf.cc.cd
+  ws-opts:
+    path: /
+    headers:
+      Host: hhcm.hhxaf.cc.cd
+- name: '[TROJAN] 🌐 · سایر 45'
+  server: 188.164.248.122
+  port: 443
+  type: trojan
+  password: c206d543-023d-46cc-9d5a-1f0f2fc16323
+  network: ws
+  tls: true
+  servername: space.byu.id.yxls.eu.cc
+  ws-opts:
+    path: /in-pdr
+    headers:
+      Host: space.byu.id.yxls.eu.cc
+- name: '[TROJAN] 🌐 · سایر 46'
+  server: 104.18.152.155
+  port: 443
+  type: trojan
+  password: humanity
+  network: ws
+  tls: true
+  servername: www.ignitelimit.com
+  ws-opts:
+    path: /assignment
+    headers:
+      Host: www.ignitelimit.com
+- name: '[TROJAN] 🌐 · سایر 47'
+  server: 162.159.153.4
+  port: 443
+  type: trojan
+  password: humanity
+  network: ws
+  tls: true
+  servername: www.calmloud.com
+  ws-opts:
+    path: /assignment
+    headers:
+      Host: www.calmloud.com
+- name: '[TROJAN] 🌐 · سایر 48'
+  server: 104.18.152.143
+  port: 443
+  type: trojan
+  password: humanity
+  network: ws
+  tls: true
+  servername: www.ignitelimit.com
+  ws-opts:
+    path: /assignment
+    headers:
+      Host: www.ignitelimit.com
+- name: '[TROJAN] 🌐 · سایر 49'
+  server: 104.16.174.143
+  port: 443
+  type: trojan
+  password: humanity
+  network: ws
+  tls: true
+  servername: www.ignitelimit.com
+  ws-opts:
+    path: /assignment
+    headers:
+      Host: www.ignitelimit.com
+- name: '[TROJAN] 🌐 · سایر 50'
+  server: 104.18.152.208
+  port: 443
+  type: trojan
+  password: humanity
+  network: ws
+  tls: true
+  servername: www.ignitelimit.com
+  ws-opts:
+    path: /assignment
+    headers:
+      Host: www.ignitelimit.com
+- name: '[TROJAN] 🌐 · سایر 51'
+  server: cf.130209.xyz
+  port: 2053
+  type: trojan
+  password: 65c56e1f-5c41-40bc-b0b5-9346772476ca
   network: tcp
   tls: true
-- name: '[VMESS] 🌐 · سایر 32'
-  server: 185.162.228.229
+- name: '[VMESS] 🌐 · سایر 52'
+  server: 198.41.203.5
   port: 443
   type: vmess
-  uuid: 56a2188b-2ab7-402c-b9b8-34847fdf0958
+  uuid: 4612618c-24cd-4379-9924-cfdf3d61fa5a
   alterId: 0
   cipher: auto
   network: ws
   ws-opts:
-    path: /5QNROSRV
-- name: '[VMESS] 🌐 · سایر 33'
-  server: 203.30.190.191
+    path: /IYKLD53M
+- name: '[VMESS] 🌐 · سایر 53'
+  server: 104.18.6.82
   port: 443
   type: vmess
-  uuid: 56a2188b-2ab7-402c-b9b8-34847fdf0958
+  uuid: 5ce9cb0d-6b12-4dbd-9114-74fd11dc6f35
   alterId: 0
   cipher: auto
   network: ws
   ws-opts:
-    path: /5QNROSRV
-- name: '[VMESS] 🌐 · سایر 34'
-  server: 190.93.245.4
-  port: 443
-  type: vmess
-  uuid: 17b2a313-37a0-4945-a8e4-e63375506b4a
-  alterId: 0
-  cipher: auto
-  network: ws
-  ws-opts:
-    path: /A2DJOPFT
-- name: '[VMESS] 🌐 · سایر 35'
-  server: 172.67.222.46
-  port: 80
-  type: vmess
-  uuid: 6fea1649-425b-4092-bf53-29792152c925
-  alterId: 0
-  cipher: auto
-  network: ws
-  ws-opts:
-    path: /sshkit/fdfadsfa/63848bfe228fd/
-- name: '[VMESS] 🌐 · سایر 36'
-  server: 173.245.49.10
+    path: /
+- name: '[VMESS] 🌐 · سایر 54'
+  server: 173.245.49.23
   port: 8443
   type: vmess
   uuid: a6a37e04-5e81-44c9-be53-baa3ff46eb8b
@@ -514,20 +769,38 @@ proxies:
   ws-opts:
     path: /
     headers:
-      Host: 173.245.49.10
-- name: '[VMESS] 🌐 · سایر 37'
-  server: 104.19.51.232
-  port: 2086
+      Host: us-171-78.shoptunnel.live
+- name: '[VMESS] 🌐 · سایر 55'
+  server: 188.114.99.137
+  port: 443
   type: vmess
-  uuid: 29eebb60-b27b-4a9d-bba5-947763d9205e
+  uuid: 6a89a215-22bf-4bd7-9642-b95b2e09583a
   alterId: 0
   cipher: auto
   network: ws
   ws-opts:
-    path: github.com/Alvin9999
-    headers:
-      Host: ip005.3196772.xyz
-- name: '[TROJAN] 🌐 · سایر 38'
+    path: /hls/cctv5phd.m3u8
+- name: '[VMESS] 🌐 · سایر 56'
+  server: 172.66.0.1
+  port: 443
+  type: vmess
+  uuid: 0cf6d970-3f1d-4aae-a989-92a8f76ae3db
+  alterId: 0
+  cipher: auto
+  network: ws
+  ws-opts:
+    path: /ws
+- name: '[VMESS] 🌐 · سایر 57'
+  server: 172.64.154.222
+  port: 443
+  type: vmess
+  uuid: fcfaec91-6096-44d8-956c-7868d9e874b1
+  alterId: 0
+  cipher: auto
+  network: ws
+  ws-opts:
+    path: /ray
+- name: '[TROJAN] 🌐 · سایر 58'
   server: 8.6.112.0
   port: 443
   type: trojan
@@ -543,8 +816,32 @@ proxies:
     path: /Lunex
     headers:
       Host: cf.lunex-vpn.xyz
-- name: '[VMESS] 🌐 · سایر 39'
-  server: www.shopify.com
+- name: '[VLESS] 🇺🇸 · آمریکا 06'
+  server: 15.204.97.216
+  port: 23576
+  type: vless
+  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+  network: tcp
+  flow: xtls-rprx-vision
+  tls: true
+  reality-opts:
+    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
+    short-id: '01'
+  client-fingerprint: chrome
+  servername: fuck.rkn
+  udp: true
+- name: '[VMESS] 🇨🇦 · آمریکا 04'
+  server: 104.21.3.99
+  port: 443
+  type: vmess
+  uuid: 80be2deb-3b27-4775-9bd1-7f2a2b9c261b
+  alterId: 0
+  cipher: auto
+  network: ws
+  ws-opts:
+    path: /truth
+- name: '[VMESS] 🇺🇸 · آمریکا 07'
+  server: 172.67.190.164
   port: 443
   type: vmess
   uuid: 6a89a215-22bf-4bd7-9642-b95b2e09583a
@@ -554,103 +851,9 @@ proxies:
   ws-opts:
     path: /hls/cctv5phd.m3u8
     headers:
-      Host: www.shopify.com
-- name: '[TROJAN] 🌐 · سایر 40'
-  server: 23.227.38.11
-  port: 443
-  type: trojan
-  password: b17fa17d-13a0-4e8a-a398-8e549ea8b208
-  network: ws
-  tls: true
-  servername: syndication-statutes-wanted-logo.trycloudflare.com
-  ws-opts:
-    path: /argox-tr
-    headers:
-      Host: syndication-statutes-wanted-logo.trycloudflare.com
-- name: '[VMESS] 🌐 · سایر 41'
-  server: cg1c14.waimaojd.com
-  port: 443
-  type: vmess
-  uuid: be8e3136-b874-4085-bd23-ec3699300490
-  alterId: 0
-  cipher: auto
-  network: ws
-  ws-opts:
-    path: /api/v1/graphql
-    headers:
-      Host: cg1c14.waimaojd.com
-- name: '[TROJAN] 🌐 · سایر 42'
-  server: 104.16.72.101
-  port: 443
-  type: trojan
-  password: 6c862415-30d2-4813-8e49-42e99a0bd415
-  network: ws
-  tls: true
-  servername: space.byu.id.yxls.eu.cc
-  ws-opts:
-    path: /us-gllc
-    headers:
-      Host: space.byu.id.yxls.eu.cc
-- name: '[TROJAN] 🌐 · سایر 43'
-  server: 188.164.248.122
-  port: 443
-  type: trojan
-  password: c206d543-023d-46cc-9d5a-1f0f2fc16323
-  network: ws
-  tls: true
-  servername: space.byu.id.yxls.eu.cc
-  ws-opts:
-    path: /in-pdr
-    headers:
-      Host: space.byu.id.yxls.eu.cc
-- name: '[TROJAN] 🌐 · سایر 44'
-  server: 172.64.148.165
-  port: 8443
-  type: trojan
-  password: eeb6823c-b926-4ea2-866a-5542edd26e59
-  network: ws
-  tls: true
-  servername: tjsp.hhxaf.cc.cd
-  ws-opts:
-    path: /
-    headers:
-      Host: tjsp.hhxaf.cc.cd
-- name: '[TROJAN] 🌐 · سایر 45'
-  server: 162.159.15.39
-  port: 8443
-  type: trojan
-  password: eeb6823c-b926-4ea2-866a-5542edd26e59
-  network: ws
-  tls: true
-  servername: tjsp.hhxaf.cc.cd
-  ws-opts:
-    path: /
-    headers:
-      Host: tjsp.hhxaf.cc.cd
-- name: '[TROJAN] 🌐 · سایر 46'
-  server: 104.18.9.83
-  port: 443
-  type: trojan
-  password: humanity
-  network: ws
-  tls: true
-  servername: www.calmlunch.com
-  ws-opts:
-    path: /assignment
-    headers:
-      Host: www.calmlunch.com
-- name: '[VMESS] 🌐 · سایر 47'
-  server: www.gptcloudai.com
-  port: 443
-  type: vmess
-  uuid: e70a5b70-f63c-4450-af8b-94990cdf80c0
-  alterId: 0
-  cipher: auto
-  network: ws
-  ws-opts:
-    path: /truth
-- name: '[VMESS] 🌐 · سایر 48'
-  server: 203.30.189.191
+      Host: guanwang.awsno.com
+- name: '[VMESS] 🌐 · سایر 59'
+  server: 190.93.246.4
   port: 443
   type: vmess
   uuid: 17b2a313-37a0-4945-a8e4-e63375506b4a
@@ -659,160 +862,75 @@ proxies:
   network: ws
   ws-opts:
     path: /A2DJOPFT
-- name: '[VMESS] 🌐 · سایر 49'
-  server: 172.64.229.21
+- name: '[VMESS] 🌐 · سایر 60'
+  server: 1.1.1.1
   port: 443
   type: vmess
-  uuid: 0cf6d970-3f1d-4aae-a989-92a8f76ae3db
+  uuid: 36f71b02-04bf-4ab6-8f17-850a002b448d
   alterId: 0
   cipher: auto
   network: ws
   ws-opts:
-    path: /ws
-- name: '[VMESS] 🌐 · سایر 50'
-  server: 172.66.0.1
-  port: 443
+    path: /cctv13/hd.m3u8
+    headers:
+      Host: usbk.cfip.top
+- name: '[VMESS] 🌐 · سایر 61'
+  server: 104.19.38.62
+  port: 2086
   type: vmess
-  uuid: 0cf6d970-3f1d-4aae-a989-92a8f76ae3db
+  uuid: 29eebb60-b27b-4a9d-bba5-947763d9205e
   alterId: 0
   cipher: auto
   network: ws
   ws-opts:
-    path: /ws
-- name: '[VMESS] 🇺🇸 · آمریکا 07'
-  server: 172.67.71.160
+    path: github.com/Alvin9999
+    headers:
+      Host: ip006.3196772.xyz
+- name: '[VMESS] 🌐 · سایر 62'
+  server: 104.18.42.163
   port: 443
   type: vmess
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+  uuid: 6a89a215-22bf-4bd7-9642-b95b2e09583a
   alterId: 0
   cipher: auto
   network: ws
   ws-opts:
-    path: /linkvws
-    headers:
-      Host: nelly.homes
-- name: '[TROJAN] 🌐 · سایر 51'
-  server: 167.82.64.7
-  port: 443
-  type: trojan
-  password: mitivpn
-  network: ws
+    path: /hls/cctv5phd.m3u8
+- name: '[VLESS] 🇺🇸 · آمریکا 08'
+  server: 15.204.97.214
+  port: 23576
+  type: vless
+  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+  network: tcp
+  flow: xtls-rprx-vision
   tls: true
-  servername: steamstatic.com
-  alpn:
-  - http/1.1
-  ws-opts:
-    path: /---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN?26#Telegram---PLANB_NET---PLANB_NET---PLANB_NET---PLANB_NET
-    headers:
-      Host: mitivpn.talk
-- name: '[VMESS] 🇺🇸 · آمریکا 08'
-  server: 188.114.97.3
-  port: 443
-  type: vmess
-  uuid: f584de15-2034-4170-a723-f48c2bae5e0f
-  alterId: 0
-  cipher: auto
-  network: ws
-  ws-opts:
-    path: /linkws
-    headers:
-      Host: afrhms16v.bestxray.buzz
-- name: '[TROJAN] 🌐 · سایر 52'
-  server: ipfast.kingmna.com
-  port: 443
-  type: trojan
-  password: 6-FrR5YsfjfyNp6AIFZgcQ
-  network: ws
+  reality-opts:
+    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
+    short-id: ''
+  client-fingerprint: random
+  servername: fuck.rkn
+  udp: true
+- name: '[VLESS] 🇺🇸 · آمریکا 09'
+  server: 15.204.97.195
+  port: 23576
+  type: vless
+  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+  network: tcp
+  flow: xtls-rprx-vision
   tls: true
-  servername: cdn.akamai.steamstatic.com
-  ws-opts:
-    path: /TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER-TELEGRAM-@NUFiLTER
-    headers:
-      Host: copy_az_channel_NUFiLTER_10i.global.ssl.fastly.net.
-- name: '[TROJAN] 🌐 · سایر 53'
-  server: russia.com
+  reality-opts:
+    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
+    short-id: '01'
+  client-fingerprint: chrome
+  servername: fuck.rkn
+  udp: true
+- name: '[SS] 🇨🇦 · آمریکا 05'
+  server: 149.22.95.183
   port: 443
-  type: trojan
-  password: bpb-trojan
-  network: ws
-  tls: true
-  servername: kargar001.pages.dev
-  alpn:
-  - h3
-  ws-opts:
-    path: /tr?ed=2560
-- name: '[TROJAN] 🌐 · سایر 54'
-  server: 172.64.157.230
-  port: 443
-  type: trojan
-  password: eeb6823c-b926-4ea2-866a-5542edd26e59
-  network: ws
-  tls: true
-  servername: hhcm.hhxaf.cc.cd
-  ws-opts:
-    path: /
-    headers:
-      Host: hhcm.hhxaf.cc.cd
-- name: '[TROJAN] 🌐 · سایر 55'
-  server: 173.245.58.183
-  port: 8443
-  type: trojan
-  password: eeb6823c-b926-4ea2-866a-5542edd26e59
-  network: ws
-  tls: true
-  servername: tjsp.hhxaf.cc.cd
-  ws-opts:
-    path: /
-    headers:
-      Host: tjsp.hhxaf.cc.cd
-- name: '[TROJAN] 🌐 · سایر 56'
-  server: 104.19.64.105
-  port: 443
-  type: trojan
-  password: humanity
-  network: ws
-  tls: true
-  servername: www.calmlunch.com
-  ws-opts:
-    path: /assignment
-    headers:
-      Host: www.calmlunch.com
-- name: '[TROJAN] 🌐 · سایر 57'
-  server: 104.16.174.37
-  port: 443
-  type: trojan
-  password: humanity
-  network: ws
-  tls: true
-  servername: www.ignitelimit.com
-  ws-opts:
-    path: /assignment
-    headers:
-      Host: www.ignitelimit.com
-- name: '[TROJAN] 🌐 · سایر 58'
-  server: 104.18.152.155
-  port: 443
-  type: trojan
-  password: humanity
-  network: ws
-  tls: true
-  servername: www.ignitelimit.com
-  ws-opts:
-    path: /assignment
-    headers:
-      Host: www.ignitelimit.com
-- name: '[TROJAN] 🌐 · سایر 59'
-  server: 104.18.152.210
-  port: 443
-  type: trojan
-  password: humanity
-  network: ws
-  tls: true
-  servername: www.ignitelimit.com
-  ws-opts:
-    path: /assignment
-    headers:
-      Host: www.ignitelimit.com
+  type: ss
+  cipher: aes-128-gcm
+  password: shadowsocks
+  udp: true
 - name: '[VLESS] 🇷🇺 · آسیا 01'
   server: 178.248.236.229
   port: 443
@@ -827,111 +945,14 @@ proxies:
   client-fingerprint: firefox
   servername: 144.hexdey.com
   udp: true
-- name: '[VMESS] 🌐 · سایر 60'
-  server: 198.41.203.5
-  port: 443
-  type: vmess
-  uuid: 4612618c-24cd-4379-9924-cfdf3d61fa5a
-  alterId: 0
-  cipher: auto
-  network: ws
-  ws-opts:
-    path: /IYKLD53M
-- name: '[VMESS] 🌐 · سایر 61'
-  server: 188.114.99.137
-  port: 443
-  type: vmess
-  uuid: 6a89a215-22bf-4bd7-9642-b95b2e09583a
-  alterId: 0
-  cipher: auto
-  network: ws
-  ws-opts:
-    path: /hls/cctv5phd.m3u8
-- name: '[VMESS] 🌐 · سایر 62'
-  server: 172.64.145.93
-  port: 443
-  type: vmess
-  uuid: 6a89a215-22bf-4bd7-9642-b95b2e09583a
-  alterId: 0
-  cipher: auto
-  network: ws
-  ws-opts:
-    path: /hls/cctv5phd.m3u8
-- name: '[VMESS] 🌐 · سایر 63'
-  server: 172.64.152.150
-  port: 443
-  type: vmess
-  uuid: 5f64fa65-7b14-49c5-954d-aa15c6bfcacd
-  alterId: 0
-  cipher: auto
-  network: ws
-  ws-opts:
-    path: /dongtaiwang.com
-- name: '[VMESS] 🇺🇸 · آمریکا 09'
-  server: 104.21.4.6
-  port: 443
-  type: vmess
-  uuid: 1052f24e-7b09-45eb-b0c5-d858eb124192
-  alterId: 0
-  cipher: auto
-  network: ws
-  ws-opts:
-    path: /linkws
-    headers:
-      Host: glweidf.cfd
-- name: '[VMESS] 🌐 · سایر 64'
-  server: 104.16.60.8
-  port: 2086
-  type: vmess
-  uuid: 76221bfb-e92f-4e80-81c5-6fe48f50ac0b
-  alterId: 0
-  cipher: auto
-  network: ws
-  ws-opts:
-    path: /glweidf.sbs/linkws
-    headers:
-      Host: 1c11-muddy-rice-1c11.vetanex501.workers.dev
-- name: '[VMESS] 🇺🇸 · آمریکا 10'
-  server: 172.67.71.160
-  port: 443
-  type: vmess
-  uuid: 05641cf5-58d2-4ba4-a9f1-b3cda0b1fb1d
-  alterId: 0
-  cipher: auto
-  network: ws
-  ws-opts:
-    path: /linkws
-    headers:
-      Host: obdii.cfd
-- name: '[SS] 🌐 · سایر 65'
-  server: passconf.xyz
-  port: 8080
-  type: ss
-  cipher: chacha20-ietf-poly1305
-  password: qGjmI8WQlF0tfhDbkLqGdN
-  udp: true
-- name: '[SS] 🇺🇸 · آمریکا 11'
+- name: '[SS] 🇺🇸 · آمریکا 10'
   server: 137.184.89.151
   port: 19999
   type: ss
   cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   udp: true
-- name: '[SS] 🇺🇸 · آمریکا 12'
-  server: 167.88.61.50
-  port: 3389
-  type: ss
-  cipher: aes-256-gcm
-  password: Y6R9pAtvxxzmGC
-  udp: true
-- name: '[SS] 🇺🇸 · آمریکا 13'
-  server: 167.88.61.14
-  port: 9102
-  type: ss
-  cipher: aes-256-gcm
-  password: e4FCWrgpkji3QY
-  udp: true
-- name: '[VLESS] 🇺🇸 · آمریکا 14'
+- name: '[VLESS] 🇺🇸 · آمریکا 11'
   server: 89.18.60.230
   port: 443
   type: vless
@@ -945,63 +966,119 @@ proxies:
   client-fingerprint: chrome
   servername: diffoscope.com
   udp: true
-- name: '[SS] 🇺🇸 · آمریکا 15'
+- name: '[SS] 🇺🇸 · آمریکا 12'
   server: 23.150.152.38
   port: 19999
   type: ss
   cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   udp: true
-- name: '[SS] 🇺🇸 · آمریکا 16'
-  server: 169.197.142.68
-  port: 19999
-  type: ss
-  cipher: aes-256-gcm
-  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
-  udp: true
-- name: '[SS] 🇺🇸 · آمریکا 17'
-  server: 167.88.61.175
+- name: '[VLESS] 🇺🇸 · آمریکا 13'
+  server: 103.119.15.175
   port: 443
-  type: ss
-  cipher: aes-256-gcm
-  password: pKEW8JPByTVTLtM
+  type: vless
+  uuid: 89be587f-0e93-4c67-822e-98ad0a56c29e
+  network: tcp
+  flow: xtls-rprx-vision
+  tls: true
+  reality-opts:
+    public-key: vQgrNIQTmbTIqtauDixzp2ePvd-aK_zlTctIDRPk3wQ
+    short-id: ce90a4459f024897
+  client-fingerprint: firefox
+  servername: www.amazon.com
   udp: true
-- name: '[SS] 🇺🇸 · آمریکا 18'
+- name: '[SS] 🇺🇸 · آمریکا 14'
   server: ak1808.www.outline.network.fr8678825324247b8176d59f83c30bd94d23d2e3ac5cd4a743bkwqeikvdyufr.cyou
   port: 443
   type: ss
   cipher: chacha20-ietf-poly1305
   password: YUWX6COLZYmaHlUGiKwDaN
   udp: true
-- name: '[SS] 🇺🇸 · آمریکا 19'
-  server: ak1656.www.outline.network.fr8678825324247b8176d59f83c30bd94d23d2e3ac5cd4a743bkwqeikvdyufr.cyou
-  port: 443
-  type: ss
-  cipher: chacha20-ietf-poly1305
-  password: 4Hub2f9JyhECyAq2Opm0NS
-  udp: true
-- name: '[SS] 🇺🇸 · آمریکا 20'
-  server: ak1724.www.outline.network.fr8678825324247b8176d59f83c30bd94d23d2e3ac5cd4a743bkwqeikvdyufr.cyou
-  port: 443
-  type: ss
-  cipher: chacha20-ietf-poly1305
-  password: 4Hub2f9JyhECyAq2Opm0NS
-  udp: true
-- name: '[SS] 🇺🇸 · آمریکا 21'
+- name: '[SS] 🇺🇸 · آمریکا 15'
   server: ak1857.www.outline.network.fr8678825324247b8176d59f83c30bd94d23d2e3ac5cd4a743bkwqeikvdyufr.cyou
   port: 443
   type: ss
   cipher: chacha20-ietf-poly1305
   password: u17T3BvpYaaiuW2c
   udp: true
-- name: '[SS] 🇺🇸 · آمریکا 22'
+- name: '[SS] 🇺🇸 · آمریکا 16'
   server: ak1784.www.outline.network.fr8678825324247b8176d59f83c30bd94d23d2e3ac5cd4a743bkwqeikvdyufr.cyou
   port: 443
   type: ss
   cipher: aes-128-gcm
   password: shadowsocks
   udp: true
-- name: '[VLESS] 🇺🇸 · آمریکا 23'
+- name: '[SS] 🇺🇸 · آمریکا 17'
+  server: ak1724.www.outline.network.fr8678825324247b8176d59f83c30bd94d23d2e3ac5cd4a743bkwqeikvdyufr.cyou
+  port: 443
+  type: ss
+  cipher: chacha20-ietf-poly1305
+  password: 4Hub2f9JyhECyAq2Opm0NS
+  udp: true
+- name: '[SS] 🇺🇸 · آمریکا 18'
+  server: ak1803.www.outline.network.fr8678825324247b8176d59f83c30bd94d23d2e3ac5cd4a743bkwqeikvdyufr.cyou
+  port: 443
+  type: ss
+  cipher: chacha20-ietf-poly1305
+  password: 4Hub2f9JyhECyAq2Opm0NS
+  udp: true
+- name: '[SS] 🇺🇸 · آمریکا 19'
+  server: 169.197.142.68
+  port: 19999
+  type: ss
+  cipher: aes-256-gcm
+  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
+  udp: true
+- name: '[SS] 🇺🇸 · آمریکا 20'
+  server: 167.88.61.14
+  port: 9102
+  type: ss
+  cipher: aes-256-gcm
+  password: e4FCWrgpkji3QY
+  udp: true
+- name: '[SS] 🇺🇸 · آمریکا 21'
+  server: 167.88.61.50
+  port: 3389
+  type: ss
+  cipher: aes-256-gcm
+  password: Y6R9pAtvxxzmGC
+  udp: true
+- name: '[SS] 🇺🇸 · آمریکا 22'
+  server: 167.88.61.175
+  port: 443
+  type: ss
+  cipher: aes-256-gcm
+  password: pKEW8JPByTVTLtM
+  udp: true
+- name: '[SS] 🇺🇸 · آمریکا 23'
+  server: 95.215.201.18
+  port: 19999
+  type: ss
+  cipher: aes-256-gcm
+  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
+  udp: true
+- name: '[SS] 🇺🇸 · آمریکا 24'
+  server: ak1656.www.outline.network.fr8678825324247b8176d59f83c30bd94d23d2e3ac5cd4a743bkwqeikvdyufr.cyou
+  port: 443
+  type: ss
+  cipher: chacha20-ietf-poly1305
+  password: 4Hub2f9JyhECyAq2Opm0NS
+  udp: true
+- name: '[SS] 🇺🇸 · آمریکا 25'
+  server: 173.244.56.6
+  port: 443
+  type: ss
+  cipher: aes-128-gcm
+  password: shadowsocks
+  udp: true
+- name: '[SS] 🇺🇸 · آمریکا 26'
+  server: 173.244.56.9
+  port: 443
+  type: ss
+  cipher: aes-128-gcm
+  password: shadowsocks
+  udp: true
+- name: '[VLESS] 🇺🇸 · آمریکا 27'
   server: 23.172.217.23
   port: 443
   type: vless
@@ -1015,161 +1092,21 @@ proxies:
   client-fingerprint: firefox
   servername: www.sony.fi
   udp: true
-- name: '[VLESS] 🇺🇸 · آمریکا 24'
-  server: 15.204.97.195
-  port: 23576
-  type: vless
-  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
-  network: tcp
-  flow: xtls-rprx-vision
-  tls: true
-  reality-opts:
-    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
-    short-id: '01'
-  client-fingerprint: chrome
-  servername: fuck.rkn
-  udp: true
-- name: '[VLESS] 🇺🇸 · آمریکا 25'
-  server: 15.204.97.214
-  port: 23576
-  type: vless
-  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
-  network: tcp
-  flow: xtls-rprx-vision
-  tls: true
-  reality-opts:
-    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
-    short-id: ''
-  client-fingerprint: random
-  servername: fuck.rkn
-  udp: true
-- name: '[SS] 🇺🇸 · آمریکا 26'
-  server: 95.215.201.18
+- name: '[SS] 🇺🇸 · آمریکا 28'
+  server: 167.17.67.171
   port: 19999
   type: ss
   cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   udp: true
-- name: '[SS] 🇺🇸 · آمریکا 27'
-  server: 173.244.56.6
-  port: 443
-  type: ss
-  cipher: aes-128-gcm
-  password: shadowsocks
-  udp: true
-- name: '[VLESS] 🇺🇸 · آمریکا 28'
-  server: 15.204.97.216
-  port: 23576
-  type: vless
-  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
-  network: tcp
-  flow: xtls-rprx-vision
-  tls: true
-  reality-opts:
-    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
-    short-id: '01'
-  client-fingerprint: chrome
-  servername: fuck.rkn
-  udp: true
 - name: '[SS] 🇺🇸 · آمریکا 29'
-  server: ak1803.www.outline.network.fr8678825324247b8176d59f83c30bd94d23d2e3ac5cd4a743bkwqeikvdyufr.cyou
-  port: 443
-  type: ss
-  cipher: chacha20-ietf-poly1305
-  password: 4Hub2f9JyhECyAq2Opm0NS
-  udp: true
-- name: '[SS] 🇨🇦 · آمریکا 01'
-  server: 149.22.95.183
-  port: 443
-  type: ss
-  cipher: aes-128-gcm
-  password: shadowsocks
-  udp: true
-- name: '[SS] 🇺🇸 · آمریکا 30'
-  server: 156.146.38.170
-  port: 443
-  type: ss
-  cipher: aes-128-gcm
-  password: shadowsocks
-  udp: true
-- name: '[SS] 🇺🇸 · آمریکا 31'
-  server: 156.146.38.163
-  port: 443
-  type: ss
-  cipher: aes-128-cfb
-  password: shadowsocks
-  udp: true
-- name: '[SS] 🇺🇸 · آمریکا 32'
-  server: 156.146.38.169
-  port: 443
-  type: ss
-  cipher: aes-128-gcm
-  password: shadowsocks
-  udp: true
-- name: '[SS] 🇺🇸 · آمریکا 33'
   server: 38.68.135.123
   port: 443
   type: ss
   cipher: aes-256-gcm
   password: pKEW8JPByTVTLtM
   udp: true
-- name: '[SS] 🇺🇸 · آمریکا 34'
-  server: 167.88.62.68
-  port: 443
-  type: ss
-  cipher: aes-256-gcm
-  password: pKEW8JPByTVTLtM
-  udp: true
-- name: '[SS] 🇺🇸 · آمریکا 35'
-  server: 156.146.38.168
-  port: 443
-  type: ss
-  cipher: aes-128-gcm
-  password: shadowsocks
-  udp: true
-- name: '[VLESS] 🇺🇸 · آمریکا 36'
-  server: caudal-reason.freevideochats.org
-  port: 443
-  type: vless
-  uuid: b0296570-3467-4de6-860b-691886b14c05
-  network: tcp
-  flow: xtls-rprx-vision
-  tls: true
-  reality-opts:
-    public-key: 6dc3iKXilOQpA_JFrKlk5-CsFjSmOm_5p0kSQcO9qi4
-    short-id: ''
-  client-fingerprint: chrome
-  servername: worldoftanks.eu
-  udp: true
-- name: '[VLESS] 🇺🇸 · آمریکا 37'
-  server: hiccuped-tacos.sports-streams.org
-  port: 443
-  type: vless
-  uuid: dc1ae017-2aba-41bb-9395-fd0cce5bbfe6
-  network: tcp
-  flow: xtls-rprx-vision
-  tls: true
-  reality-opts:
-    public-key: 6dc3iKXilOQpA_JFrKlk5-CsFjSmOm_5p0kSQcO9qi4
-    short-id: ''
-  client-fingerprint: chrome
-  servername: www.gr-cdn.com
-  udp: true
-- name: '[VLESS] 🇺🇸 · آمریکا 38'
-  server: hiccuped-tacos.sports-streams.org
-  port: 443
-  type: vless
-  uuid: 11b8d1a3-d3f3-48b9-bdf2-fef490069bea
-  network: tcp
-  flow: xtls-rprx-vision
-  tls: true
-  reality-opts:
-    public-key: 6dc3iKXilOQpA_JFrKlk5-CsFjSmOm_5p0kSQcO9qi4
-    short-id: ''
-  client-fingerprint: chrome
-  servername: liggo.love
-  udp: true
-- name: '[VLESS] 🇺🇸 · آمریکا 39'
+- name: '[VLESS] 🇺🇸 · آمریکا 30'
   server: xray2-direct-mci1-fs-ce.freesocks.work
   port: 443
   type: vless
@@ -1183,47 +1120,26 @@ proxies:
   client-fingerprint: chrome
   servername: dl.google.com
   udp: true
-- name: '[VLESS] 🇺🇸 · آمریکا 40'
-  server: 47.253.226.114
-  port: 443
-  type: vless
-  uuid: 055a1ce8-2a16-4a0d-a2c2-22826c9b2413
-  network: tcp
-  flow: xtls-rprx-vision
-  tls: true
-  reality-opts:
-    public-key: Svl81isn16RPAFnjtmYw7A6TPnsEPLHuYYaJht65Rzc
-    short-id: ''
-  client-fingerprint: chrome
-  servername: www.cloudflare.com
+- name: '[SS] 🇺🇸 · آمریکا 31'
+  server: 38.128.66.32
+  port: 19999
+  type: ss
+  cipher: aes-256-gcm
+  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   udp: true
-- name: '[VLESS] 🇺🇸 · آمریکا 41'
-  server: usa3.mobileemdad.top
-  port: 443
-  type: vless
-  uuid: b1ea01b5-2902-4ff6-a64d-fafd20aea9f1
-  network: tcp
-  flow: xtls-rprx-vision
-  tls: true
-  reality-opts:
-    public-key: PjR-SM4fOm2fY4mTqWoqZDRyxontvpailM0gBqUxlUQ
-    short-id: f88610dd
-  client-fingerprint: ios
-  servername: nobitex.ir
+- name: '[SS] 🇺🇸 · آمریکا 32'
+  server: 216.106.178.169
+  port: 19999
+  type: ss
+  cipher: aes-256-gcm
+  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   udp: true
-- name: '[VLESS] 🇺🇸 · آمریکا 42'
-  server: 172.233.197.105
-  port: 62867
-  type: vless
-  uuid: 1ad82982-f3e1-4b6b-99bf-a9cfdf186b96
-  network: tcp
-  flow: xtls-rprx-vision
-  tls: true
-  reality-opts:
-    public-key: U7t4RFE9MSMtC-o1DoJ8pYzKMfgVpTg6ZhTTknBrVkU
-    short-id: 1f2519bb96e5589c
-  client-fingerprint: chrome
-  servername: www.cloudflare.com
+- name: '[SS] 🇺🇸 · آمریکا 33'
+  server: 156.146.38.169
+  port: 443
+  type: ss
+  cipher: aes-128-gcm
+  password: shadowsocks
   udp: true
 - name: '[VLESS] 🇩🇪 · اروپا 01'
   server: 169.40.42.89
@@ -1239,129 +1155,6 @@ proxies:
   client-fingerprint: ios
   servername: yahoo.com
   udp: true
-- name: '[VLESS] 🇨🇦 · آمریکا 02'
-  server: 23.155.44.105
-  port: 443
-  type: vless
-  uuid: 128ce9ab-63bc-48dc-92ca-1b5426a9eb46
-  network: tcp
-  flow: xtls-rprx-vision
-  tls: true
-  reality-opts:
-    public-key: HE1CGzI0QBqhMRUsHqq_9v4Mj3M5dkluFmfyMBH_7kM
-    short-id: 70f75668dc5914b3
-  client-fingerprint: chrome
-  servername: app.flyprotect.ca
-  udp: true
-- name: '[VLESS] 🇨🇦 · آمریکا 03'
-  server: 66.70.179.198
-  port: 2053
-  type: vless
-  uuid: dc620cd6-a9d8-4a0f-8f18-006b895db77e
-  network: tcp
-  tls: true
-  reality-opts:
-    public-key: k4l6TxwkBbx9DhZAFpByq5rfCWFSgyOex3f_eFe9CWU
-    short-id: 83f8317a948bb769
-  client-fingerprint: firefox
-  servername: www.cloudflare.com
-  udp: true
-- name: '[VLESS] 🇺🇸 · آمریکا 43'
-  server: 45.144.112.55
-  port: 443
-  type: vless
-  uuid: d65cc14c-f53f-4fe2-b262-97856601319c
-  network: tcp
-  flow: xtls-rprx-vision
-  tls: true
-  reality-opts:
-    public-key: e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg
-    short-id: c39cc7310a
-  client-fingerprint: firefox
-  servername: yahoo.com
-  udp: true
-- name: '[VLESS] 🇺🇸 · آمریکا 44'
-  server: 162.216.231.214
-  port: 443
-  type: vless
-  uuid: d6e67dbc-f432-4778-91da-94c33f7ac87a
-  network: xhttp
-  tls: true
-  reality-opts:
-    public-key: iQCvXMQZR-eT2MVmXP7c99cvcle22mVWuKem_345BWM
-    short-id: ''
-  client-fingerprint: chrome
-  servername: lockheart.info
-  udp: true
-- name: '[VLESS] 🇺🇸 · آمریکا 45'
-  server: coughed-gongs.freevideochats.org
-  port: 443
-  type: vless
-  uuid: d6e67dbc-f432-4778-91da-94c33f7ac87a
-  network: xhttp
-  tls: true
-  reality-opts:
-    public-key: iQCvXMQZR-eT2MVmXP7c99cvcle22mVWuKem_345BWM
-    short-id: ''
-  client-fingerprint: chrome
-  servername: lockheart.info
-  udp: true
-- name: '[VLESS] 🇨🇦 · آمریکا 04'
-  server: tiles.livemusic.ac
-  port: 443
-  type: vless
-  uuid: 31e407b3-6e1e-425f-98ea-fcf8f494c6a0
-  network: tcp
-  flow: xtls-rprx-vision
-  tls: true
-  reality-opts:
-    public-key: ce4LuJ4af5mZzrprtd7qh2fCXuzurE6KjQtG-DnVQyE
-    short-id: cf81dd1ffdc0d4e3
-  client-fingerprint: qq
-  servername: tiles.livemusic.ac
-  udp: true
-- name: '[VLESS] 🇺🇸 · آمریکا 46'
-  server: 147.182.183.207
-  port: 443
-  type: vless
-  uuid: e7be1334-6a1d-47c0-8c9a-c7a5b8575499
-  network: xhttp
-  tls: true
-  reality-opts:
-    public-key: z--KbBlQtkBgTcrtdBJeGeCymIrLdaUDwkb44pAp6nY
-    short-id: 4c
-  client-fingerprint: chrome
-  servername: yahoo.com
-  udp: true
-- name: '[VLESS] 🇺🇸 · آمریکا 47'
-  server: 200.102.180.37
-  port: 8443
-  type: vless
-  uuid: 664f65f4-33b3-43a3-b9e5-68192d1d428e
-  network: tcp
-  flow: xtls-rprx-vision
-  tls: true
-  reality-opts:
-    public-key: bGwVs-Re6vNB1tuKqZZ209x7l361FxZdtPHg0yZLa2Q
-    short-id: 63c4425dacae86cb
-  client-fingerprint: firefox
-  servername: juniper-canyon.cdn.cachefleet.com
-  udp: true
-- name: '[VLESS] 🇺🇸 · آمریکا 48'
-  server: 50.117.3.35
-  port: 443
-  type: vless
-  uuid: e40b2b8e-492b-4982-aaaf-59e76c52a7fe
-  network: grpc
-  tls: true
-  reality-opts:
-    public-key: nkvbLzqp1MazY6gb2AbpLoH06jvIQYJdDa9ntjOVqEY
-    short-id: 85c9c30cdaf5249b
-  client-fingerprint: edge
-  servername: f8a562b6570c.j.cloudfront.hls.ttvnw.net
-  udp: true
-  grpc-opts:
-    grpc-service-name: ''
 - name: '[VLESS] 🇩🇪 · اروپا 02'
   server: 169.40.42.168
   port: 443
@@ -1390,20 +1183,35 @@ proxies:
   client-fingerprint: chrome
   servername: yahoo.com
   udp: true
-- name: '[VLESS] 🇺🇸 · آمریکا 49'
-  server: coughed-gongs.freevideochats.org
+- name: '[VLESS] 🇺🇸 · آمریکا 34'
+  server: 45.144.112.55
   port: 443
   type: vless
-  uuid: 2f6a56d5-2ee9-43ab-bd57-8b35a0b8d275
-  network: xhttp
+  uuid: d65cc14c-f53f-4fe2-b262-97856601319c
+  network: tcp
+  flow: xtls-rprx-vision
   tls: true
   reality-opts:
-    public-key: iQCvXMQZR-eT2MVmXP7c99cvcle22mVWuKem_345BWM
-    short-id: ''
-  client-fingerprint: chrome
-  servername: rss.worldoftanks.asia
+    public-key: e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg
+    short-id: c39cc7310a
+  client-fingerprint: firefox
+  servername: yahoo.com
   udp: true
-- name: '[VLESS] 🇺🇸 · آمریکا 50'
+- name: '[VLESS] 🇨🇦 · آمریکا 06'
+  server: 23.155.44.105
+  port: 443
+  type: vless
+  uuid: 128ce9ab-63bc-48dc-92ca-1b5426a9eb46
+  network: tcp
+  flow: xtls-rprx-vision
+  tls: true
+  reality-opts:
+    public-key: HE1CGzI0QBqhMRUsHqq_9v4Mj3M5dkluFmfyMBH_7kM
+    short-id: 70f75668dc5914b3
+  client-fingerprint: chrome
+  servername: app.flyprotect.ca
+  udp: true
+- name: '[VLESS] 🇺🇸 · آمریکا 35'
   server: 2.24.124.64
   port: 443
   type: vless
@@ -1417,36 +1225,21 @@ proxies:
   client-fingerprint: chrome
   servername: www.cloudflare.com
   udp: true
-- name: '[VLESS] 🌐 · سایر 66'
-  server: 45.91.93.47
-  port: 443
+- name: '[VLESS] 🇨🇦 · آمریکا 07'
+  server: 66.70.179.198
+  port: 2053
   type: vless
-  uuid: 8197b9b9-8945-460f-99c9-325ef8a8a7c3
+  uuid: dc620cd6-a9d8-4a0f-8f18-006b895db77e
   network: tcp
-  flow: xtls-rprx-vision
   tls: true
   reality-opts:
-    public-key: WgTZR-o6VbFYeqb7iZNBh-izcWAQlpotOyxibJnAXVc
-    short-id: f51489cb3d7e8be2
-  client-fingerprint: ios
-  servername: uk2.gofizz.in
+    public-key: k4l6TxwkBbx9DhZAFpByq5rfCWFSgyOex3f_eFe9CWU
+    short-id: 83f8317a948bb769
+  client-fingerprint: firefox
+  servername: www.cloudflare.com
   udp: true
-- name: '[VLESS] 🌐 · سایر 67'
-  server: free.fugui.lol
-  port: 19482
-  type: vless
-  uuid: ead3595f-4020-4e76-a3ec-c248e1a2f2f7
-  network: tcp
-  flow: xtls-rprx-vision
-  tls: true
-  reality-opts:
-    public-key: IjWYbHNrZb3UCQxsTJyekEOA3tHq42L6Jw3O8MmLYVQ
-    short-id: fa514b83
-  client-fingerprint: chrome
-  servername: swdist.apple.com
-  udp: true
-- name: '[VLESS] 🇫🇷 · اروپا 01'
-  server: frn3.mobileemdad.top
+- name: '[VLESS] 🇺🇸 · آمریکا 36'
+  server: usa3.mobileemdad.top
   port: 443
   type: vless
   uuid: b1ea01b5-2902-4ff6-a64d-fafd20aea9f1
@@ -1457,9 +1250,133 @@ proxies:
     public-key: PjR-SM4fOm2fY4mTqWoqZDRyxontvpailM0gBqUxlUQ
     short-id: f88610dd
   client-fingerprint: ios
-  servername: delivery.mp.microsoft.com
+  servername: nobitex.ir
   udp: true
-- name: '[VLESS] 🇫🇷 · اروپا 02'
+- name: '[VLESS] 🇺🇸 · آمریکا 37'
+  server: coughed-gongs.freevideochats.org
+  port: 443
+  type: vless
+  uuid: 2f6a56d5-2ee9-43ab-bd57-8b35a0b8d275
+  network: xhttp
+  tls: true
+  reality-opts:
+    public-key: iQCvXMQZR-eT2MVmXP7c99cvcle22mVWuKem_345BWM
+    short-id: ''
+  client-fingerprint: chrome
+  servername: rss.worldoftanks.asia
+  udp: true
+- name: '[VLESS] 🇺🇸 · آمریکا 38'
+  server: 47.253.226.114
+  port: 443
+  type: vless
+  uuid: 055a1ce8-2a16-4a0d-a2c2-22826c9b2413
+  network: tcp
+  flow: xtls-rprx-vision
+  tls: true
+  reality-opts:
+    public-key: Svl81isn16RPAFnjtmYw7A6TPnsEPLHuYYaJht65Rzc
+    short-id: ''
+  client-fingerprint: chrome
+  servername: www.cloudflare.com
+  udp: true
+- name: '[VLESS] 🇨🇦 · آمریکا 08'
+  server: tiles.livemusic.ac
+  port: 443
+  type: vless
+  uuid: 31e407b3-6e1e-425f-98ea-fcf8f494c6a0
+  network: tcp
+  flow: xtls-rprx-vision
+  tls: true
+  reality-opts:
+    public-key: ce4LuJ4af5mZzrprtd7qh2fCXuzurE6KjQtG-DnVQyE
+    short-id: cf81dd1ffdc0d4e3
+  client-fingerprint: qq
+  servername: tiles.livemusic.ac
+  udp: true
+- name: '[VLESS] 🇺🇸 · آمریکا 39'
+  server: 159.89.87.21
+  port: 28190
+  type: vless
+  uuid: 14c80e0e-f7ce-4991-94fc-99a1db4a9b1e
+  network: tcp
+  flow: xtls-rprx-vision
+  tls: true
+  reality-opts:
+    public-key: ZJRnFU-1s1JOnO8E9uZ7b00l1fPEh63fGRbdBANFRno
+    short-id: ''
+  client-fingerprint: chrome
+  servername: aws.amazon.com
+  udp: true
+- name: '[VLESS] 🇺🇸 · آمریکا 40'
+  server: 50.117.3.35
+  port: 443
+  type: vless
+  uuid: e40b2b8e-492b-4982-aaaf-59e76c52a7fe
+  network: grpc
+  tls: true
+  reality-opts:
+    public-key: nkvbLzqp1MazY6gb2AbpLoH06jvIQYJdDa9ntjOVqEY
+    short-id: 85c9c30cdaf5249b
+  client-fingerprint: edge
+  servername: f8a562b6570c.j.cloudfront.hls.ttvnw.net
+  udp: true
+  grpc-opts:
+    grpc-service-name: ''
+- name: '[VLESS] 🇺🇸 · آمریکا 41'
+  server: 147.182.183.207
+  port: 443
+  type: vless
+  uuid: e7be1334-6a1d-47c0-8c9a-c7a5b8575499
+  network: xhttp
+  tls: true
+  reality-opts:
+    public-key: z--KbBlQtkBgTcrtdBJeGeCymIrLdaUDwkb44pAp6nY
+    short-id: 4c
+  client-fingerprint: chrome
+  servername: yahoo.com
+  udp: true
+- name: '[VLESS] 🇹🇷 · آسیا 01'
+  server: 5.104.74.48
+  port: 8443
+  type: vless
+  uuid: 2dbd26f0-f419-4026-b553-0a3e08cca1ee
+  network: tcp
+  flow: xtls-rprx-vision
+  tls: true
+  reality-opts:
+    public-key: kJsnrk06lPN3juIX5zXm1Sc_LUQcM5ueZ0l2HC6HEjI
+    short-id: 9ae55c76092c774a
+  client-fingerprint: firefox
+  servername: forum-nl-p1.ovchinkasp.ru
+  udp: true
+- name: '[VLESS] 🇹🇷 · آسیا 02'
+  server: 5.104.74.70
+  port: 8443
+  type: vless
+  uuid: 6e10d4e1-1f93-461b-b1c6-90e56c053a11
+  network: tcp
+  flow: xtls-rprx-vision
+  tls: true
+  reality-opts:
+    public-key: 48j01Jsa4o8zfmCGEFoVjn-YeALM80-DSG_-nAZUBDM
+    short-id: dbef98744832b751
+  client-fingerprint: chrome
+  servername: uk-room07.filesnap.tech
+  udp: true
+- name: '[VLESS] 🇳🇱 · اروپا 01'
+  server: 93.183.127.54
+  port: 24446
+  type: vless
+  uuid: 549766c3-fa5f-471e-8031-ffc1f8d5064f
+  network: xhttp
+  tls: true
+  reality-opts:
+    public-key: 31_G-lTr8GVS33I-ySfmMOXJ7SzpS48Ela7xXeT9D1Y
+    short-id: 29f834cf893710f9
+  client-fingerprint: qq
+  servername: tgnl2.blog-forme.ru
+  udp: true
+- name: '[VLESS] 🇫🇷 · اروپا 01'
   server: 88.214.24.247
   port: 443
   type: vless
@@ -1473,91 +1390,63 @@ proxies:
   client-fingerprint: firefox
   servername: fr1.gofizzin.com
   udp: true
-- name: '[VLESS] 🇫🇷 · اروپا 03'
-  server: frn3.mobileemdad.top
-  port: 443
-  type: vless
-  uuid: d01a1295-f5c1-4aa1-a595-06e68f77c157
-  network: tcp
-  flow: xtls-rprx-vision
-  tls: true
-  reality-opts:
-    public-key: PjR-SM4fOm2fY4mTqWoqZDRyxontvpailM0gBqUxlUQ
-    short-id: 070a23aed243
-  client-fingerprint: ios
-  servername: delivery.mp.microsoft.com
-  udp: true
-- name: '[VLESS] 🇳🇱 · اروپا 01'
-  server: 94.183.164.176
-  port: 443
-  type: vless
-  uuid: b4192dfb-f458-4303-b877-29a41a6d8416
-  network: grpc
-  tls: true
-  reality-opts:
-    public-key: _KeOS5u_irk1547CMVB3RdwQzz1SzrQZk-IV-btF7TU
-    short-id: ''
-  client-fingerprint: chrome
-  servername: optim.tildacdn.pub
-  udp: true
-  grpc-opts:
-    grpc-service-name: ''
 - name: '[VLESS] 🇩🇪 · اروپا 04'
-  server: 191.44.118.152
+  server: 89.106.12.183
   port: 443
   type: vless
-  uuid: 8c0676ea-ac9f-4de5-9c6f-b0de31e38704
+  uuid: 31e407b3-6e1e-425f-98ea-fcf8f494c6a0
   network: tcp
   flow: xtls-rprx-vision
   tls: true
   reality-opts:
-    public-key: 9-1h5QIACA5yQlzJDGh5ag_n4cvNhH4n6Ca2y3HDBjc
-    short-id: b07db271aacb7c23
+    public-key: TkuZvhr3gm6AI1gzSpVKJl5v1xEjS_0jV5R-FEHxm0E
+    short-id: 70e825af92e75a1d
+  client-fingerprint: qq
+  servername: share8.gifmems.com
+  udp: true
+- name: '[VLESS] 🌐 · سایر 63'
+  server: 132.243.242.40
+  port: 9543
+  type: vless
+  uuid: 920b3cd9-4f82-4669-bbd2-d4a28b9052c6
+  network: tcp
+  flow: xtls-rprx-vision
+  tls: true
+  reality-opts:
+    public-key: M6Ck7wUfOLhQl4582CBnaXwscPEP6SCpdEkUDzoj4Fc
+    short-id: 123abcdf
   client-fingerprint: chrome
-  servername: node-de.webstealing.cc
+  servername: storage.yandexcloud.net
   udp: true
-- name: '[VLESS] 🇺🇸 · آمریکا 51'
-  server: 172.93.122.11
-  port: 8443
+- name: '[VLESS] 🇫🇷 · اروپا 02'
+  server: 195.216.169.229
+  port: 9543
   type: vless
-  uuid: f18c5f6d-2bac-4a99-8c92-a6e6e7aea9b4
+  uuid: 920b3cd9-4f82-4669-bbd2-d4a28b9052c6
   network: tcp
   flow: xtls-rprx-vision
   tls: true
   reality-opts:
-    public-key: VDZdbh_RzDDZsHpYF58yUuuvXh93XnmkvpSqb50qG2U
-    short-id: 1be482b8e08aa0ef
-  client-fingerprint: firefox
-  servername: nl2.reddotcorp.org
+    public-key: M6Ck7wUfOLhQl4582CBnaXwscPEP6SCpdEkUDzoj4Fc
+    short-id: 123abcdf
+  client-fingerprint: chrome
+  servername: storage.yandexcloud.net
   udp: true
-- name: '[VLESS] 🇫🇷 · اروپا 04'
-  server: 45.63.115.136
-  port: 46122
+- name: '[VLESS] 🇩🇪 · اروپا 05'
+  server: 88.216.74.37
+  port: 443
   type: vless
-  uuid: 29872718-970b-493e-abc9-524fa266d16b
+  uuid: a6142d9d-3f9f-47b7-b7e9-1245dd6a15d6
   network: tcp
+  flow: xtls-rprx-vision
   tls: true
   reality-opts:
-    public-key: NpgXDQ6jl_HGPdHAHFeiBl5Ym7bywxmw_EYovmFjVQs
-    short-id: 6115f6a9eb8467c6
+    public-key: UpOOm5-gcSp3fLuCzWl2HJnnqtUHpnbyOWU2yUCcsRI
+    short-id: 0492eabdb9
   client-fingerprint: firefox
-  servername: yahoo.com
+  servername: yw0ein72.dendi.top
   udp: true
 - name: '[VLESS] 🇳🇱 · اروپا 02'
-  server: 51.158.206.8
-  port: 23576
-  type: vless
-  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
-  network: tcp
-  flow: xtls-rprx-vision
-  tls: true
-  reality-opts:
-    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
-    short-id: '01'
-  client-fingerprint: firefox
-  servername: fuck.rkn
-  udp: true
-- name: '[VLESS] 🇳🇱 · اروپا 03'
   server: 81.171.14.72
   port: 443
   type: vless
@@ -1571,133 +1460,62 @@ proxies:
   client-fingerprint: chrome
   servername: zovira.me
   udp: true
-- name: '[VLESS] 🇳🇱 · اروپا 04'
-  server: 51.158.206.87
-  port: 23576
+- name: '[VLESS] 🌐 · سایر 64'
+  server: 185.122.167.103
+  port: 59130
   type: vless
-  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+  uuid: b771804e-a62c-429f-a56c-9f0a452d8f6e
   network: tcp
   flow: xtls-rprx-vision
   tls: true
   reality-opts:
-    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
-    short-id: ''
+    public-key: 6Lh48ni3w8oe9QW3xVzNMIE5LU-p5VPHPMCUtVMOmgo
+    short-id: '14'
   client-fingerprint: chrome
-  servername: fuck.rkn
+  servername: nvplm.stg.nvidia.com
   udp: true
-- name: '[VLESS] 🇳🇱 · اروپا 05'
-  server: 31.77.28.68
-  port: 443
+- name: '[VLESS] 🇫🇷 · اروپا 03'
+  server: 45.63.115.136
+  port: 46122
   type: vless
-  uuid: 372931d3-91c5-4564-b79c-041302de9a17
+  uuid: 29872718-970b-493e-abc9-524fa266d16b
   network: tcp
-  flow: xtls-rprx-vision
   tls: true
   reality-opts:
-    public-key: mEo4kHPpRns7efJfVW1G-gDEsPag0jELFQK-HIwrvjY
-    short-id: 6562cf617728186e
-  client-fingerprint: chrome
-  servername: nl2.soshelper.space
+    public-key: NpgXDQ6jl_HGPdHAHFeiBl5Ym7bywxmw_EYovmFjVQs
+    short-id: 6115f6a9eb8467c6
+  client-fingerprint: firefox
+  servername: yahoo.com
   udp: true
-- name: '[VLESS] 🇩🇪 · اروپا 05'
-  server: 9.247.23.209
-  port: 443
+- name: '[VLESS] 🇨🇿 · اروپا 01'
+  server: 195.133.93.179
+  port: 9543
   type: vless
-  uuid: b9bfa54d-bc44-4592-a6d6-89a9665d286f
+  uuid: 920b3cd9-4f82-4669-bbd2-d4a28b9052c6
   network: tcp
   flow: xtls-rprx-vision
   tls: true
   reality-opts:
-    public-key: SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc
-    short-id: ''
+    public-key: M6Ck7wUfOLhQl4582CBnaXwscPEP6SCpdEkUDzoj4Fc
+    short-id: 123abcdf
   client-fingerprint: chrome
-  servername: mother-earth.fyi
+  servername: storage.yandexcloud.net
   udp: true
-- name: '[VLESS] 🇦🇹 · اروپا 01'
-  server: timete.hagrid-connected.com
-  port: 443
+- name: '[VLESS] 🇦🇪 · آسیا 01'
+  server: 212.192.3.63
+  port: 9543
   type: vless
-  uuid: beda6bd0-7ce4-477a-91f1-860d018dbfcb
+  uuid: 920b3cd9-4f82-4669-bbd2-d4a28b9052c6
   network: tcp
   flow: xtls-rprx-vision
   tls: true
   reality-opts:
-    public-key: tjGdnzd-VNTx6Rx2CX6XGwvU0OwV5_54uBlq1ltXmR0
-    short-id: 56de336ad85ea43e
+    public-key: M6Ck7wUfOLhQl4582CBnaXwscPEP6SCpdEkUDzoj4Fc
+    short-id: 123abcdf
   client-fingerprint: chrome
-  servername: tekulo.hagrid-connected.com
-  udp: true
-- name: '[VLESS] 🇳🇱 · اروپا 06'
-  server: 195.206.235.215
-  port: 443
-  type: vless
-  uuid: 4201786b-d99b-4147-a5f0-20d47acddb81
-  network: tcp
-  flow: xtls-rprx-vision
-  tls: true
-  reality-opts:
-    public-key: VZS639V1i-35g7VXb9EoTYL-Srm7858sxcvFAunncmA
-    short-id: 8d0d0679f42ffd98
-  client-fingerprint: chrome
-  servername: 8a2e72t.nl11.h1clayd.click
-  udp: true
-- name: '[VLESS] 🇳🇱 · اروپا 07'
-  server: 51.158.206.20
-  port: 23576
-  type: vless
-  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
-  network: tcp
-  flow: xtls-rprx-vision
-  tls: true
-  reality-opts:
-    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
-    short-id: ''
-  client-fingerprint: chrome
-  servername: fuck.rkn
-  udp: true
-- name: '[VLESS] 🌐 · سایر 68'
-  server: 2.26.204.46
-  port: 31001
-  type: vless
-  uuid: 12a4f736-2238-49ee-831f-5516f15cc951
-  network: tcp
-  flow: xtls-rprx-vision
-  tls: true
-  reality-opts:
-    public-key: lzpIiMqHXas_qayw-HvrySb78FNkVroBOqniwqPXPzY
-    short-id: 39793bc4708abbbb
-  client-fingerprint: chrome
-  servername: mensura.cdn-apple.com
-  udp: true
-- name: '[VLESS] 🇳🇱 · اروپا 08'
-  server: 178.162.147.131
-  port: 443
-  type: vless
-  uuid: 8197b9b9-8945-460f-99c9-325ef8a8a7c3
-  network: tcp
-  flow: xtls-rprx-vision
-  tls: true
-  reality-opts:
-    public-key: OH9jKzqAqEg98VDxmxReqrC_jbJWNwr-ipj2cNRgazc
-    short-id: 2237b916
-  client-fingerprint: chrome
-  servername: zovira.me
+  servername: storage.yandexcloud.net
   udp: true
 - name: '[VLESS] 🇩🇪 · اروپا 06'
-  server: 78.17.215.141
-  port: 443
-  type: vless
-  uuid: a346c521-7a7f-452b-9356-a4893feb5982
-  network: tcp
-  flow: xtls-rprx-vision
-  tls: true
-  reality-opts:
-    public-key: FWitre1jinQR7qz5HQ0q2Q4Gg9xA9B0SyizCziN7Ch0
-    short-id: 457fab2ac885dbe0
-  client-fingerprint: chrome
-  servername: de15-r.bankai.party
-  udp: true
-- name: '[VLESS] 🇩🇪 · اروپا 07'
   server: share8.gifmems.com
   port: 443
   type: vless
@@ -1711,35 +1529,49 @@ proxies:
   client-fingerprint: qq
   servername: share8.gifmems.com
   udp: true
-- name: '[VLESS] 🇩🇪 · اروپا 08'
-  server: 31.56.18.99
-  port: 443
+- name: '[VLESS] 🇦🇪 · آسیا 02'
+  server: 212.192.3.237
+  port: 9543
   type: vless
-  uuid: 0ef68b29-266e-4e0a-b935-eaa02975a439
+  uuid: 920b3cd9-4f82-4669-bbd2-d4a28b9052c6
   network: tcp
   flow: xtls-rprx-vision
   tls: true
   reality-opts:
-    public-key: RtoBkG8dr6pam2Z7bskxQxSlw17C1pDfzYeafDo2nG8
-    short-id: d16188300cd57a53
-  client-fingerprint: safari
-  servername: play.cloudconsole.ru
-  udp: true
-- name: '[VLESS] 🇳🇱 · اروپا 09'
-  server: 77.239.112.180
-  port: 443
-  type: vless
-  uuid: f724a901-b2a5-40f5-a160-8b42db9908e8
-  network: tcp
-  flow: xtls-rprx-vision
-  tls: true
-  reality-opts:
-    public-key: KvXGx5NqnYnUxveJ3DSzQ2Zx_FlB6i-narUvQR-igX8
-    short-id: ''
+    public-key: M6Ck7wUfOLhQl4582CBnaXwscPEP6SCpdEkUDzoj4Fc
+    short-id: 123abcdf
   client-fingerprint: chrome
-  servername: github.com
+  servername: storage.yandexcloud.net
   udp: true
-- name: '[VLESS] 🇳🇱 · اروپا 10'
+- name: '[VLESS] 🇳🇱 · اروپا 03'
+  server: 51.158.206.8
+  port: 23576
+  type: vless
+  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+  network: tcp
+  flow: xtls-rprx-vision
+  tls: true
+  reality-opts:
+    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
+    short-id: '01'
+  client-fingerprint: firefox
+  servername: fuck.rkn
+  udp: true
+- name: '[VLESS] 🇳🇱 · اروپا 04'
+  server: 51.158.206.97
+  port: 23576
+  type: vless
+  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+  network: tcp
+  flow: xtls-rprx-vision
+  tls: true
+  reality-opts:
+    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
+    short-id: '01'
+  client-fingerprint: chrome
+  servername: fuck.rkn
+  udp: true
+- name: '[VLESS] 🇳🇱 · اروپا 05'
   server: 51.158.206.29
   port: 23576
   type: vless
@@ -1753,19 +1585,171 @@ proxies:
   client-fingerprint: chrome
   servername: fuck.rkn
   udp: true
-- name: '[VLESS] 🇩🇪 · اروپا 09'
-  server: 192.142.12.198
-  port: 443
+- name: '[VLESS] 🇳🇱 · اروپا 06'
+  server: 51.158.206.103
+  port: 23576
   type: vless
-  uuid: 25c55b65-ff93-0004-b6d9-c60392047348
+  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
   network: tcp
   flow: xtls-rprx-vision
   tls: true
   reality-opts:
-    public-key: 6VMgXXhZdJCiOG05EyK_zTHh00kpFGrZJeZIEPgqhjY
-    short-id: 1c3e8241a8743df9
+    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
+    short-id: '01'
   client-fingerprint: chrome
-  servername: diffoscope.com
+  servername: fuck.rkn
+  udp: true
+- name: '[VLESS] 🇳🇱 · اروپا 07'
+  server: 144.31.94.65
+  port: 443
+  type: vless
+  uuid: 6d622d0d-2572-456a-8daf-b2f01698aa37
+  network: tcp
+  flow: xtls-rprx-vision
+  tls: true
+  reality-opts:
+    public-key: 2Sn-EchPKnmgua-UUohY2yzOxzI_k-TsgP9f3J9LkA0
+    short-id: ''
+  client-fingerprint: firefox
+  servername: stream.anime-club.xyz
+  udp: true
+- name: '[VLESS] 🇳🇱 · اروپا 08'
+  server: 5.253.86.3
+  port: 443
+  type: vless
+  uuid: 8197b9b9-8945-460f-99c9-325ef8a8a7c3
+  network: tcp
+  flow: xtls-rprx-vision
+  tls: true
+  reality-opts:
+    public-key: 51ZCyVOxvcD_smARtd9mV-3Rh_WurOzMGRFxk9u2Kgo
+    short-id: fa1754221e4c5f9e
+  client-fingerprint: firefox
+  servername: nl3.gofizz.in
+  udp: true
+- name: '[VLESS] 🌐 · سایر 65'
+  server: 132.243.242.216
+  port: 9543
+  type: vless
+  uuid: 920b3cd9-4f82-4669-bbd2-d4a28b9052c6
+  network: tcp
+  flow: xtls-rprx-vision
+  tls: true
+  reality-opts:
+    public-key: M6Ck7wUfOLhQl4582CBnaXwscPEP6SCpdEkUDzoj4Fc
+    short-id: 123abcdf
+  client-fingerprint: chrome
+  servername: storage.yandexcloud.net
+  udp: true
+- name: '[VLESS] 🇫🇷 · اروپا 04'
+  server: 178.214.116.7
+  port: 8443
+  type: vless
+  uuid: 2cbba076-cadf-4f45-9335-ab1dc46c8d04
+  network: xhttp
+  tls: true
+  reality-opts:
+    public-key: kCIAVMSDZLNmTEtYWUI6xrNkbclgVwsAvqeHeJzCtnI
+    short-id: 459847f6e3772ce8
+  client-fingerprint: firefox
+  servername: static-fr.clipwave.cc
+  udp: true
+- name: '[VLESS] 🇨🇿 · اروپا 02'
+  server: czechia.richforever.ru
+  port: 443
+  type: vless
+  uuid: 3dbd9377-43cc-46c3-b32c-2605908024eb
+  network: xhttp
+  tls: true
+  reality-opts:
+    public-key: PA1xWXjxZLn68I-6cjWVdqc0dYhWbu9W5c1GpjEOZgE
+    short-id: 8a9442353eebbe0f
+  client-fingerprint: firefox
+  servername: czechia.richforever.ru
+  udp: true
+- name: '[VLESS] 🇳🇱 · اروپا 09'
+  server: 51.158.206.93
+  port: 23576
+  type: vless
+  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+  network: tcp
+  flow: xtls-rprx-vision
+  tls: true
+  reality-opts:
+    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
+    short-id: '01'
+  client-fingerprint: chrome
+  servername: fuck.rkn
+  udp: true
+- name: '[VLESS] 🇫🇷 · اروپا 05'
+  server: frn3.mobileemdad.top
+  port: 443
+  type: vless
+  uuid: d01a1295-f5c1-4aa1-a595-06e68f77c157
+  network: tcp
+  flow: xtls-rprx-vision
+  tls: true
+  reality-opts:
+    public-key: PjR-SM4fOm2fY4mTqWoqZDRyxontvpailM0gBqUxlUQ
+    short-id: 070a23aed243
+  client-fingerprint: ios
+  servername: delivery.mp.microsoft.com
+  udp: true
+- name: '[VLESS] 🇨🇭 · اروپا 01'
+  server: prvtch.titun.su
+  port: 443
+  type: vless
+  uuid: 90157e25-cee1-4217-921e-91f300bc1a24
+  network: tcp
+  flow: xtls-rprx-vision
+  tls: true
+  reality-opts:
+    public-key: 1vSZjvhZO01oAEH3b7eebR1qF5dLU1Dq2E7xu8pwGSs
+    short-id: 428ef87fd47a3a32
+  client-fingerprint: firefox
+  servername: perevodchiki.su
+  udp: true
+- name: '[VLESS] 🇫🇷 · اروپا 06'
+  server: frn3.mobileemdad.top
+  port: 443
+  type: vless
+  uuid: b1ea01b5-2902-4ff6-a64d-fafd20aea9f1
+  network: tcp
+  flow: xtls-rprx-vision
+  tls: true
+  reality-opts:
+    public-key: PjR-SM4fOm2fY4mTqWoqZDRyxontvpailM0gBqUxlUQ
+    short-id: f88610dd
+  client-fingerprint: ios
+  servername: delivery.mp.microsoft.com
+  udp: true
+- name: '[VLESS] 🇳🇱 · اروپا 10'
+  server: 51.158.206.20
+  port: 23576
+  type: vless
+  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+  network: tcp
+  flow: xtls-rprx-vision
+  tls: true
+  reality-opts:
+    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
+    short-id: ''
+  client-fingerprint: chrome
+  servername: fuck.rkn
+  udp: true
+- name: '[VLESS] 🇳🇱 · اروپا 11'
+  server: 51.158.206.19
+  port: 23576
+  type: vless
+  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+  network: tcp
+  flow: xtls-rprx-vision
+  tls: true
+  reality-opts:
+    public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
+    short-id: '01'
+  client-fingerprint: chrome
+  servername: fuck.rkn
   udp: true
 - name: 📢 کانال تلگرام | @aghorbani_84 (DEMO - غیرقابل اتصال)
   type: ss
@@ -1931,25 +1915,25 @@ proxy-groups:
   type: url-test
   proxies:
   - '[VLESS] 🇺🇸 · آمریکا 01'
-  - '[VLESS] 🌐 · سایر 01'
+  - '[VMESS] 🌐 · سایر 01'
+  - '[VLESS] 🇨🇦 · آمریکا 01'
   - '[VLESS] 🌐 · سایر 02'
   - '[TROJAN] 🌐 · سایر 03'
   - '[TROJAN] 🌐 · سایر 04'
-  - '[VLESS] 🌐 · سایر 05'
+  - '[TROJAN] 🌐 · سایر 05'
   - '[VLESS] 🌐 · سایر 06'
   - '[VLESS] 🌐 · سایر 07'
-  - '[TROJAN] 🌐 · سایر 08'
-  - '[VLESS] 🌐 · سایر 09'
+  - '[VLESS] 🇺🇸 · آمریکا 02'
+  - '[VLESS] 🌐 · سایر 08'
+  - '[VMESS] 🇨🇦 · آمریکا 02'
+  - '[VMESS] 🇮🇷 · آسیا 01'
+  - '[VMESS] 🇺🇸 · آمریکا 03'
+  - '[TROJAN] 🌐 · سایر 09'
   - '[VLESS] 🌐 · سایر 10'
   - '[VLESS] 🌐 · سایر 11'
-  - '[VLESS] 🇺🇸 · آمریکا 02'
-  - '[TROJAN] 🌐 · سایر 12'
+  - '[VLESS] 🌐 · سایر 12'
   - '[VLESS] 🌐 · سایر 13'
   - '[VLESS] 🌐 · سایر 14'
-  - '[VLESS] 🌐 · سایر 15'
-  - '[TROJAN] 🌐 · سایر 16'
-  - '[VLESS] 🌐 · سایر 17'
-  - '[VLESS] 🌐 · سایر 18'
   url: http://www.gstatic.com/generate_204
   interval: 300
   tolerance: 50
