@@ -125,8 +125,8 @@ Maintained by [aghorbani84](https://github.com/aghorbani84).
 <!-- STATS:START -->
 ## 📊 Pipeline stats (last automated run)
 
-- **Last run:** 2026-11-27 08:43 UTC
-- **Raw configs fetched:** 6247
-- **Reachable after testing:** 1262
+- **Last run:** 2026-11-27 21:24 UTC
+- **Raw configs fetched:** 6228
+- **Reachable after testing:** 1242
 - **Nodes shipped in this repo:** **150** (ss: 22, trojan: 25, vless: 78, vmess: 25)
 <!-- STATS:END -->
