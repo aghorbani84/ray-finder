@@ -1,6 +1,6 @@
 # iran-v2ray-finder run report
 
-**Run timestamp:** 2026-11-26 21:40:10 UTC
+**Run timestamp:** 2026-11-27 08:43:50 UTC
 
 ## Subscription publisher
 
@@ -12,19 +12,19 @@
 
 | Stage | Count |
 |---|---|
-| Raw configs fetched | 6284 |
-| Parsed successfully | 4514 |
-| After cleaning/dedupe | 3568 |
-| TCP-reachable | 1214 |
+| Raw configs fetched | 6247 |
+| Parsed successfully | 4597 |
+| After cleaning/dedupe | 3634 |
+| TCP-reachable | 1262 |
 | Selected for output | 150 |
 
 ## Per-source results
 
 | Source | Configs | URLs ok | URLs failed |
 |---|---|---|---|
-| PSG | 335 | 2 | 0 |
-| R3ZARAHIMI | 1346 | 2 | 0 |
-| mahdibland | 4603 | 4 | 0 |
+| PSG | 341 | 2 | 0 |
+| R3ZARAHIMI | 1350 | 2 | 0 |
+| mahdibland | 4556 | 4 | 0 |
 
 ## Protocols in final selection
 
@@ -39,25 +39,25 @@
 
 | # | Name | Protocol | Server | Port | Latency (ms) |
 |---|---|---|---|---|---|
-| 1 | 🏳️ 💥Config_jo-252 | vless | d3lccr58wruv1f.cloudfront.net | 443 | 1.1 |
-| 2 | 🏳️ 💥Config_jo-157 | trojan | 167.82.76.7 | 443 | 1.3 |
-| 3 | 🇺🇸 US | VLESS | @minovpnch #1 [fast] | vless | 151.101.129.203 | 443 | 1.3 |
-| 4 | 🇺🇸 💥Config_jo-166 | trojan | us-1.gsafevpnapi.com | 44370 | 1.3 |
-| 5 | 🏳️ 💥Config_jo-204 | vless | ipfast.kingmna.com | 443 | 1.4 |
-| 6 | 🏳️ 💥Config_jo-167 | trojan | ipfast.kingmna.com | 443 | 1.4 |
-| 7 | 🏳️ 💥Config_jo-197 | vless | ipfast.kingmna.com | 443 | 1.4 |
-| 8 | 🏳️ 💥Config_jo-163 | trojan | ipfast.kingmna.com | 443 | 1.4 |
-| 9 | 🏳️ 💥Config_jo-199 | vless | ipfast.kingmna.com | 443 | 1.4 |
-| 10 | 🏳️ 💥Config_jo-184 | trojan | ipfast.kingmna.com | 443 | 1.4 |
-| 11 | 🏳️ 💥Config_jo-179 | trojan | 167.82.64.7 | 443 | 1.4 |
-| 12 | 🏳️ 💥Config_jo-180 | trojan | 199.232.78.160 | 443 | 1.4 |
-| 13 | 🏳️ 💥Config_jo-181 | trojan | 167.82.64.7 | 443 | 1.4 |
-| 14 | 🏳️ 💥Config_jo-288 | vless | ipfast.kingmna.com | 443 | 1.5 |
-| 15 | 🏳️ 💥Config_jo-261 | vless | ipfast.kingmna.com | 443 | 1.5 |
-| 16 | 🇺🇸 US | VLESS | @nofiltering2 #1 [fast] | vless | 199.232.78.160 | 443 | 1.5 |
-| 17 | 🇺🇸 US | VLESS | @Proxymelimon #2 [fast] | vless | ipfast.kingmna.com | 443 | 1.5 |
-| 18 | 🏳️ 💥Config_jo-151 | trojan | ipfast.kingmna.com | 443 | 1.5 |
-| 19 | 🏳️ 💥Config_jo-179#2 | vless | cdn-ams.edgeptr.org | 443 | 1.6 |
-| 20 | 🇺🇸 US | VLESS | @outline_ir #2 [fast] | vless | 199.232.249.131 | 443 | 1.6 |
+| 1 | 🏳️ 💥Config_jo-184#1 | vless | 14f7f5f0.mrbl69black.pages.dev | 443 | 5.1 |
+| 2 | 🏁RELAY-104.17.121.71-0885 | trojan | 104.17.121.71 | 443 | 5.3 |
+| 3 | 🏳️ 💥Config_jo-267 | vless | 185.18.250.2 | 443 | 5.4 |
+| 4 | 🏁RELAY-104.18.152.210-0882 | trojan | 104.18.152.210 | 443 | 5.4 |
+| 5 | 🏳️ 💥Config_jo-279 | vless | 104.27.127.133 | 2083 | 5.4 |
+| 6 | 🇽🇽 XX | VLESS | @artemis_vpn_free #6 [fast] | vless | de.huge-b.com | 2053 | 5.4 |
+| 7 | 🏁RELAY-172.67.215.250-0318 | vmess | hk80.sanfen001.pics | 80 | 5.5 |
+| 8 | 🇺🇸 US | VMESS | @mi_pn_official #1 [fast] | vmess | auth.speedtest.net | 443 | 5.5 |
+| 9 | 🏁RELAY-104.21.12.87-8185 | trojan | 104.21.12.87 | 443 | 5.5 |
+| 10 | 🏳️ 💥Config_jo-203#1 | vless | 104.16.250.250 | 8443 | 5.5 |
+| 11 | 🇽🇽 XX | VLESS | @kesslervpn #2 [fast] | vless | 104.18.12.149 | 443 | 5.5 |
+| 12 | 🇽🇽 XX | VLESS | @new_proxy_channel #4 [fast] | vless | 188.114.99.99 | 2053 | 5.5 |
+| 13 | 🇽🇽 XX | VLESS | @nepo_v2ray #2 [fast] | vless | 172.67.183.230 | 443 | 5.5 |
+| 14 | 🇽🇽 XX | VMESS | @ir_netproxy #1 [fast] | vmess | 172.67.207.114 | 443 | 5.6 |
+| 15 | 🏁RELAY-173.245.58.183-0820 | trojan | 173.245.58.183 | 8443 | 5.6 |
+| 16 | 🏁RELAY-104.18.39.91-0827 | trojan | 104.18.39.91 | 8443 | 5.6 |
+| 17 | 🏁RELAY-104.19.229.21-5052 | trojan | 104.19.229.21 | 443 | 5.6 |
+| 18 | 🏁RELAY-104.21.12.87-7141 | trojan | series-v1.samanehha.co | 443 | 5.6 |
+| 19 | 🏳️ 💥Config_jo-225 | vless | 185.18.250.2 | 443 | 5.6 |
+| 20 | 🇽🇽 XX | VLESS | @freev2flyng #2 [fast] | vless | www.speedtest.net | 8080 | 5.6 |
 
 _Latency is coarse TCP-handshake time measured from GitHub runners; actual usable ranking happens client-side via the `AUTO`/`TOP20` url-test groups._
